@@ -271,7 +271,10 @@
         setOpen(1);
         setTimeout(() => {
           const el = document.getElementById("phase-card-1");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY - 72;
+            window.scrollTo({ top, behavior: "smooth" });
+          }
         }, 50);
       };
 
