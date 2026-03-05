@@ -276,120 +276,115 @@
       };
 
       return (
-        <div className="min-h-screen text-gray-100 p-4 font-sans">
-          <div className="max-w-3xl mx-auto">
-            {/* Hero Section */}
-            <div className="text-center mb-10 pt-4">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 mb-4">
+        <div className="text-gray-100 font-sans">
+
+          {/* ── HERO — full viewport ── */}
+          <div className="min-h-[calc(100vh-52px)] flex flex-col justify-between px-4 pt-8 pb-6 max-w-3xl mx-auto">
+
+            {/* Top: badge + headline + subtitle + stats */}
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 mb-5">
                 <BrainCircuit size={12} className="text-blue-400"/>
                 <span className="text-xs text-blue-400 font-medium">Updated March 2026 · Free · For software developers</span>
               </div>
-
-              {/* H1 */}
-              <h1 className="text-4xl md:text-5xl font-bold mb-3 leading-tight">
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">The AI Engineering</span>
+              <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-[1.1] tracking-tight">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">AI Engineering</span>
                 <br />
                 <span className="text-white">Roadmap</span>
               </h1>
-
-              {/* Subtitle */}
-              <p className="text-gray-400 text-base max-w-lg mx-auto mb-5">
-                A structured path from zero to production-ready AI — with curated free resources, hands-on projects, and milestones at every phase.
+              <p className="text-gray-300 text-lg max-w-xl mx-auto mb-1 leading-relaxed">
+                The structured path from zero to{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">production-ready AI</span>
               </p>
-
-              {/* Stats pills */}
-              <div className="flex flex-wrap justify-center gap-2 mb-6">
-                {[
-                  [Layers, "blue", "7", "Phases"],
-                  [Clock, "purple", "~14", "months"],
-                  [BookOpen, "green", "50+", "Resources"],
-                  [Wrench, "orange", "7", "Projects"],
-                ].map(([Icon, color, val, label]) => (
+              <p className="text-gray-500 text-sm max-w-lg mx-auto mb-6">
+                Curated free resources · hands-on projects · milestones at every phase
+              </p>
+              <div className="flex flex-wrap justify-center gap-2">
+                {[[Layers,"blue","7","Phases"],[Clock,"purple","~14","months"],[BookOpen,"green","50+","Free resources"],[Wrench,"orange","7","Projects"]].map(([Icon,color,val,label]) => (
                   <span key={label} className="inline-flex items-center gap-1.5 bg-gray-800/60 border border-white/8 text-gray-300 text-xs px-3 py-1.5 rounded-full">
                     <Icon size={12} className={`text-${color}-400`}/><strong className="text-white">{val}</strong> {label}
                   </span>
                 ))}
               </div>
+            </div>
 
-              {/* USP cards — 3 differentiators, each with feature detail */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-left">
+            {/* Middle: USP cards + section pills */}
+            <div className="space-y-6 my-8">
+              {/* USP — 3 cards horizontal */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
-                  {
-                    icon: BookOpen, color: "text-blue-400", bg: "bg-blue-500/8 border-blue-500/15",
-                    title: "Not just links",
-                    desc: "Every phase has topics to study, a project to build, and a milestone to confirm you're ready to move on.",
-                  },
-                  {
-                    icon: Code2, color: "text-purple-400", bg: "bg-purple-500/8 border-purple-500/15",
-                    title: "Built for developers",
-                    desc: "No research papers, no math-heavy theory. Structured for engineers who want to ship AI-powered products.",
-                  },
-                  {
-                    icon: Check, color: "text-green-400", bg: "bg-green-500/8 border-green-500/15",
-                    title: "Track as you learn",
-                    desc: "Check off topics as you go. Progress is saved in your browser — pick up where you left off any time.",
-                  },
+                  { icon: BookOpen, color: "text-blue-400",   bg: "bg-blue-500/8 border-blue-500/20",   title: "Not just links",       desc: "Topics, projects & milestones — not a bookmark list." },
+                  { icon: Code2,    color: "text-purple-400", bg: "bg-purple-500/8 border-purple-500/20", title: "Built for developers", desc: "No math papers. Ship AI products from day one." },
+                  { icon: Check,    color: "text-green-400",  bg: "bg-green-500/8 border-green-500/20",  title: "Track progress",       desc: "Check off topics. Saved in your browser forever." },
                 ].map(({icon: Icon, color, bg, title, desc}) => (
-                  <div key={title} className={`flex items-start gap-3 rounded-xl border ${bg} px-4 py-3`}>
-                    <Icon size={16} className={`${color} flex-shrink-0 mt-0.5`}/>
-                    <div>
-                      <p className="text-sm font-semibold text-white mb-0.5">{title}</p>
-                      <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
-                    </div>
+                  <div key={title} className={`flex flex-col gap-2 rounded-xl border ${bg} px-4 py-4`}>
+                    <Icon size={18} className={color}/>
+                    <p className="text-sm font-semibold text-white">{title}</p>
+                    <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
                   </div>
                 ))}
               </div>
 
-              {/* Other sections */}
-              <div className="mb-6">
+              {/* Section links — compact pill row */}
+              <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wider mb-3 text-center">Also inside this tool</p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div className="flex flex-wrap justify-center gap-2">
                   {[
-                    { slug: "prep-plan",      icon: Calendar,      color: "text-orange-400", label: "Prep Plan",      desc: "6-week fast track" },
-                    { slug: "prompt-eng",     icon: Zap,           color: "text-yellow-400", label: "Prompt Eng",     desc: "Techniques & templates" },
-                    { slug: "readiness",      icon: CheckCircle,   color: "text-green-400",  label: "Readiness",      desc: "Am I ready to move on?" },
-                    { slug: "genai-guide",    icon: Cpu,           color: "text-purple-400", label: "GenAI Guide",    desc: "How each AI domain works" },
-                    { slug: "resources",      icon: BookOpen,      color: "text-blue-400",   label: "Resources",      desc: "Books & courses by phase" },
-                    { slug: "assessment",     icon: BarChart2,     color: "text-pink-400",   label: "Assessment",     desc: "Where will I stand?" },
-                    { slug: "beyond-roadmap", icon: Compass,       color: "text-teal-400",   label: "Beyond Roadmap", desc: "What to do after" },
-                  ].map(({ slug, icon: Icon, color, label, desc }) => (
+                    { slug: "prep-plan",      icon: Calendar,    color: "text-orange-400", label: "Prep Plan" },
+                    { slug: "prompt-eng",     icon: Zap,         color: "text-yellow-400", label: "Prompt Eng" },
+                    { slug: "genai-guide",    icon: Cpu,         color: "text-purple-400", label: "GenAI Guide" },
+                    { slug: "readiness",      icon: CheckCircle, color: "text-green-400",  label: "Readiness Check" },
+                    { slug: "resources",      icon: BookOpen,    color: "text-blue-400",   label: "Books & Courses" },
+                    { slug: "assessment",     icon: BarChart2,   color: "text-pink-400",   label: "Assessment" },
+                    { slug: "beyond-roadmap", icon: Compass,     color: "text-teal-400",   label: "Beyond Roadmap" },
+                  ].map(({ slug, icon: Icon, color, label }) => (
                     <a key={slug} href={`#${slug}`}
-                      className="flex items-start gap-2 bg-gray-800/40 hover:bg-gray-800/80 border border-white/6 hover:border-white/12 rounded-lg px-3 py-2.5 transition-colors group">
-                      <Icon size={14} className={`${color} flex-shrink-0 mt-0.5`}/>
-                      <div>
-                        <p className="text-xs font-medium text-gray-300 group-hover:text-white">{label}</p>
-                        <p className="text-xs text-gray-600">{desc}</p>
-                      </div>
+                      className="inline-flex items-center gap-1.5 bg-gray-800/60 hover:bg-gray-700/60 border border-white/8 hover:border-white/15 text-gray-300 hover:text-white text-xs px-3 py-1.5 rounded-full transition-colors">
+                      <Icon size={11} className={color}/>{label}
                     </a>
                   ))}
                 </div>
               </div>
+            </div>
 
-              {/* Progress bar — returning users only */}
-              {totalDone > 0 && (
-                <div className="max-w-sm mx-auto mb-5 bg-gray-800/60 border border-white/8 rounded-xl px-4 py-3">
+            {/* Bottom: progress → CTA → scroll hint */}
+            <div className="flex flex-col items-center gap-5">
+              {totalDone > 0 ? (
+                <div className="w-full max-w-sm bg-gray-800/60 border border-blue-500/20 rounded-xl px-4 py-3">
                   <div className="flex justify-between text-xs mb-2">
-                    <span className="text-gray-400">Your progress</span>
-                    <span className="text-blue-400 font-medium">{totalDone}/{totalTopics} topics · {overallPct}%</span>
+                    <span className="text-gray-400 font-medium">Your progress</span>
+                    <span className="text-blue-400 font-semibold">{totalDone}/{totalTopics} topics · {overallPct}%</span>
                   </div>
-                  <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                  <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                     <div className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500" style={{width: `${overallPct}%`}}/>
                   </div>
                 </div>
-              )}
+              ) : null}
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="flex flex-col sm:flex-row items-center gap-3">
                 <button onClick={scrollToPhase1}
-                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors">
-                  {totalDone > 0 ? "Continue learning" : "Start Phase 1"} <ArrowRight size={14}/>
+                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-[0_0_24px_rgba(59,130,246,0.35)] hover:shadow-[0_0_32px_rgba(59,130,246,0.5)] text-sm">
+                  {totalDone > 0 ? "Continue learning" : "Start the roadmap"} <ArrowRight size={15}/>
                 </button>
                 <a href="https://github.com/amit352/ailearnings/discussions" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gray-800/60 hover:bg-gray-700/60 border border-white/8 hover:border-white/15 text-gray-300 hover:text-white text-sm px-5 py-2.5 rounded-lg transition-all">
+                  className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
                   <MessageSquare size={14}/> Share feedback
                 </a>
               </div>
+
+              <button onClick={scrollToPhase1} className="flex flex-col items-center gap-1 text-gray-600 hover:text-gray-400 transition-colors">
+                <span className="text-xs tracking-wider uppercase">Scroll to roadmap</span>
+                <ChevronDown size={16} className="animate-bounce"/>
+              </button>
+            </div>
+          </div>
+
+          {/* ── ROADMAP SECTION ── */}
+          <div className="px-4 pb-8 max-w-3xl mx-auto">
+            <div className="flex items-center gap-3 mb-6 pt-2">
+              <div className="flex-1 h-px bg-gray-800"/>
+              <span className="text-xs text-gray-500 uppercase tracking-widest font-medium">The Roadmap</span>
+              <div className="flex-1 h-px bg-gray-800"/>
             </div>
 
             {!tipDismissed && (
