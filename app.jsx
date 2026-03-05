@@ -23,14 +23,11 @@
           "Key terms: tokens, embeddings, parameters, inference",
         ],
         resources: [
-          { label: "Karpathy – Neural Networks: Zero to Hero (YouTube)", url: "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ", time: "~10 hrs" },
-          { label: "Andrej Karpathy – Intro to LLMs (YouTube)", url: "https://www.youtube.com/watch?v=zjkBMFhNj_g", time: "1 hr" },
-          { label: "3Blue1Brown – Neural Networks (YouTube)", url: "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi", time: "2 hrs" },
-          { label: "Microsoft – GenAI for Beginners (GitHub, free)", url: "https://github.com/microsoft/generative-ai-for-beginners", time: "self-paced" },
-          { label: "StatQuest – ML Fundamentals (YouTube)", url: "https://www.youtube.com/c/joshstarmer", time: "self-paced" },
-          { label: "DeepLearning.AI – GenAI for Everyone (free audit)", url: "https://www.deeplearning.ai/courses/generative-ai-for-everyone/", time: "~4 hrs" },
-          { label: "Google ML Crash Course", url: "https://developers.google.com/machine-learning/crash-course", time: "~15 hrs" },
-          { label: "Fast.ai – Practical Deep Learning", url: "https://course.fast.ai", time: "self-paced" },
+          { label: "Karpathy – Neural Networks: Zero to Hero (YouTube)", url: "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ", time: "~10 hrs", note: "The gold standard. Builds intuition from scratch — best free resource for developers." },
+          { label: "Andrej Karpathy – Intro to LLMs (YouTube)", url: "https://www.youtube.com/watch?v=zjkBMFhNj_g", time: "1 hr", note: "1-hour masterclass on how LLMs work. Best single video for any beginner." },
+          { label: "3Blue1Brown – Neural Networks (YouTube)", url: "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi", time: "2 hrs", note: "Beautiful visual explanations of neural network math — no prior knowledge needed." },
+          { label: "Google ML Crash Course", url: "https://developers.google.com/machine-learning/crash-course", time: "~15 hrs", note: "Structured hands-on ML fundamentals from Google. Great for systematic learners." },
+          { label: "Fast.ai – Practical Deep Learning", url: "https://course.fast.ai", time: "self-paced", note: "Top-down approach — build first, understand later. Best for developers who learn by doing." },
         ],
         project: "Explore pre-built models on Hugging Face Spaces — try text generation, sentiment analysis, image captioning.",
         milestone: "You can explain what an LLM is and how it works to a non-technical person.",
@@ -62,10 +59,10 @@
           note: "💡 For most developers, start with cloud APIs (free tiers available) and run 7B–13B models locally via Ollama for privacy or offline use.",
         },
         resources: [
-          { label: "Ollama – Run LLMs locally (free)", url: "https://ollama.com", time: "setup" },
-          { label: "LM Studio – GUI for local models (free)", url: "https://lmstudio.ai", time: "setup" },
-          { label: "Hugging Face Transformers Quickstart", url: "https://huggingface.co/docs/transformers/quicktour", time: "1 hr" },
-          { label: "DeepLearning.AI – Open Source Models with HF (free)", url: "https://www.deeplearning.ai/short-courses/open-source-models-hugging-face/", time: "1.5 hrs" },
+          { label: "Ollama – Run LLMs locally (free)", url: "https://ollama.com", time: "setup", note: "Easiest way to run any open-source LLM locally. One command to get started." },
+          { label: "LM Studio – GUI for local models (free)", url: "https://lmstudio.ai", time: "setup", note: "No-code desktop app for running and chatting with local models. Great for non-CLI setup." },
+          { label: "Hugging Face Transformers Quickstart", url: "https://huggingface.co/docs/transformers/quicktour", time: "1 hr", note: "Official HF docs — load and run any model in a few lines of Python." },
+          { label: "DeepLearning.AI – Open Source Models with HF (free)", url: "https://www.deeplearning.ai/short-courses/open-source-models-hugging-face/", time: "1.5 hrs", note: "Hands-on course on loading, configuring, and comparing open-source models." },
         ],
         project: "Run Llama 3 locally via Ollama. Call it from a Python script. Compare output vs Claude/GPT API.",
         milestone: "You have a local LLM running and can call multiple LLM APIs from code.",
@@ -83,12 +80,10 @@
           "Handling context windows and token limits",
         ],
         resources: [
-          { label: "DeepLearning.AI – Prompt Engineering for Devs (free)", url: "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/", time: "1.5 hrs" },
-          { label: "DeepLearning.AI – Building Systems with LLM API (free)", url: "https://www.deeplearning.ai/short-courses/building-systems-with-chatgpt/", time: "1.5 hrs" },
-          { label: "Anthropic Prompt Engineering Docs", url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview", time: "reference" },
-          { label: "OpenAI Prompt Engineering Guide", url: "https://platform.openai.com/docs/guides/prompt-engineering", time: "reference" },
-          { label: "DSPy – Programmatic Prompting (Stanford, free)", url: "https://github.com/stanfordnlp/dspy", time: "self-paced" },
-          { label: "Instructor – Structured LLM Outputs (free)", url: "https://github.com/jxnl/instructor", time: "reference" },
+          { label: "DeepLearning.AI – Prompt Engineering for Devs (free)", url: "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/", time: "1.5 hrs", note: "Canonical course by Andrew Ng. Covers every core technique with hands-on Python notebooks." },
+          { label: "DeepLearning.AI – Building Systems with LLM API (free)", url: "https://www.deeplearning.ai/short-courses/building-systems-with-chatgpt/", time: "1.5 hrs", note: "Goes from single prompts to multi-step LLM pipelines. Best bridge into real app development." },
+          { label: "Anthropic Prompt Engineering Docs", url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview", time: "reference", note: "Official Anthropic guide — the most detailed and up-to-date reference for production prompting." },
+          { label: "OpenAI Prompt Engineering Guide", url: "https://platform.openai.com/docs/guides/prompt-engineering", time: "reference", note: "Official OpenAI reference for prompt techniques. Complements Anthropic's guide well." },
         ],
         project: "Build a CLI or web tool powered by an LLM API — a code reviewer, doc summarizer, or Q&A bot.",
         milestone: "You have a working AI-powered app you built yourself using an LLM API.",
@@ -106,14 +101,9 @@
           "RAG evaluation (relevance, faithfulness, correctness)",
         ],
         resources: [
-          { label: "DeepLearning.AI – LangChain: Chat with Your Data (free)", url: "https://www.deeplearning.ai/short-courses/langchain-chat-with-your-data/", time: "1.5 hrs" },
-          { label: "DeepLearning.AI – Building & Evaluating Advanced RAG (free)", url: "https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/", time: "1.5 hrs" },
-          { label: "DeepLearning.AI – Knowledge Graphs for RAG (free)", url: "https://www.deeplearning.ai/short-courses/knowledge-graphs-rag/", time: "1.5 hrs" },
-          { label: "LlamaIndex Docs & Tutorials (free)", url: "https://docs.llamaindex.ai", time: "reference" },
-          { label: "Maxime Labonne – LLM Course (GitHub, free, 44K⭐)", url: "https://github.com/mlabonne/llm-course", time: "self-paced" },
-          { label: "RAGAS – RAG Evaluation Framework (free)", url: "https://github.com/explodinggradients/ragas", time: "reference" },
-          { label: "Weaviate Academy – Vector DB Course (free)", url: "https://weaviate.io/learn/academy", time: "self-paced" },
-          { label: "Hugging Face NLP Course – Ch. 1–4 (free)", url: "https://huggingface.co/learn/nlp-course/chapter1/1", time: "self-paced" },
+          { label: "DeepLearning.AI – LangChain: Chat with Your Data (free)", url: "https://www.deeplearning.ai/short-courses/langchain-chat-with-your-data/", time: "1.5 hrs", note: "Best hands-on intro to RAG — document loading, chunking, retrieval, and generation in one course." },
+          { label: "DeepLearning.AI – Building & Evaluating Advanced RAG (free)", url: "https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/", time: "1.5 hrs", note: "Goes beyond naive RAG — sentence-window retrieval, auto-merging, and evaluation metrics." },
+          { label: "Hugging Face NLP Course – Ch. 1–4 (free)", url: "https://huggingface.co/learn/nlp-course/chapter1/1", time: "self-paced", note: "Official HF course on transformers and embeddings — the theory behind why RAG works." },
         ],
         project: "Build a chatbot that answers questions from your own PDF documents or a knowledge base you care about.",
         milestone: "You can build a RAG pipeline from scratch and evaluate its quality.",
@@ -153,14 +143,10 @@
           ],
         },
         resources: [
-          { label: "DeepLearning.AI – AI Agents in LangGraph (free)", url: "https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/", time: "2 hrs" },
-          { label: "DeepLearning.AI – AI Agentic Design Patterns with AutoGen (free)", url: "https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/", time: "1 hr" },
-          { label: "DeepLearning.AI – Functions, Tools & Agents (free)", url: "https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/", time: "2 hrs" },
-          { label: "LangGraph Tutorials – Official (free)", url: "https://langchain-ai.github.io/langgraph/tutorials/", time: "self-paced" },
-          { label: "CrewAI Docs & Quickstart (free)", url: "https://docs.crewai.com", time: "reference" },
-          { label: "OpenAI Agents SDK (free)", url: "https://github.com/openai/openai-agents-python", time: "reference" },
-          { label: "Smolagents – HuggingFace Agent Framework (free)", url: "https://github.com/huggingface/smolagents", time: "reference" },
-          { label: "Anthropic MCP Documentation", url: "https://docs.anthropic.com/en/docs/agents-and-tools/mcp", time: "reference" },
+          { label: "DeepLearning.AI – AI Agents in LangGraph (free)", url: "https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/", time: "2 hrs", note: "Best practical agent course — builds ReACT agents and multi-agent systems step by step." },
+          { label: "DeepLearning.AI – AI Agentic Design Patterns with AutoGen (free)", url: "https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/", time: "1 hr", note: "Covers orchestrator-worker, reflection, and multi-agent patterns using Microsoft AutoGen." },
+          { label: "DeepLearning.AI – Functions, Tools & Agents (free)", url: "https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/", time: "2 hrs", note: "Deep dive into tool calling and function use — the foundation of every agentic system." },
+          { label: "Anthropic MCP Documentation", url: "https://docs.anthropic.com/en/docs/agents-and-tools/mcp", time: "reference", note: "Official spec for Model Context Protocol — how to connect agents to external services and tools." },
         ],
         project: "Build an agent that can search the web, read a URL, and write a summary report — a mini Perplexity.",
         milestone: "You understand agentic design patterns and have built a working multi-step agent.",
@@ -201,14 +187,11 @@
           ],
         },
         resources: [
-          { label: "Andrej Karpathy – Let's build GPT from scratch (YouTube)", url: "https://www.youtube.com/watch?v=kCc8FmEb1nY", time: "2 hrs" },
-          { label: "Maxime Labonne – LLM Course (GitHub, free, 44K⭐)", url: "https://github.com/mlabonne/llm-course", time: "self-paced" },
-          { label: "DataTalksClub – LLM Zoomcamp (free, 10 weeks)", url: "https://github.com/DataTalksClub/llm-zoomcamp", time: "10 weeks" },
-          { label: "DeepLearning.AI – Finetuning LLMs (free)", url: "https://www.deeplearning.ai/short-courses/finetuning-large-language-models/", time: "1 hr" },
-          { label: "Hugging Face TRL – RLHF & DPO Training (free)", url: "https://huggingface.co/docs/trl", time: "reference" },
-          { label: "Hugging Face PEFT Docs (free)", url: "https://huggingface.co/docs/peft/index", time: "reference" },
-          { label: "Unsloth – Fast fine-tuning (free, Colab notebooks)", url: "https://github.com/unslothai/unsloth", time: "hands-on" },
-          { label: "The Illustrated Transformer – Jay Alammar", url: "https://jalammar.github.io/illustrated-transformer/", time: "1 hr" },
+          { label: "Andrej Karpathy – Let's build GPT from scratch (YouTube)", url: "https://www.youtube.com/watch?v=kCc8FmEb1nY", time: "2 hrs", note: "Legendary 2-hour video — builds a working GPT in Python from first principles." },
+          { label: "DeepLearning.AI – Finetuning LLMs (free)", url: "https://www.deeplearning.ai/short-courses/finetuning-large-language-models/", time: "1 hr", note: "Concise practical walkthrough of SFT, LoRA fine-tuning and how to evaluate results." },
+          { label: "Hugging Face PEFT Docs (free)", url: "https://huggingface.co/docs/peft/index", time: "reference", note: "Official reference for LoRA, QLoRA, and all parameter-efficient fine-tuning methods." },
+          { label: "Unsloth – Fast fine-tuning (free, Colab notebooks)", url: "https://github.com/unslothai/unsloth", time: "hands-on", note: "2× faster, 60% less VRAM than stock HF. Best way to fine-tune on free Colab GPUs." },
+          { label: "The Illustrated Transformer – Jay Alammar", url: "https://jalammar.github.io/illustrated-transformer/", time: "1 hr", note: "The most-read visual explanation of transformer architecture. Required reading for Phase 6." },
         ],
         project: "Fine-tune Llama 3 8B on a custom dataset using QLoRA + Unsloth on free Google Colab GPU.",
         milestone: "You can fine-tune an open-source model, understand what happened under the hood, and evaluate the result.",
@@ -226,18 +209,10 @@
           "Staying current: papers, blogs, community",
         ],
         resources: [
-          { label: "Hugging Face Diffusion Models Course (free)", url: "https://huggingface.co/learn/diffusion-course/unit0/1", time: "self-paced" },
-          { label: "DeepLearning.AI – Reasoning with o1 (free)", url: "https://www.deeplearning.ai/short-courses/reasoning-with-o1/", time: "1 hr" },
-          { label: "Vercel AI SDK (for web devs)", url: "https://sdk.vercel.ai/docs", time: "reference" },
-          { label: "LangSmith – LLM Observability (free tier)", url: "https://smith.langchain.com", time: "reference" },
-          { label: "Weights & Biases Weave – LLM Tracking (free tier)", url: "https://wandb.ai/site/weave", time: "reference" },
-          { label: "Papers With Code – Track SOTA (free)", url: "https://paperswithcode.com", time: "ongoing" },
-          { label: "Hugging Face Blog (free)", url: "https://huggingface.co/blog", time: "ongoing" },
-          { label: "The Batch – Andrew Ng Newsletter (free)", url: "https://www.deeplearning.ai/the-batch/", time: "weekly" },
-          { label: "TLDR AI Newsletter (free)", url: "https://tldr.tech/ai", time: "daily" },
-          { label: "Latent Space Podcast (free)", url: "https://www.latent.space/podcast", time: "ongoing" },
-          { label: "Yannic Kilcher – AI Paper Walkthroughs (YouTube)", url: "https://www.youtube.com/@YannicKilcher", time: "ongoing" },
-          { label: "AI Explained (YouTube)", url: "https://www.youtube.com/@aiexplained-official", time: "ongoing" },
+          { label: "Hugging Face Diffusion Models Course (free)", url: "https://huggingface.co/learn/diffusion-course/unit0/1", time: "self-paced", note: "Best free course on image generation models — covers diffusion theory and Stable Diffusion." },
+          { label: "DeepLearning.AI – Reasoning with o1 (free)", url: "https://www.deeplearning.ai/short-courses/reasoning-with-o1/", time: "1 hr", note: "Covers chain-of-thought reasoning models and how to use them differently from standard LLMs." },
+          { label: "Vercel AI SDK (for web devs)", url: "https://sdk.vercel.ai/docs", time: "reference", note: "Best way to add streaming LLM responses to a Next.js or React app. Production-ready." },
+          { label: "Latent Space Podcast (free)", url: "https://www.latent.space/podcast", time: "ongoing", note: "Best podcast for AI engineers — interviews with people building real AI systems and research." },
         ],
         project: "Pick one meaningful personal project — a research assistant, coding tool, or AI for your hobby — and launch it publicly.",
         milestone: "You have shipped 2–3 real AI projects and can discuss AI topics with genuine depth.",
@@ -363,9 +338,15 @@
                               <div className="space-y-1.5">
                                 {p.resources.map((r, i) => (
                                   <a key={i} href={r.url} target="_blank" rel="noopener noreferrer"
-                                    className="flex items-center justify-between bg-gray-800 hover:bg-gray-700 rounded-lg px-3 py-2 transition-colors group"
+                                    className="flex items-start justify-between bg-gray-800 hover:bg-gray-700 rounded-lg px-3 py-2 transition-colors group"
                                     onClick={e => e.stopPropagation()}>
-                                    <span className="text-sm text-blue-400 group-hover:text-blue-300 flex items-center gap-1.5"><ExternalLink size={12} className="flex-shrink-0 opacity-60"/>{r.label}</span>
+                                    <div className="flex items-start gap-1.5 min-w-0">
+                                      <ExternalLink size={12} className="flex-shrink-0 opacity-60 text-blue-400 mt-0.5"/>
+                                      <div>
+                                        <span className="text-sm text-blue-400 group-hover:text-blue-300">{r.label}</span>
+                                        {r.note && <p className="text-xs text-gray-500 mt-0.5">{r.note}</p>}
+                                      </div>
+                                    </div>
                                     <span className="text-xs text-gray-400 ml-2 flex-shrink-0">{r.time}</span>
                                   </a>
                                 ))}
@@ -545,7 +526,9 @@
         videos: [
           { title: "Neural Networks: Zero to Hero", author: "Andrej Karpathy (YouTube)", type: FREE, why: "The gold standard. Builds intuition from scratch. Watch this before anything else.", url: "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ", duration: "~10 hrs total" },
           { title: "Intro to Large Language Models", author: "Andrej Karpathy (YouTube)", type: FREE, why: "1-hour masterclass on how LLMs work. Best single video for beginners.", url: "https://www.youtube.com/watch?v=zjkBMFhNj_g", duration: "1 hr" },
-          { title: "Generative AI for Beginners", author: "Microsoft (GitHub + YouTube)", type: FREE, why: "18 structured lessons covering GenAI fundamentals, prompting, RAG, agents. Beginner friendly.", url: "https://github.com/microsoft/generative-ai-for-beginners", duration: "Self-paced" },
+          { title: "Generative AI for Beginners", author: "Microsoft (GitHub + YouTube)", type: FREE, why: "21 structured lessons covering GenAI fundamentals, prompting, RAG, agents. 74K+ GitHub stars.", url: "https://github.com/microsoft/generative-ai-for-beginners", duration: "Self-paced" },
+          { title: "Generative AI for Everyone", author: "Andrew Ng / DeepLearning.AI (free audit)", type: FREE, why: "Non-technical introduction to GenAI — great for building mental models before diving into code. 4.8★, 450K+ enrolled.", url: "https://www.deeplearning.ai/courses/generative-ai-for-everyone/", duration: "~4 hrs" },
+          { title: "StatQuest – ML Fundamentals", author: "Josh Starmer (YouTube)", type: FREE, why: "Best visual explanations of statistics and ML concepts on YouTube. Perfect companion for building intuition.", url: "https://www.youtube.com/c/joshstarmer", duration: "Self-paced" },
         ],
       },
       {
@@ -567,6 +550,8 @@
         videos: [
           { title: "ChatGPT Prompt Engineering for Developers", author: "DeepLearning.AI (free short course)", type: FREE, why: "The canonical prompt engineering course. Covers all techniques with hands-on notebooks.", url: "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/", duration: "1.5 hrs" },
           { title: "Building Systems with the ChatGPT API", author: "DeepLearning.AI (free short course)", type: FREE, why: "Goes from prompting to building multi-step LLM-powered apps. Great bridge into real development.", url: "https://www.deeplearning.ai/short-courses/building-systems-with-chatgpt/", duration: "1.5 hrs" },
+          { title: "DSPy – Programmatic Prompting (Stanford)", author: "Stanford NLP (GitHub)", type: FREE, why: "22K+ stars. Replaces hand-crafted prompts with declarative modules — the direction prompting is heading.", url: "https://github.com/stanfordnlp/dspy", duration: "Reference" },
+          { title: "Instructor – Structured LLM Outputs", author: "Jason Liu (GitHub)", type: FREE, why: "10K+ stars. The standard library for getting typed, validated JSON from any LLM. Used widely in production.", url: "https://github.com/jxnl/instructor", duration: "Reference" },
         ],
       },
       {
@@ -578,7 +563,12 @@
         videos: [
           { title: "LangChain: Chat with Your Data", author: "DeepLearning.AI (free short course)", type: FREE, why: "Hands-on RAG from document loading to retrieval and generation. The best intro to RAG in practice.", url: "https://www.deeplearning.ai/short-courses/langchain-chat-with-your-data/", duration: "1.5 hrs" },
           { title: "Building & Evaluating Advanced RAG", author: "DeepLearning.AI (free short course)", type: FREE, why: "Goes deeper — sentence-window retrieval, auto-merging, evaluation metrics. Great follow-up.", url: "https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/", duration: "1.5 hrs" },
+          { title: "Knowledge Graphs for RAG", author: "DeepLearning.AI (free short course)", type: FREE, why: "Advanced RAG technique — connect your retrieval pipeline to knowledge graphs for structured context.", url: "https://www.deeplearning.ai/short-courses/knowledge-graphs-rag/", duration: "1.5 hrs" },
           { title: "Generative AI with LLMs (Coursera/AWS)", author: "DeepLearning.AI + AWS", type: FREE, why: "3-week course covering transformers, RAG, fine-tuning, and deployment. Audit for free.", url: "https://www.coursera.org/learn/generative-ai-with-llms", duration: "~16 hrs" },
+          { title: "LlamaIndex Docs & Tutorials", author: "LlamaIndex (free)", type: FREE, why: "Leading alternative to LangChain for RAG. Excellent for document pipelines and query engines.", url: "https://docs.llamaindex.ai", duration: "Reference" },
+          { title: "Maxime Labonne – LLM Course", author: "GitHub (free, 44K⭐)", type: FREE, why: "Comprehensive free course covering quantization, fine-tuning, and RAG with hands-on notebooks.", url: "https://github.com/mlabonne/llm-course", duration: "Self-paced" },
+          { title: "RAGAS – RAG Evaluation Framework", author: "Exploding Gradients (GitHub)", type: FREE, why: "7K+ stars. The standard open-source library for evaluating RAG pipelines (faithfulness, relevance, correctness).", url: "https://github.com/explodinggradients/ragas", duration: "Reference" },
+          { title: "Weaviate Academy – Vector DB Course", author: "Weaviate (free)", type: FREE, why: "Free structured course on vector databases from the team that builds one. Covers embeddings, search, and RAG.", url: "https://weaviate.io/learn/academy", duration: "Self-paced" },
         ],
       },
       {
@@ -591,6 +581,10 @@
           { title: "AI Agents in LangGraph", author: "DeepLearning.AI (free short course)", type: FREE, why: "Builds ReACT agents, tool-calling agents, and multi-agent systems using LangGraph. Hands-on and practical.", url: "https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/", duration: "2 hrs" },
           { title: "AI Agentic Design Patterns with AutoGen", author: "Microsoft / DeepLearning.AI (free)", type: FREE, why: "Covers orchestrator-worker, reflection, and multi-agent patterns using Microsoft's AutoGen framework.", url: "https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/", duration: "1 hr" },
           { title: "Full Stack LLM Bootcamp – Agents & Tools", author: "Full Stack Deep Learning (YouTube, free)", type: FREE, why: "University-quality lectures covering agents, tool use, and production patterns. Free on YouTube.", url: "https://www.youtube.com/@FullStackDeepLearning", duration: "Self-paced" },
+          { title: "LangGraph Official Tutorials", author: "LangChain (free)", type: FREE, why: "Best hands-on resource for building stateful agents. Start here after the DeepLearning.AI course.", url: "https://langchain-ai.github.io/langgraph/tutorials/", duration: "Self-paced" },
+          { title: "CrewAI – Multi-Agent Framework", author: "CrewAI (GitHub + Docs)", type: FREE, why: "28K+ stars. Most popular multi-agent framework. Great for orchestrator-worker patterns.", url: "https://docs.crewai.com", duration: "Reference" },
+          { title: "OpenAI Agents SDK", author: "OpenAI (GitHub)", type: FREE, why: "Official OpenAI framework for building agents with tool use, handoffs, and guardrails.", url: "https://github.com/openai/openai-agents-python", duration: "Reference" },
+          { title: "Smolagents – Minimal Agent Framework", author: "Hugging Face (GitHub)", type: FREE, why: "HuggingFace's own lean agent library. Clean, minimal, great for learning agent internals.", url: "https://github.com/huggingface/smolagents", duration: "Reference" },
         ],
       },
       {
@@ -604,6 +598,9 @@
           { title: "Let's Build GPT from Scratch", author: "Andrej Karpathy (YouTube)", type: FREE, why: "Legendary 2-hour video. Builds a GPT model from scratch in Python. Best hands-on transformer tutorial that exists.", url: "https://www.youtube.com/watch?v=kCc8FmEb1nY", duration: "2 hrs" },
           { title: "Finetuning Large Language Models", author: "DeepLearning.AI (free short course)", type: FREE, why: "Practical fine-tuning walkthrough covering SFT, LoRA, and evaluation.", url: "https://www.deeplearning.ai/short-courses/finetuning-large-language-models/", duration: "1 hr" },
           { title: "Stanford CS336: Language Modeling from Scratch", author: "Stanford University (YouTube, free)", type: FREE, why: "Full university course on building LLMs from scratch. One of the most rigorous free resources available.", url: "https://www.youtube.com/@stanfordonline", duration: "Full course" },
+          { title: "Maxime Labonne – LLM Course", author: "GitHub (free, 44K⭐)", type: FREE, why: "Comprehensive free course with notebooks on quantization, LoRA/QLoRA fine-tuning, and RLHF. One of the best structured free resources.", url: "https://github.com/mlabonne/llm-course", duration: "Self-paced" },
+          { title: "DataTalksClub – LLM Zoomcamp", author: "DataTalksClub (GitHub, free)", type: FREE, why: "Free 10-week cohort-style course covering RAG, fine-tuning, and LLM deployment end-to-end.", url: "https://github.com/DataTalksClub/llm-zoomcamp", duration: "10 weeks" },
+          { title: "HuggingFace TRL – RLHF & DPO Training", author: "Hugging Face (Docs)", type: FREE, why: "The standard HuggingFace library for RLHF, DPO, and PPO fine-tuning. Reference for Phase 6 training techniques.", url: "https://huggingface.co/docs/trl", duration: "Reference" },
         ],
       },
       {
@@ -616,6 +613,13 @@
           { title: "Latent Space Podcast", author: "swyx & Alessio (YouTube + Podcast)", type: FREE, why: "Best podcast to stay current on AI engineering. Interviews with researchers and engineers building real AI systems.", url: "https://www.latent.space/podcast", duration: "Ongoing" },
           { title: "Two Minute Papers", author: "Károly Zsolnai-Fehér (YouTube)", type: FREE, why: "Bite-sized breakdowns of the latest AI research papers. Great for keeping up with the field without reading papers yourself.", url: "https://www.youtube.com/@TwoMinutePapers", duration: "Ongoing" },
           { title: "Yannic Kilcher", author: "YouTube", type: FREE, why: "Deep technical paper walkthroughs. Best for understanding what's happening at the research frontier (transformers, reasoning models, etc.).", url: "https://www.youtube.com/@YannicKilcher", duration: "Ongoing" },
+          { title: "AI Explained", author: "YouTube", type: FREE, why: "338K+ subscribers. Breaks down cutting-edge AI research and product releases clearly and quickly.", url: "https://www.youtube.com/@aiexplained-official", duration: "Ongoing" },
+          { title: "The Batch – Andrew Ng Newsletter", author: "DeepLearning.AI (free)", type: FREE, why: "1M+ weekly readers. Andrew Ng's curation of the most important AI developments each week. Signal over noise.", url: "https://www.deeplearning.ai/the-batch/", duration: "Weekly" },
+          { title: "TLDR AI Newsletter", author: "TLDR (free)", type: FREE, why: "620K subscribers. Best daily AI digest — 5 minutes to stay current on models, tools, and research.", url: "https://tldr.tech/ai", duration: "Daily" },
+          { title: "Hugging Face Blog", author: "Hugging Face (free)", type: FREE, why: "First place to read about new model releases, techniques, and open-source AI developments.", url: "https://huggingface.co/blog", duration: "Ongoing" },
+          { title: "Papers With Code", author: "Meta AI (free)", type: FREE, why: "Track state-of-the-art benchmarks across every AI task. See what's winning and find the code.", url: "https://paperswithcode.com", duration: "Reference" },
+          { title: "LangSmith – LLM Observability", author: "LangChain (free tier)", type: FREE, why: "Trace, debug, and evaluate LLM app behavior in production. Essential for moving beyond prototypes.", url: "https://smith.langchain.com", duration: "Reference" },
+          { title: "Weights & Biases Weave", author: "W&B (free tier)", type: FREE, why: "LLM-specific tracking layer on top of W&B. Logs prompts, completions, costs, and evals.", url: "https://wandb.ai/site/weave", duration: "Reference" },
         ],
       },
     ];
@@ -642,7 +646,7 @@
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-6">
               <h1 className="text-2xl font-bold mb-1"><BookOpen size={20} className="inline mr-2 align-middle"/>Curated Books & Courses</h1>
-              <p className="text-gray-400 text-sm">Best Books & Video Courses — Mapped by Phase</p>
+              <p className="text-gray-400 text-sm">Best Books & Courses — Mapped by Phase</p>
               <div className="flex flex-wrap justify-center gap-2 mt-3">
                 <span className="bg-green-900 text-green-300 border border-green-700 text-xs px-3 py-1 rounded-full">Free</span>
                 <span className="bg-orange-900 text-orange-300 border border-orange-700 text-xs px-3 py-1 rounded-full">O'Reilly</span>
@@ -682,7 +686,7 @@
                           {["books", "videos"].map(t => (
                             <button key={t} onClick={e => setV(p.id, t, e)}
                               className={`text-xs px-4 py-1.5 rounded-lg capitalize transition-colors ${v === t ? "bg-gray-700 text-white" : "text-gray-400 hover:text-gray-300"}`}>
-                              {t === "books" ? <><BookOpen size={12} className="inline mr-1"/>Books</> : <><Video size={12} className="inline mr-1"/>Video Courses</>}
+                              {t === "books" ? <><BookOpen size={12} className="inline mr-1"/>Books</> : <><Video size={12} className="inline mr-1"/>Courses & References</>}
                             </button>
                           ))}
                         </div>
@@ -759,7 +763,7 @@
                 ))}
               </div>
             </div>
-            <p className="text-center text-gray-400 text-xs mt-6">Click each phase → toggle Books / Video Courses</p>
+            <p className="text-center text-gray-400 text-xs mt-6">Click each phase → toggle Books / Courses & References</p>
           </div>
         </div>
       );
