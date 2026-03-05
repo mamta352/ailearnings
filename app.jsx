@@ -233,6 +233,27 @@
       const [tab, setTab] = useState({});
       const setPhaseTab = (id, t, e) => { e.stopPropagation(); setTab(prev => ({ ...prev, [id]: t })); };
 
+      const [done, setDone] = React.useState(() => {
+        try { return JSON.parse(localStorage.getItem("ai_progress") || "{}"); } catch { return {}; }
+      });
+      const toggleTopic = (phaseId, idx, e) => {
+        e.stopPropagation();
+        setDone(prev => {
+          const key = `${phaseId}-${idx}`;
+          const next = { ...prev, [key]: !prev[key] };
+          localStorage.setItem("ai_progress", JSON.stringify(next));
+          return next;
+        });
+      };
+      const phaseProgress = (p) => {
+        const total = p.topics.length;
+        const completed = p.topics.filter((_, i) => done[`${p.id}-${i}`]).length;
+        return { completed, total, pct: total ? Math.round((completed / total) * 100) : 0 };
+      };
+      const totalTopics = roadmapPhases.reduce((s, p) => s + p.topics.length, 0);
+      const totalDone = roadmapPhases.reduce((s, p) => s + p.topics.filter((_, i) => done[`${p.id}-${i}`]).length, 0);
+      const overallPct = totalTopics ? Math.round((totalDone / totalTopics) * 100) : 0;
+
       const scrollToPhase1 = () => {
         setOpen(1);
         setTimeout(() => {
@@ -255,9 +276,35 @@
                 <br />
                 <span className="text-white">Roadmap</span>
               </h1>
-              <p className="text-gray-400 text-base max-w-lg mx-auto mb-6">
+              <p className="text-gray-400 text-base max-w-lg mx-auto mb-3">
                 Not sure where to start with AI? This roadmap cuts through the noise — curated free resources, in the right order, for working developers.
               </p>
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                {[
+                  ["No course fees", "100% free resources only"],
+                  ["Built by devs", "Structured for software engineers, not researchers"],
+                  ["Track your progress", "Check off topics as you go — saved in your browser"],
+                ].map(([title, desc]) => (
+                  <div key={title} className="flex items-start gap-1.5 bg-gray-800/40 border border-white/6 rounded-lg px-3 py-2 text-left max-w-[180px]">
+                    <Check size={12} className="text-green-400 flex-shrink-0 mt-0.5"/>
+                    <div>
+                      <p className="text-xs font-medium text-white">{title}</p>
+                      <p className="text-xs text-gray-500">{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {totalDone > 0 && (
+                <div className="max-w-sm mx-auto mb-5">
+                  <div className="flex justify-between text-xs text-gray-400 mb-1.5">
+                    <span>Your progress</span>
+                    <span className="text-blue-400 font-medium">{totalDone}/{totalTopics} topics · {overallPct}%</span>
+                  </div>
+                  <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500" style={{width: `${overallPct}%`}}/>
+                  </div>
+                </div>
+              )}
               <div className="flex flex-wrap justify-center gap-3 mb-6">
                 <span className="inline-flex items-center gap-1.5 bg-gray-800/60 border border-white/8 text-gray-300 text-xs px-3 py-1.5 rounded-full">
                   <Layers size={12} className="text-blue-400"/><strong className="text-white">7</strong> Phases
@@ -308,7 +355,17 @@
                             <span className="font-semibold text-sm">{p.title}</span>
                             <span className={`text-xs px-2 py-0.5 rounded-full ${p.tagColor}`}>{p.tag}</span>
                           </div>
-                          <p className="text-gray-400 text-xs mt-0.5">{p.duration}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <p className="text-gray-400 text-xs">{p.duration}</p>
+                            {(() => { const pg = phaseProgress(p); return pg.completed > 0 ? (
+                              <span className="text-xs text-green-400 font-medium">{pg.completed}/{pg.total} done</span>
+                            ) : null; })()}
+                          </div>
+                          {(() => { const pg = phaseProgress(p); return pg.completed > 0 ? (
+                            <div className="h-1 bg-gray-700 rounded-full mt-1.5 overflow-hidden w-full">
+                              <div className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-300" style={{width: `${pg.pct}%`}}/>
+                            </div>
+                          ) : null; })()}
                         </div>
                         <div className="flex items-center gap-2 flex-shrink-0">
                           {open !== p.id && <span className="text-xs text-gray-500 hidden sm:inline">expand</span>}
@@ -330,11 +387,19 @@
                             <p className="text-gray-300 text-sm">{p.goal}</p>
                             {activeTab === "learn" && (
                               <ul className="space-y-1.5">
-                                {p.topics.map((t, i) => (
-                                  <li key={i} className="text-sm text-gray-300 flex gap-2">
-                                    <span className="text-gray-400 flex-shrink-0 mt-0.5">•</span>{t}
-                                  </li>
-                                ))}
+                                {p.topics.map((t, i) => {
+                                  const checked = !!done[`${p.id}-${i}`];
+                                  return (
+                                    <li key={i}
+                                      className={`text-sm flex gap-2 items-start cursor-pointer select-none rounded-lg px-2 py-1.5 transition-colors ${checked ? "text-gray-500 bg-green-900/10" : "text-gray-300 hover:bg-gray-800"}`}
+                                      onClick={e => toggleTopic(p.id, i, e)}>
+                                      <span className={`flex-shrink-0 mt-0.5 w-4 h-4 rounded border flex items-center justify-center transition-colors ${checked ? "bg-green-600 border-green-600" : "border-gray-600"}`}>
+                                        {checked && <Check size={10} className="text-white"/>}
+                                      </span>
+                                      <span className={checked ? "line-through" : ""}>{t}</span>
+                                    </li>
+                                  );
+                                })}
                               </ul>
                             )}
                             {activeTab === "resources" && (
