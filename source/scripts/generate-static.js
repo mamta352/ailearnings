@@ -224,7 +224,7 @@ async function main() {
           return root && root.children.length > 0 &&
                  root.querySelector('nav') !== null;
         },
-        { timeout: 15000 }
+        { timeout: 30000 }
       );
 
       // Small extra wait for any lazy rendering
