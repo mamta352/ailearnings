@@ -4,15 +4,7 @@
     "build:css": "tailwindcss -i tailwind.css -o dist/app.css --minify",
     "build:inline": "node scripts/inline.js",
     "build": "npm run build:js && npm run build:css && npm run build:inline",
-    "snap": "rm -f 200.html 404.html && react-snap"
-  },
-  "reactSnap": {
-    "source": ".",
-    "destination": ".",
-    "include": ["/"],
-    "minifyHtml": false,
-    "puppeteerExecutablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"]
+    "snap": "cp index.html 200.html && rm -f 404.html"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.6",
