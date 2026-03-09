@@ -3832,35 +3832,59 @@ function KnowledgeGaps() {
           <div className="mb-8">
             <span className="inline-block bg-green-600/20 text-green-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">ML Roadmap 2026</span>
             <h1 className="text-3xl font-bold text-white mb-4">Machine Learning Roadmap 2026: From Beginner to AI Engineer</h1>
-            <p className="text-gray-400 text-lg leading-relaxed">The most complete machine learning roadmap for 2026. Whether you're starting from zero or a developer looking to move into AI engineering, this roadmap gives you a clear path — from Python basics to building and deploying production ML and LLM systems.</p>
+            <p className="text-gray-400 text-lg leading-relaxed">The bottom-up machine learning path — starting from Python and math, through classical ML and deep learning, up to LLMs and production deployment. Best for people who want to understand <em>how</em> models work, not just how to call them.</p>
           </div>
 
-          <div className="bg-green-900/20 border border-green-500/20 rounded-xl p-5 mb-8">
-            <p className="text-green-300 text-sm font-semibold mb-1">Roadmap Approach</p>
-            <p className="text-gray-300 text-sm">This roadmap uses a <strong className="text-white">practical, code-first approach</strong>. You'll build working models before mastering all the theory. Each stage has a concrete project milestone so you know when you've actually learned something.</p>
+          {/* ML vs AI Engineer distinction — upfront */}
+          <div className="bg-gray-800/50 rounded-xl p-5 mb-8 border border-white/8">
+            <h2 className="text-base font-semibold text-white mb-4">ML Roadmap vs AI Engineer Roadmap — Which one?</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="bg-green-900/20 border border-green-500/20 rounded-lg p-4">
+                <p className="text-green-400 font-semibold text-sm mb-2">This page — ML Roadmap</p>
+                <ul className="space-y-1 text-xs text-gray-300">
+                  <li>▸ Starts from Python + math basics</li>
+                  <li>▸ Classical ML: sklearn, XGBoost, SVMs</li>
+                  <li>▸ Deep learning: PyTorch, CNNs, transformers</li>
+                  <li>▸ Training and fine-tuning from scratch</li>
+                  <li>▸ MLOps: W&B, MLflow, drift monitoring</li>
+                  <li className="text-green-400 mt-2">→ Goal: ML Engineer or Research Engineer</li>
+                </ul>
+              </div>
+              <div className="bg-blue-900/20 border border-blue-500/20 rounded-lg p-4">
+                <p className="text-blue-400 font-semibold text-sm mb-2"><a href="/ai-roadmap/" className="hover:underline">AI Engineer Roadmap →</a></p>
+                <ul className="space-y-1 text-xs text-gray-300">
+                  <li>▸ Starts from LLM APIs (faster ramp-up)</li>
+                  <li>▸ Prompt engineering, RAG, agents</li>
+                  <li>▸ Building products with pre-trained models</li>
+                  <li>▸ LoRA fine-tuning (not from scratch)</li>
+                  <li>▸ LangChain, vector databases, deployment</li>
+                  <li className="text-blue-400 mt-2">→ Goal: AI Engineer, LLM App Developer</li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-gray-500 text-xs mt-3">Not sure? If you want to build AI products quickly, start with the AI Engineer Roadmap. If you want to understand the internals and can invest 12+ months, the ML Roadmap gives you a stronger foundation.</p>
           </div>
 
-          <h2 className="text-2xl font-bold text-white mb-6">Machine Learning Roadmap: 6 Stages</h2>
-
+          <h2 className="text-2xl font-bold text-white mb-5">The ML Roadmap: 6 Stages</h2>
           <div className="space-y-4 mb-10">
             {[
-              { n: 1, title: "Python & Math Prerequisites", time: "4–6 weeks", color: "from-green-500 to-emerald-600", items: ["Python: NumPy, Pandas, Matplotlib, scikit-learn basics", "Linear algebra: vectors, matrices, dot products, eigenvalues", "Probability: distributions, Bayes' theorem, conditional probability", "Calculus: derivatives, gradients, chain rule (intuition only)", "Resource: fast.ai Part 1 or Google ML Crash Course (free)"] },
-              { n: 2, title: "Classical Machine Learning", time: "6–8 weeks", color: "from-teal-500 to-cyan-600", items: ["Supervised learning: linear regression, logistic regression, decision trees", "Ensemble methods: random forests, gradient boosting (XGBoost)", "Unsupervised learning: k-means clustering, PCA", "Model evaluation: cross-validation, ROC-AUC, confusion matrix", "Project: Kaggle Titanic or House Prices competition"] },
-              { n: 3, title: "Deep Learning & Neural Networks", time: "6–8 weeks", color: "from-blue-500 to-indigo-600", items: ["Neural network architecture: layers, activations, backpropagation", "Convolutional Neural Networks (CNNs) for image tasks", "Recurrent Neural Networks (RNNs) and LSTMs for sequences", "Transformers: the architecture behind LLMs", "Framework: PyTorch (preferred) or TensorFlow", "Resource: Karpathy's Neural Networks: Zero to Hero (free)"] },
-              { n: 4, title: "Large Language Models", time: "4–6 weeks", color: "from-purple-500 to-violet-600", items: ["How LLMs work: tokenization, pre-training, RLHF", "Using LLM APIs: OpenAI, Anthropic, Google Gemini", "Prompt engineering: zero-shot, few-shot, chain-of-thought", "Building RAG applications with LangChain and vector databases", "Fine-tuning with LoRA/QLoRA on free Colab GPUs"] },
-              { n: 5, title: "MLOps & Production ML", time: "4–6 weeks", color: "from-orange-500 to-amber-600", items: ["Experiment tracking with Weights & Biases (free)", "Model versioning with MLflow or DVC", "Serving models with FastAPI or BentoML", "Monitoring: data drift, concept drift, model performance", "CI/CD for ML: GitHub Actions, automated retraining"] },
-              { n: 6, title: "Portfolio Projects", time: "Ongoing", color: "from-rose-500 to-pink-600", items: ["Classical ML project: Kaggle competition submission", "Deep learning project: image classifier or NLP sentiment analysis", "LLM application: RAG chatbot or document summarizer", "Open-source contribution or blog post explaining your work"] },
+              { n: 1, title: "Python & Math Prerequisites", time: "4–6 weeks", color: "from-green-500 to-emerald-600", items: ["NumPy, Pandas, Matplotlib — the daily toolkit", "Linear algebra: vectors, matrices, dot products (intuition-first)", "Probability: distributions, Bayes' theorem, conditional probability", "Calculus: derivatives and gradients — what 'learning' actually is", "Start: fast.ai Part 1 or Google ML Crash Course (both free)"] },
+              { n: 2, title: "Classical Machine Learning", time: "6–8 weeks", color: "from-teal-500 to-cyan-600", items: ["Linear & logistic regression — the building blocks", "Decision trees, random forests, gradient boosting (XGBoost)", "Unsupervised: k-means clustering, PCA for dimensionality reduction", "Evaluation: cross-validation, ROC-AUC, precision/recall, confusion matrix", "Project: enter a Kaggle structured data competition (Titanic, House Prices)"] },
+              { n: 3, title: "Deep Learning & Neural Networks", time: "6–8 weeks", color: "from-blue-500 to-indigo-600", items: ["Forward pass, backpropagation, gradient descent — implemented from scratch", "CNNs for images, RNNs/LSTMs for sequences", "Transformer architecture: attention, positional encoding, MLP layers", "PyTorch training loop: dataset, dataloader, optimizer, scheduler", "Resource: Karpathy's Neural Networks: Zero to Hero (free, YouTube)"] },
+              { n: 4, title: "Large Language Models", time: "4–6 weeks", color: "from-purple-500 to-violet-600", items: ["Pre-training: data pipeline, tokenization (BPE), training objective", "Supervised Fine-Tuning (SFT) and RLHF at conceptual + practical level", "LoRA / QLoRA fine-tuning with Unsloth on free Google Colab GPUs", "Evaluation: perplexity, BLEU, benchmarks, human eval frameworks", "Connect to the AI Engineer skills: APIs, RAG, agents"] },
+              { n: 5, title: "MLOps & Production", time: "4–6 weeks", color: "from-orange-500 to-amber-600", items: ["Experiment tracking: Weights & Biases (free tier — use it from day one)", "Model serving: FastAPI + Docker, or BentoML for higher-level abstractions", "Data versioning with DVC — treat data like code", "Monitoring: Evidently AI for data drift and concept drift detection", "CI/CD for ML with GitHub Actions"] },
+              { n: 6, title: "Portfolio Projects", time: "Ongoing", color: "from-rose-500 to-pink-600", items: ["Kaggle competition: submit, iterate, read top notebooks, improve", "End-to-end project: collect data → model → API → deployed app with monitoring", "LLM fine-tune: domain adaptation on a dataset you care about", "Write one technical blog post per project — forces clarity and signals depth"] },
             ].map(({ n, title, time, color, items }) => (
               <div key={n} className="bg-gray-800/40 rounded-xl p-5 border border-white/8">
                 <div className="flex items-start gap-4">
-                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>{n}</div>
+                  <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>{n}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-white font-semibold">{title}</h3>
+                      <h3 className="text-white font-semibold text-sm">{title}</h3>
                       <span className="text-xs text-gray-500">{time}</span>
                     </div>
                     <ul className="space-y-1">
-                      {items.map((item, i) => <li key={i} className="text-gray-300 text-sm flex items-start gap-2"><span className="text-green-400 mt-0.5">▸</span>{item}</li>)}
+                      {items.map((item, i) => <li key={i} className="text-gray-300 text-sm flex items-start gap-2"><span className="text-green-400 mt-0.5 flex-shrink-0">▸</span>{item}</li>)}
                     </ul>
                   </div>
                 </div>
@@ -3868,27 +3892,34 @@ function KnowledgeGaps() {
             ))}
           </div>
 
-          <div className="bg-gray-800/50 rounded-xl p-6 mb-8 border border-white/8">
-            <h2 className="text-xl font-semibold text-white mb-4">ML vs AI Engineering in 2026</h2>
-            <p className="text-gray-300 mb-4">The field has split into two main tracks:</p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-gray-900/50 rounded-lg p-4">
-                <div className="text-blue-400 font-semibold mb-2">ML Engineer</div>
-                <p className="text-gray-300 text-sm">Focuses on training pipelines, model optimization, feature engineering, and MLOps. Works with structured data, recommendation systems, and production ML at scale.</p>
-              </div>
-              <div className="bg-gray-900/50 rounded-lg p-4">
-                <div className="text-purple-400 font-semibold mb-2">AI Engineer</div>
-                <p className="text-gray-300 text-sm">Focuses on building applications with LLMs — RAG systems, agents, prompt pipelines, and LLM integrations. Uses ML skills but primarily works with pre-trained models via APIs.</p>
-              </div>
+          {/* Timeline */}
+          <div className="bg-gray-800/50 rounded-xl p-5 mb-8 border border-white/8">
+            <h2 className="text-lg font-semibold text-white mb-3">Timeline</h2>
+            <div className="flex items-center gap-2 text-sm text-gray-300 mb-4">
+              <span className="text-green-400 font-semibold">~12 months</span>
+              <span className="text-gray-500">at 6–8 hrs / week</span>
+              <span className="text-gray-600 mx-1">·</span>
+              <span className="text-blue-400 font-semibold">~18 months</span>
+              <span className="text-gray-500">at 4 hrs / week</span>
             </div>
+            <p className="text-gray-400 text-sm">This is the longer but more thorough path. The ML roadmap builds understanding from first principles — slower than jumping straight to LLM APIs, but the foundation pays off when debugging hard problems and designing novel systems.</p>
           </div>
 
-          <div className="mt-8 p-5 bg-gray-800/40 rounded-xl border border-white/8">
-            <h2 className="text-lg font-semibold text-white mb-3">Follow the Full AI Roadmap</h2>
-            <p className="text-gray-400 text-sm mb-4">Our main roadmap covers the complete ML → DL → LLM → AI engineering path with interactive progress tracking.</p>
-            <div className="flex flex-wrap gap-3">
-              <a href="/" className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors">View AI Roadmap →</a>
-              <a href="/resources/" className="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors">Learning Resources →</a>
+          {/* Go deeper */}
+          <div className="bg-gray-800/40 rounded-xl p-5 border border-white/8">
+            <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-4">Related</h2>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                ["/ai-roadmap/", "AI Engineer Roadmap", "Faster path focused on LLM apps, RAG, and agents"],
+                ["/llm-roadmap/", "LLM Roadmap", "Deep dive into large language models specifically"],
+                ["/resources/", "Learning Resources", "Best free books and courses by phase"],
+                ["/ai-projects/", "AI Project Ideas", "10 projects to build your ML/AI portfolio"],
+              ].map(([href, title, desc]) => (
+                <a key={href} href={href} className="block bg-gray-900/50 rounded-lg p-3 hover:bg-gray-700/50 transition-colors">
+                  <p className="text-green-400 text-sm font-medium mb-0.5">{title} →</p>
+                  <p className="text-gray-500 text-xs">{desc}</p>
+                </a>
+              ))}
             </div>
           </div>
         </div>
