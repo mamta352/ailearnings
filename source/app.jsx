@@ -4016,6 +4016,7 @@ function KnowledgeGaps() {
       { label: "Beyond Roadmap",  slug: "beyond-roadmap",        icon: Compass,      Component: BeyondRoadmap },
       { label: "Assessment",      slug: "assessment",            icon: BarChart2,    Component: KnowledgeAssessment },
       { label: "AI Roadmap",      slug: "ai-roadmap",            icon: BrainCircuit, Component: AiRoadmapPage },
+      // NOTE: Blog tab defined after BlogIndexPage component below
       { label: "LLM Roadmap",     slug: "llm-roadmap",           icon: Cpu,          Component: LlmRoadmapPage },
       { label: "RAG Tutorial",    slug: "rag-tutorial",          icon: BookOpen,     Component: RagTutorialPage },
       { label: "ML Roadmap",      slug: "machine-learning-roadmap", icon: BarChart2, Component: MachineLearningRoadmapPage },
