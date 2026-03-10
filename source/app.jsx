@@ -442,6 +442,42 @@
               </div>
             )}
 
+            {/* ── Sticky phase navigation ── */}
+            <div className="sticky top-[52px] z-30 -mx-4 mb-6">
+              <div className="bg-gray-950/95 backdrop-blur-md border-b border-white/6 px-3 py-2">
+                <div className="flex gap-1.5 overflow-x-auto" style={{scrollbarWidth:'none',msOverflowStyle:'none'}}>
+                  {roadmapPhases.map((p) => {
+                    const pg = phaseProgress(p);
+                    const isActive = open === p.id;
+                    const isDone = pg.pct === 100;
+                    const shortLabel = p.title.includes('–') ? p.title.split('–')[1].trim().split(' & ')[0] : p.title;
+                    return (
+                      <button key={p.id}
+                        onClick={() => {
+                          setOpen(isActive ? null : p.id);
+                          setTimeout(() => {
+                            const el = document.getElementById(`phase-card-${p.id}`);
+                            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 104, behavior: 'smooth' });
+                          }, 50);
+                        }}
+                        className={`flex-shrink-0 flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-full border transition-all whitespace-nowrap ${
+                          isActive ? 'bg-blue-600 border-blue-500 text-white font-semibold shadow-[0_0_12px_rgba(59,130,246,0.4)]'
+                            : isDone ? 'bg-green-900/30 border-green-500/30 text-green-400'
+                            : 'bg-gray-800/70 border-white/8 text-gray-400 hover:text-white hover:border-white/20'
+                        }`}>
+                        <span className={`w-4 h-4 rounded flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${
+                          isActive ? 'bg-white/20' : isDone ? 'bg-green-500/20' : 'bg-gray-700'
+                        }`}>{p.id}</span>
+                        <span className="hidden sm:inline truncate max-w-[88px]">{shortLabel}</span>
+                        {isDone && <Check size={9} className="flex-shrink-0"/>}
+                        {!isDone && pg.completed > 0 && <span className="text-[10px] opacity-60">{pg.pct}%</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
             <div className="relative mb-10">
               {/* Vertical timeline line */}
               <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-green-500 via-blue-500 to-purple-500 opacity-30" />
@@ -457,10 +493,14 @@
                     {/* Card */}
                     <div className="flex-1 min-w-0">
                     <div
-                      className={`rounded-xl border cursor-pointer transition-all duration-200 backdrop-blur-sm ${open === p.id ? "border-blue-500/30 bg-gray-900/80 shadow-[0_0_30px_rgba(59,130,246,0.08)]" : "border-white/8 bg-gray-900/60 hover:border-white/15 hover:bg-gray-900/80"}`}
+                      className={`rounded-xl border cursor-pointer transition-all duration-200 backdrop-blur-sm overflow-hidden ${open === p.id ? "border-blue-500/30 bg-gray-900/80 shadow-[0_0_30px_rgba(59,130,246,0.08)]" : "border-white/8 bg-gray-900/60 hover:border-white/15 hover:bg-gray-900/80"}`}
                       onClick={() => setOpen(open === p.id ? null : p.id)}
                     >
+                      {/* Gradient accent bar */}
+                      <div className={`h-0.5 bg-gradient-to-r ${p.color} transition-opacity duration-200 ${open === p.id ? 'opacity-70' : 'opacity-20'}`}/>
                       <div className="flex items-start gap-3 p-4">
+                        {/* Phase number badge */}
+                        <span className={`flex-shrink-0 w-6 h-6 rounded-md bg-gradient-to-br ${p.color} flex items-center justify-center text-[10px] font-bold text-white opacity-90 mt-0.5`}>{String(p.id).padStart(2,'0')}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-semibold text-sm">{p.title}</span>
@@ -480,9 +520,12 @@
                             </div>
                           ) : null; })()}
                           {open !== p.id && (
-                            <div className="mt-2 flex items-start gap-1.5">
-                              <Check size={11} className="text-green-400 flex-shrink-0 mt-0.5"/>
-                              <p className="text-xs text-gray-400 italic leading-snug">{p.milestone}</p>
+                            <div className="mt-1.5 space-y-1">
+                              <p className="text-xs text-gray-500 leading-snug line-clamp-1">{p.goal}</p>
+                              <div className="flex items-start gap-1.5">
+                                <Check size={11} className="text-green-400 flex-shrink-0 mt-0.5"/>
+                                <p className="text-xs text-gray-400 italic leading-snug">{p.milestone}</p>
+                              </div>
                             </div>
                           )}
                         </div>
@@ -655,13 +698,26 @@
                             )}
                             {activeTab === "project" && (
                               <div className="space-y-3">
-                                <div className="bg-gray-800 rounded-lg p-3">
-                                  <p className="text-xs font-semibold text-yellow-400 uppercase tracking-wider mb-1"><Wrench size={12} className="inline mr-1.5 align-middle"/>Phase Project</p>
-                                  <p className="text-sm text-gray-200">{p.project}</p>
+                                <div className="rounded-xl border border-yellow-500/25 bg-yellow-500/5 p-4">
+                                  <div className="flex items-center gap-2.5 mb-3">
+                                    <div className="w-8 h-8 rounded-lg bg-yellow-500/15 border border-yellow-500/20 flex items-center justify-center flex-shrink-0">
+                                      <Wrench size={14} className="text-yellow-400"/>
+                                    </div>
+                                    <div>
+                                      <p className="text-xs font-bold text-yellow-400 uppercase tracking-wider">What you'll build</p>
+                                      <p className="text-[11px] text-gray-500 mt-0.5">Phase {p.id} project</p>
+                                    </div>
+                                  </div>
+                                  <p className="text-sm text-gray-200 leading-relaxed">{p.project}</p>
                                 </div>
-                                <div className="bg-gray-800 rounded-lg p-3">
-                                  <p className="text-xs font-semibold text-green-400 uppercase tracking-wider mb-1"><Check size={11} className="inline mr-1 align-middle"/>Milestone</p>
-                                  <p className="text-sm text-gray-200">{p.milestone}</p>
+                                <div className="rounded-xl border border-green-500/25 bg-green-500/5 p-4">
+                                  <div className="flex items-center gap-2.5 mb-3">
+                                    <div className="w-8 h-8 rounded-lg bg-green-500/15 border border-green-500/20 flex items-center justify-center flex-shrink-0">
+                                      <Check size={14} className="text-green-400"/>
+                                    </div>
+                                    <p className="text-xs font-bold text-green-400 uppercase tracking-wider">Milestone — you're ready when:</p>
+                                  </div>
+                                  <p className="text-sm text-gray-200 leading-relaxed">{p.milestone}</p>
                                 </div>
                               </div>
                             )}
