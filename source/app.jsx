@@ -300,7 +300,7 @@
             <div className="text-center">
               <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 mb-5">
                 <BrainCircuit size={12} className="text-blue-400"/>
-                <span className="text-xs text-blue-400 font-medium">Updated March 2026 · Free · For software developers</span>
+                <span className="text-xs text-blue-400 font-medium">The Developer Roadmap to AI Engineering · 2026</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-[1.1] tracking-tight">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">AI Engineering</span>
@@ -320,6 +320,19 @@
                     <Icon size={12} className={`text-${color}-400`}/><strong className="text-white">{val}</strong> {label}
                   </span>
                 ))}
+              </div>
+              {/* Social proof */}
+              <div className="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-gray-600">
+                <a href="https://github.com/amit352/ailearnings" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-1 hover:text-gray-400 transition-colors">
+                  <Github size={11}/> Open source
+                </a>
+                <span>·</span>
+                <span>No ads</span>
+                <span>·</span>
+                <span>No login required</span>
+                <span>·</span>
+                <span>Free forever</span>
               </div>
             </div>
 
@@ -386,9 +399,13 @@
                   className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-[0_0_24px_rgba(59,130,246,0.35)] hover:shadow-[0_0_32px_rgba(59,130,246,0.5)] text-sm">
                   {totalDone > 0 ? "Continue learning" : "Start the roadmap"} <ArrowRight size={15}/>
                 </button>
+                <a href="https://github.com/amit352/ailearnings" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
+                  <Github size={14}/> Star on GitHub
+                </a>
                 <a href="https://github.com/amit352/ailearnings/discussions" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
-                  <MessageSquare size={14}/> Share feedback
+                  <MessageSquare size={14}/> Feedback
                 </a>
               </div>
 
