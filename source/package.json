@@ -10,6 +10,7 @@
     "generate:projects": "node scripts/generate-projects.js",
     "generate:paths": "node scripts/generate-paths.js",
     "generate:all": "npm run build && npm run generate:blog && npm run generate:projects && npm run generate:paths && node scripts/generate-static.js",
+    "generate:og": "node scripts/generate-og-image.js",
     "deploy": "cd .. && git add -A && git diff --cached --quiet && echo 'nothing to commit' || git commit -m 'build: auto-deploy [skip ci]' && git push",
     "dev": "chokidar '**/*.tsx' '**/*.jsx' 'tailwind.css' 'tailwind.config.js' 'scripts/inline.js' --ignore 'node_modules/**' --debounce 500 -c 'npm run build && npm run deploy'"
   },

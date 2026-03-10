@@ -262,6 +262,10 @@
           return next;
         });
       };
+      const resetProgress = () => {
+        setDone({});
+        localStorage.removeItem("ai_progress");
+      };
       const phaseProgress = (p) => {
         const total = p.topics.length;
         const completed = p.topics.filter((_, i) => done[`${p.id}-${i}`]).length;
@@ -272,11 +276,21 @@
       const overallPct = totalTopics ? Math.round((totalDone / totalTopics) * 100) : 0;
 
       const [tipDismissed, setTipDismissed] = React.useState(() => {
-        try { return localStorage.getItem("ai_tips_dismissed") === "1"; } catch { return false; }
+        try { return localStorage.getItem("hideRoadmapGuide") === "1"; } catch { return false; }
       });
       const dismissTip = () => {
         setTipDismissed(true);
-        try { localStorage.setItem("ai_tips_dismissed", "1"); } catch {}
+        try { localStorage.setItem("hideRoadmapGuide", "1"); } catch {}
+      };
+
+      const phaseOutcomes = {
+        1: ["Explain how LLMs and neural networks work", "Orient yourself in the AI landscape", "Know exactly what to learn next"],
+        2: ["Run LLMs locally with Ollama", "Call OpenAI, Anthropic, and Gemini APIs from code", "Compare models and configure parameters"],
+        3: ["Ship your first AI-powered app", "Write zero-shot, few-shot, and chain-of-thought prompts", "Build multi-step LLM pipelines"],
+        4: ["Build document Q&A chatbots over any data", "Integrate vector databases (Chroma, Pinecone)", "Deploy knowledge retrieval systems"],
+        5: ["Build agents that plan and execute tasks autonomously", "Use tool-calling and function-calling APIs", "Design multi-agent workflows"],
+        6: ["Fine-tune an LLM on your own data with QLoRA", "Know when to prompt vs RAG vs fine-tune", "Evaluate and compare fine-tuned models"],
+        7: ["Deploy AI apps to production", "Build a public portfolio of real AI projects", "Talk about AI topics with genuine depth"],
       };
 
       const scrollToPhase1 = () => {
@@ -293,164 +307,129 @@
       return (
         <div className="text-gray-100 font-sans">
 
-          {/* ── HERO — full viewport ── */}
-          <div className="min-h-[calc(100vh-52px)] flex flex-col justify-between px-4 pt-8 pb-6 max-w-3xl mx-auto">
-
-            {/* Top: badge + headline + subtitle + stats */}
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1 mb-5">
-                <BrainCircuit size={12} className="text-blue-400"/>
-                <span className="text-xs text-blue-400 font-medium">The Developer Roadmap to AI Engineering · 2026</span>
+          {/* ── HERO ── */}
+          <div className="flex flex-col items-center justify-center text-center px-4 max-w-3xl mx-auto gap-5" style={{minHeight:'calc(100vh - 52px)'}}>
+            <div>
+              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-5 select-none">
+                The Developer Roadmap to AI Engineering · 2026
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-[1.1] tracking-tight">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">AI Engineering</span>
                 <br />
                 <span className="text-white">Roadmap</span>
               </h1>
-              <p className="text-gray-300 text-lg max-w-xl mx-auto mb-1 leading-relaxed">
-                The structured path from zero to{" "}
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">production-ready AI</span>
+              <p className="text-gray-300 text-lg max-w-xl mx-auto mb-3 leading-relaxed">
+                The structured path from zero to production-ready AI.
               </p>
-              <p className="text-gray-400 text-sm max-w-lg mx-auto mb-6">
-                Roadmap · guides · projects · career paths — all free for developers
+              <p className="text-gray-500 text-sm">
+                7 phases · ~14 months · 50+ resources · real projects
               </p>
-              <div className="flex flex-wrap justify-center gap-2">
-                {[[Layers,"blue","7","Phases"],[Clock,"purple","~14","months"],[BookOpen,"green","50+","Free resources"],[Wrench,"orange","7","Projects"]].map(([Icon,color,val,label]) => (
-                  <span key={label} className="inline-flex items-center gap-1.5 bg-gray-800/60 border border-white/8 text-gray-300 text-xs px-3 py-1.5 rounded-full">
-                    <Icon size={12} className={`text-${color}-400`}/><strong className="text-white">{val}</strong> {label}
-                  </span>
-                ))}
-              </div>
-              {/* Social proof */}
-              <div className="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-gray-600">
-                <a href="https://github.com/amit352/ailearnings" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1 hover:text-gray-400 transition-colors">
-                  <Github size={11}/> Open source
-                </a>
-                <span>·</span>
-                <span>No ads</span>
-                <span>·</span>
-                <span>No login required</span>
-                <span>·</span>
-                <span>Free forever</span>
-              </div>
             </div>
 
-            {/* Middle: USP cards + section pills */}
-            <div className="space-y-6 my-8">
-              {/* USP — 3 cards horizontal */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {[
-                  { icon: BookOpen, color: "text-blue-400",   bg: "bg-blue-500/8 border-blue-500/20",   title: "Not just links",       desc: "Topics, projects & milestones — not a bookmark list." },
-                  { icon: Code2,    color: "text-purple-400", bg: "bg-purple-500/8 border-purple-500/20", title: "Built for developers", desc: "No math papers. Ship AI products from day one." },
-                  { icon: Check,    color: "text-green-400",  bg: "bg-green-500/8 border-green-500/20",  title: "Track progress",       desc: "Check off topics. Saved in your browser forever." },
-                ].map(({icon: Icon, color, bg, title, desc}) => (
-                  <div key={title} className={`flex flex-col gap-2 rounded-xl border ${bg} px-4 py-4`}>
-                    <Icon size={18} className={color}/>
-                    <p className="text-sm font-semibold text-white">{title}</p>
-                    <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Platform cards — surfaced early */}
-              <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wider mb-3 text-center">Everything on this platform</p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {[
-                    { href: "/blog/",     icon: BookOpen, color: "text-blue-400",   border: "hover:border-blue-500/40",   bg: "hover:bg-blue-500/5",   title: "Developer Guides", meta: "28 guides",   desc: "Deep-dives on ML, LLMs, RAG, prompt engineering, and AI agents." },
-                    { href: "/projects/", icon: Wrench,   color: "text-green-400",  border: "hover:border-green-500/40",  bg: "hover:bg-green-500/5",  title: "AI Projects",      meta: "20 projects", desc: "Hands-on builds from beginner chatbots to multi-agent systems." },
-                    { href: "/paths/",    icon: Layers,   color: "text-purple-400", border: "hover:border-purple-500/40", bg: "hover:bg-purple-500/5", title: "Career Paths",     meta: "5 paths",     desc: "Role-based paths for AI Engineer, ML Engineer, LLM Engineer." },
-                  ].map(({ href, icon: Icon, color, border, bg, title, meta, desc }) => (
-                    <a key={href} href={href}
-                      className={`block rounded-xl border border-white/8 ${border} ${bg} px-4 py-4 transition-all`}
-                      style={{textDecoration:"none"}}>
-                      <div className="flex items-center gap-2 mb-2">
-                        <Icon size={14} className={color}/>
-                        <span className={`text-xs font-semibold ${color}`}>{meta}</span>
-                      </div>
-                      <p className="text-sm font-bold text-white mb-1">{title}</p>
-                      <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
-                      <div className="mt-2 flex items-center gap-1 text-xs text-gray-500">
-                        <span>Explore</span><ArrowRight size={10}/>
-                      </div>
-                    </a>
-                  ))}
+            {totalDone > 0 && (
+              <div className="w-full max-w-xs bg-gray-800/60 border border-blue-500/20 rounded-xl px-4 py-3">
+                <div className="flex justify-between text-xs mb-2">
+                  <span className="text-gray-400 font-medium">Your progress</span>
+                  <span className="text-blue-400 font-semibold">{totalDone}/{totalTopics} topics · {overallPct}%</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Bottom: progress → CTA → scroll hint */}
-            <div className="flex flex-col items-center gap-5">
-              {totalDone > 0 ? (
-                <div className="w-full max-w-sm bg-gray-800/60 border border-blue-500/20 rounded-xl px-4 py-3">
-                  <div className="flex justify-between text-xs mb-2">
-                    <span className="text-gray-400 font-medium">Your progress</span>
-                    <span className="text-blue-400 font-semibold">{totalDone}/{totalTopics} topics · {overallPct}%</span>
-                  </div>
-                  <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500" style={{width: `${overallPct}%`}}/>
-                  </div>
+                <div className="h-2 bg-gray-700 rounded-full overflow-hidden mb-2.5">
+                  <div className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500" style={{width: `${overallPct}%`}}/>
                 </div>
-              ) : null}
-
-              <div className="flex flex-col sm:flex-row items-center gap-3">
-                <button onClick={scrollToPhase1}
-                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-[0_0_24px_rgba(59,130,246,0.35)] hover:shadow-[0_0_32px_rgba(59,130,246,0.5)] text-sm">
-                  {totalDone > 0 ? "Continue learning" : "Start the roadmap"} <ArrowRight size={15}/>
+                <button onClick={resetProgress}
+                  className="w-full text-xs text-gray-500 hover:text-red-400 transition-colors py-0.5">
+                  Reset learning progress
                 </button>
-                <a href="https://github.com/amit352/ailearnings" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
-                  <Github size={14}/> Star on GitHub
-                </a>
-                <a href="https://github.com/amit352/ailearnings/discussions" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
-                  <MessageSquare size={14}/> Feedback
-                </a>
               </div>
+            )}
 
-              <button onClick={scrollToPhase1} className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-200 transition-colors">
-                <span className="text-xs tracking-wider uppercase">Scroll to roadmap</span>
-                <ChevronDown size={16} className="animate-bounce"/>
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <button onClick={scrollToPhase1}
+                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-[0_0_24px_rgba(59,130,246,0.35)] hover:shadow-[0_0_32px_rgba(59,130,246,0.5)] text-sm">
+                {totalDone > 0 ? "Continue learning" : "Start the roadmap"} <ArrowRight size={15}/>
               </button>
+              <a href="https://github.com/amit352/ailearnings" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
+                <Github size={14}/> Star on GitHub
+              </a>
             </div>
+
+            {/* ── Platform Cards — Row 1 (primary) ── */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
+              {[
+                { href: "/blog/",     icon: BookOpen, color: "text-blue-400",   activeBg: "bg-blue-500/10",   activeBorder: "border-blue-500/25",   hoverBorder: "hover:border-blue-500/50",   hoverBg: "hover:bg-blue-500/12",   title: "Developer Guides", meta: "28 guides",   desc: "Deep-dives on ML, LLMs, RAG, prompt engineering, and AI agents." },
+                { href: "/projects/", icon: Wrench,   color: "text-green-400",  activeBg: "bg-green-500/10",  activeBorder: "border-green-500/25",  hoverBorder: "hover:border-green-500/50",  hoverBg: "hover:bg-green-500/12",  title: "AI Projects",      meta: "20 projects", desc: "Hands-on builds from beginner chatbots to multi-agent systems." },
+                { href: "/paths/",    icon: Layers,   color: "text-purple-400", activeBg: "bg-purple-500/10", activeBorder: "border-purple-500/25", hoverBorder: "hover:border-purple-500/50", hoverBg: "hover:bg-purple-500/12", title: "Career Paths",     meta: "5 paths",     desc: "Role-based paths for AI Engineer, ML Engineer, LLM Engineer." },
+              ].map(({ href, icon: Icon, color, activeBg, activeBorder, hoverBorder, hoverBg, title, meta, desc }) => (
+                <a key={href} href={href}
+                  className={`block rounded-xl border ${activeBorder} ${activeBg} ${hoverBorder} ${hoverBg} px-4 py-5 transition-all text-left`}
+                  style={{textDecoration:"none"}}>
+                  <div className="flex items-center gap-2 mb-2.5">
+                    <Icon size={16} className={color}/>
+                    <span className={`text-xs font-bold ${color} uppercase tracking-wide`}>{meta}</span>
+                  </div>
+                  <p className="text-base font-bold text-white mb-1">{title}</p>
+                  <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
+                  <div className="mt-3 flex items-center gap-1 text-xs font-medium text-gray-400 hover:text-white transition-colors">
+                    <span>Explore</span><ArrowRight size={10}/>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* ── Feature Cards — Row 2 (philosophy) ── */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
+              {[
+                { icon: BookOpen, color: "text-blue-400/70",   bg: "bg-blue-500/5 border-blue-500/12",   title: "Not just links",       desc: "Topics, projects & milestones — not a bookmark list." },
+                { icon: Code2,    color: "text-purple-400/70", bg: "bg-purple-500/5 border-purple-500/12", title: "Built for developers", desc: "No math papers. Ship AI products from day one." },
+                { icon: Check,    color: "text-green-400/70",  bg: "bg-green-500/5 border-green-500/12",  title: "Track progress",       desc: "Check off topics. Saved in your browser forever." },
+              ].map(({icon: Icon, color, bg, title, desc}) => (
+                <div key={title} className={`flex flex-col gap-1.5 rounded-xl border ${bg} px-4 py-3.5 text-left`}>
+                  <Icon size={14} className={color}/>
+                  <p className="text-sm font-semibold text-gray-300">{title}</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <button onClick={scrollToPhase1} className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-200 transition-colors">
+              <ChevronDown size={16} className="animate-bounce"/>
+            </button>
+          </div>
+
+          {/* Section divider */}
+          <div className="max-w-3xl mx-auto px-4 my-8">
+            <div style={{height:'1px',background:'linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent)'}}/>
           </div>
 
           {/* ── ROADMAP SECTION ── */}
           <div id="roadmap-start" className="px-4 pb-8 max-w-3xl mx-auto">
 
-            {/* ── Start Here + Visual Phase Map ── */}
-            <div className="mb-6">
-              {/* Start Here selector */}
-              <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
-                <span className="text-xs text-gray-500 mr-1">Where are you starting?</span>
-                {[
-                  { label: "New to AI",              phase: 1 },
-                  { label: "Developer leveling up",  phase: 2 },
-                  { label: "ML Engineer → GenAI",    phase: 4 },
-                ].map(({ label, phase }) => (
-                  <button key={label}
-                    onClick={() => {
-                      setOpen(phase);
-                      setTimeout(() => {
-                        const el = document.getElementById(`phase-card-${phase}`);
-                        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 104, behavior: 'smooth' });
-                      }, 50);
-                    }}
-                    className="text-xs px-3 py-1.5 rounded-full border border-white/12 bg-gray-800/60 text-gray-300 hover:text-white hover:border-white/30 hover:bg-gray-700/60 transition-all">
-                    {label}
-                  </button>
-                ))}
+            {/* ── Visual Roadmap Preview (horizontal stepper) ── */}
+            <div className="mb-5">
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-xs text-gray-500 uppercase tracking-widest font-medium">Roadmap Preview</p>
+                {totalDone > 0 && (
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-16 h-1 bg-gray-700 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-300" style={{width: `${overallPct}%`}}/>
+                      </div>
+                      <span className="text-xs text-blue-400 font-medium">{overallPct}%</span>
+                    </div>
+                    <button onClick={resetProgress}
+                      className="text-[10px] text-gray-600 hover:text-red-400 transition-colors leading-none">
+                      Reset
+                    </button>
+                  </div>
+                )}
               </div>
-
-              {/* Phase flow diagram */}
               <div className="overflow-x-auto -mx-4 px-4" style={{scrollbarWidth:'none',msOverflowStyle:'none'}}>
-                <div className="flex items-stretch gap-0 min-w-max mx-auto" style={{width:'fit-content'}}>
+                <div className="flex items-center min-w-max gap-0">
                   {roadmapPhases.map((p, i) => {
                     const isActive = open === p.id;
                     const pg = phaseProgress(p);
                     const isDone = pg.pct === 100;
-                    const shortNames = ["AI Foundations","LLM Setup","Prompt Eng","RAG & Data","Agentic AI","Fine-tuning","Ship Projects"];
+                    const shortNames = ["Foundations","LLM Setup","Prompting","RAG","Agents","Fine-tuning","Production"];
                     return (
                       <React.Fragment key={p.id}>
                         <button
@@ -461,35 +440,51 @@
                               if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 104, behavior: 'smooth' });
                             }, 50);
                           }}
-                          className={`group flex flex-col items-center gap-2 px-3 py-3 rounded-xl border transition-all w-[90px] flex-shrink-0 ${
+                          className={`group flex items-center gap-2 px-3 py-2.5 rounded-xl border transition-all flex-shrink-0 ${
                             isActive
-                              ? 'bg-blue-600 border-blue-500 shadow-[0_0_16px_rgba(59,130,246,0.35)]'
+                              ? 'bg-blue-600 border-blue-500 shadow-[0_0_14px_rgba(59,130,246,0.35)]'
                               : isDone
                               ? 'bg-green-900/20 border-green-500/30 hover:border-green-400/50'
                               : 'bg-gray-800/50 border-white/8 hover:bg-gray-800 hover:border-white/20'
                           }`}
                         >
-                          <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${p.color} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>{p.id}</div>
-                          <div className="text-center">
-                            <div className={`text-[10px] font-semibold leading-tight ${isActive ? 'text-white' : isDone ? 'text-green-300' : 'text-gray-300 group-hover:text-white'}`}>{shortNames[i]}</div>
-                            <div className={`text-[9px] mt-0.5 ${isActive ? 'text-blue-200' : 'text-gray-600'}`}>{p.duration}</div>
-                          </div>
-                          {isDone
-                            ? <span className="text-[9px] text-green-400 font-semibold flex items-center gap-0.5"><Check size={8}/>Done</span>
-                            : pg.completed > 0
-                            ? <span className={`text-[9px] font-semibold ${isActive ? 'text-blue-200' : 'text-blue-400'}`}>{pg.pct}%</span>
-                            : <span className="text-[9px] text-gray-700">· · ·</span>
-                          }
+                          <span className={`w-6 h-6 rounded-lg bg-gradient-to-br ${p.color} flex items-center justify-center text-white font-bold text-xs flex-shrink-0`}>{p.id}</span>
+                          <span className={`text-xs font-semibold whitespace-nowrap ${isActive ? 'text-white' : isDone ? 'text-green-300' : 'text-gray-300 group-hover:text-white'}`}>{shortNames[i]}</span>
+                          {isDone && <Check size={10} className="text-green-400 flex-shrink-0"/>}
+                          {!isDone && pg.completed > 0 && <span className={`text-[10px] font-semibold ${isActive ? 'text-blue-200' : 'text-blue-400'}`}>{pg.pct}%</span>}
                         </button>
                         {i < roadmapPhases.length - 1 && (
-                          <div className="flex items-center flex-shrink-0 px-0.5">
-                            <ArrowRight size={11} className="text-gray-700"/>
-                          </div>
+                          <span className="text-gray-500/60 text-sm px-1 flex-shrink-0 select-none">→</span>
                         )}
                       </React.Fragment>
                     );
                   })}
                 </div>
+              </div>
+            </div>
+
+            {/* ── Where are you starting? ── */}
+            <div className="mb-6 mt-6">
+              <p className="text-sm font-semibold text-gray-300 text-center mb-3">Where are you starting?</p>
+              <div className="flex flex-col sm:flex-row justify-center gap-2">
+                {[
+                  { label: "New to AI",             sub: "Start from Phase 1", phase: 1 },
+                  { label: "Developer leveling up", sub: "Jump to Phase 2",    phase: 2 },
+                  { label: "ML Engineer → GenAI",   sub: "Jump to Phase 4",    phase: 4 },
+                ].map(({ label, sub, phase }) => (
+                  <button key={label}
+                    onClick={() => {
+                      setOpen(phase);
+                      setTimeout(() => {
+                        const el = document.getElementById(`phase-card-${phase}`);
+                        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 104, behavior: 'smooth' });
+                      }, 50);
+                    }}
+                    className="flex flex-col items-center px-6 py-4 rounded-xl border border-white/12 bg-gray-800/60 text-gray-200 hover:text-white hover:border-blue-500/40 hover:bg-gray-800 transition-all">
+                    <span className="text-sm font-semibold">{label}</span>
+                    <span className="text-xs text-gray-500 mt-0.5">{sub}</span>
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -529,6 +524,36 @@
               </div>
             </div>
 
+            {/* ── How to use this roadmap ── */}
+            {!tipDismissed && (
+              <div className="mb-6 rounded-r-xl p-4" style={{borderLeft:'3px solid rgba(96,165,250,0.8)',background:'rgba(255,255,255,0.03)'}}>
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex items-center gap-2">
+                    <Lightbulb size={13} className="text-blue-400 flex-shrink-0"/>
+                    <span className="text-xs font-semibold text-blue-400">How to use this roadmap</span>
+                  </div>
+                  <button onClick={dismissTip} className="text-gray-500 hover:text-gray-300 flex-shrink-0 transition-colors" aria-label="Dismiss">
+                    <X size={13}/>
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {[
+                    [Check,    "Check off topics",       "Click any topic in the Learn tab to track your progress. Saved in your browser."],
+                    [Layers,   "Explore tabs per phase", "Each phase has Learn, Resources, and Project tabs — the project tells you what to build."],
+                    [BookOpen, "More tools above",       "Use the tool links above to check readiness, run an assessment, or explore guides — all free."],
+                  ].map(([Icon, title, desc]) => (
+                    <div key={title} className="flex flex-col gap-1">
+                      <div className="flex items-center gap-1.5">
+                        <Icon size={10} className="text-gray-400 flex-shrink-0"/>
+                        <span className="text-xs font-semibold text-gray-300">{title}</span>
+                      </div>
+                      <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="relative mb-10">
               {/* Vertical timeline line */}
               <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-green-500 via-blue-500 to-purple-500 opacity-30" />
@@ -539,12 +564,15 @@
                   <div key={p.id} id={`phase-card-${p.id}`} className="relative flex gap-4">
                     {/* Timeline node */}
                     <div className="flex flex-col items-center flex-shrink-0 z-10">
-                      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${p.color} flex items-center justify-center text-xl shadow-lg ring-2 ring-gray-900`}><p.icon size={20} className="text-white"/></div>
+                      <div className="relative">
+                        {open === p.id && <div className="absolute inset-0 rounded-full bg-indigo-500/25 animate-ping"/>}
+                        <div className={`relative w-12 h-12 rounded-full bg-gradient-to-br ${p.color} flex items-center justify-center text-xl shadow-lg ring-2 ring-gray-900`}><p.icon size={20} className="text-white"/></div>
+                      </div>
                     </div>
                     {/* Card */}
                     <div className="flex-1 min-w-0">
                     <div
-                      className={`rounded-xl border cursor-pointer transition-all duration-200 backdrop-blur-sm overflow-hidden ${open === p.id ? "border-blue-500/30 bg-gray-900/80 shadow-[0_0_30px_rgba(59,130,246,0.08)]" : "border-white/8 bg-gray-900/60 hover:border-white/15 hover:bg-gray-900/80"}`}
+                      className={`rounded-xl border cursor-pointer transition-all duration-200 backdrop-blur-sm overflow-hidden ${open === p.id ? "border-indigo-500/60 bg-gray-900/80 shadow-[0_0_0_1px_rgba(99,102,241,0.2),0_10px_25px_rgba(99,102,241,0.15)]" : "border-white/8 bg-gray-900/60 hover:border-white/20 hover:bg-gray-900/80 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.35)]"}`}
                       onClick={() => setOpen(open === p.id ? null : p.id)}
                     >
                       {/* Gradient accent bar */}
@@ -557,10 +585,10 @@
                             <span className="font-semibold text-sm">{p.title}</span>
                             <span className={`text-xs px-2 py-0.5 rounded-full ${p.tagColor}`}>{p.tag}</span>
                           </div>
-                          <div className="flex items-center gap-2 mt-1 flex-wrap">
-                            <span className="text-gray-400 text-xs">{p.duration}</span>
-                            <span className="text-gray-400 text-xs">·</span>
-                            <span className="text-gray-400 text-xs">{p.topics.length} topics · {p.resources.length} resources</span>
+                          <div className="flex items-center gap-3 mt-1.5 flex-wrap">
+                            <span className="flex items-center gap-1 text-xs text-gray-400"><Clock size={10} className="text-gray-500"/>{p.duration}</span>
+                            <span className="flex items-center gap-1 text-xs text-gray-400"><BookOpen size={10} className="text-gray-500"/>{p.topics.length} topics</span>
+                            <span className="flex items-center gap-1 text-xs text-gray-400"><Layers size={10} className="text-gray-500"/>{p.resources.length} resources</span>
                             {(() => { const pg = phaseProgress(p); return pg.completed > 0 ? (
                               <span className="text-xs text-green-400 font-medium">{pg.completed}/{pg.total} done</span>
                             ) : null; })()}
@@ -571,18 +599,24 @@
                             </div>
                           ) : null; })()}
                           {open !== p.id && (
-                            <div className="mt-1.5 space-y-1">
-                              <p className="text-xs text-gray-500 leading-snug line-clamp-1">{p.goal}</p>
-                              <div className="flex items-start gap-1.5">
-                                <Check size={11} className="text-green-400 flex-shrink-0 mt-0.5"/>
-                                <p className="text-xs text-gray-400 italic leading-snug">{p.milestone}</p>
+                            <div className="mt-2 space-y-1">
+                              <p className="text-[10px] text-gray-600 uppercase tracking-wide font-medium mt-2">You will be able to:</p>
+                              {(phaseOutcomes[p.id] || []).slice(0, 2).map((o, i) => (
+                                <div key={i} className="flex items-start gap-1.5">
+                                  <Check size={9} className="text-blue-400 flex-shrink-0 mt-0.5"/>
+                                  <p className="text-xs text-gray-400 leading-snug">{o}</p>
+                                </div>
+                              ))}
+                              <div className="flex items-start gap-1.5 mt-1">
+                                <Rocket size={9} className="text-amber-400 flex-shrink-0 mt-0.5"/>
+                                <p className="text-xs text-amber-400/70 leading-snug line-clamp-1">Build: {p.project}</p>
                               </div>
                             </div>
                           )}
                         </div>
-                        <div className="flex items-center gap-2 flex-shrink-0 mt-0.5">
-                          {open !== p.id && <span className="text-xs text-gray-400 hidden sm:inline">expand</span>}
-                          <div className={`text-gray-400 ${open !== p.id ? "animate-bounce" : ""}`}>{open === p.id ? <ChevronUp size={14}/> : <ChevronDown size={14}/>}</div>
+                        <div className="flex items-center gap-1.5 flex-shrink-0 mt-0.5">
+                          {open !== p.id && <span className="text-xs text-blue-400/70 hidden sm:inline font-medium">View phase</span>}
+                          <div className={`text-blue-400/70 ${open !== p.id ? "" : "text-gray-400"}`}>{open === p.id ? <ChevronUp size={14}/> : <ChevronDown size={14}/>}</div>
                         </div>
                       </div>
 
@@ -592,12 +626,17 @@
                             {["learn", "resources", ...(p.config ? ["setup"] : []), ...(p.agentic ? ["how it works"] : []), ...(p.training ? ["training"] : []), "project"].map(t => {
                               const isVisited = visited[`${p.id}-${t}`];
                               const isActive = activeTab === t;
+                              const isProject = t === "project";
                               return (
                                 <button key={t} onClick={e => setPhaseTab(p.id, t, e)}
-                                  className={`relative text-xs px-3 py-1.5 rounded-t-lg capitalize transition-colors ${isActive ? "bg-gray-700 text-white" : "text-gray-400 hover:text-gray-300"}`}>
-                                  {t}
+                                  className={`relative text-xs px-3 py-1.5 rounded-t-lg capitalize transition-colors ${
+                                    isActive
+                                      ? isProject ? "bg-amber-500/15 text-amber-300 font-semibold" : "bg-gray-700 text-white"
+                                      : isProject ? "text-amber-500/70 hover:text-amber-300" : "text-gray-400 hover:text-gray-300"
+                                  }`}>
+                                  {isProject ? "🚀 project" : t}
                                   {!isVisited && !isActive && (
-                                    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"/>
+                                    <span className={`absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full animate-pulse ${isProject ? "bg-amber-400" : "bg-blue-400"}`}/>
                                   )}
                                 </button>
                               );
@@ -749,24 +788,22 @@
                             )}
                             {activeTab === "project" && (
                               <div className="space-y-3">
-                                <div className="rounded-xl border border-yellow-500/25 bg-yellow-500/5 p-4">
-                                  <div className="flex items-center gap-2.5 mb-3">
-                                    <div className="w-8 h-8 rounded-lg bg-yellow-500/15 border border-yellow-500/20 flex items-center justify-center flex-shrink-0">
-                                      <Wrench size={14} className="text-yellow-400"/>
-                                    </div>
-                                    <div>
-                                      <p className="text-xs font-bold text-yellow-400 uppercase tracking-wider">What you'll build</p>
-                                      <p className="text-[11px] text-gray-500 mt-0.5">Phase {p.id} project</p>
-                                    </div>
+                                <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <Rocket size={16} className="text-amber-400 flex-shrink-0"/>
+                                    <p className="text-sm font-bold text-amber-300">Build This Project</p>
+                                    <span className="ml-auto text-xs text-amber-500/60 bg-amber-500/10 px-2 py-0.5 rounded-full">Phase {p.id}</span>
                                   </div>
-                                  <p className="text-sm text-gray-200 leading-relaxed">{p.project}</p>
+                                  <p className="text-sm text-gray-200 leading-relaxed mb-3">{p.project}</p>
+                                  <div className="flex flex-wrap gap-2 pt-3 border-t border-amber-500/10">
+                                    <span className="text-[11px] text-amber-500/70 font-medium uppercase tracking-wide mr-1">After this you can:</span>
+                                    <span className="text-[11px] text-gray-300 bg-gray-800 px-2 py-0.5 rounded">{p.milestone.split('.')[0]}</span>
+                                  </div>
                                 </div>
                                 <div className="rounded-xl border border-green-500/25 bg-green-500/5 p-4">
-                                  <div className="flex items-center gap-2.5 mb-3">
-                                    <div className="w-8 h-8 rounded-lg bg-green-500/15 border border-green-500/20 flex items-center justify-center flex-shrink-0">
-                                      <Check size={14} className="text-green-400"/>
-                                    </div>
-                                    <p className="text-xs font-bold text-green-400 uppercase tracking-wider">Milestone — you're ready when:</p>
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <Check size={14} className="text-green-400 flex-shrink-0"/>
+                                    <p className="text-xs font-bold text-green-400 uppercase tracking-wider">You're ready to move on when:</p>
                                   </div>
                                   <p className="text-sm text-gray-200 leading-relaxed">{p.milestone}</p>
                                 </div>
@@ -783,15 +820,81 @@
               </div>
             </div>
 
+            {/* ── Additional Tools ── */}
             <div className="mb-8">
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3"><Wrench size={12} className="inline mr-1.5 align-middle"/>Essential Free Tools</p>
-              <div className="grid grid-cols-2 gap-2">
-                {roadmapTools.map((t, i) => (
-                  <a key={i} href={t.url} target="_blank" rel="noopener noreferrer"
-                    className="bg-gray-900 border border-gray-800 hover:border-gray-600 rounded-lg p-3 transition-colors">
-                    <p className="text-sm font-medium text-blue-400">{t.name}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{t.desc}</p>
+              <p className="text-xs text-gray-500 uppercase tracking-widest font-medium mb-3">Additional Tools</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { slug: "prep-plan",      icon: Calendar,    color: "text-orange-400", label: "Prep Plan" },
+                  { slug: "readiness",      icon: CheckCircle, color: "text-green-400",  label: "Readiness Check" },
+                  { slug: "assessment",     icon: BarChart2,   color: "text-pink-400",   label: "Assessment" },
+                  { slug: "prompt-eng",     icon: Zap,         color: "text-yellow-400", label: "Prompt Eng" },
+                  { slug: "genai-guide",    icon: Cpu,         color: "text-purple-400", label: "GenAI Guide" },
+                  { slug: "beyond-roadmap", icon: Compass,     color: "text-teal-400",   label: "Beyond Roadmap" },
+                ].map(({ slug, icon: Icon, color, label }) => (
+                  <a key={slug} href={tabPath(slug)}
+                    className="inline-flex items-center gap-1.5 bg-gray-800/60 hover:bg-gray-700/60 border border-white/8 hover:border-white/15 text-gray-300 hover:text-white text-xs px-3 py-1.5 rounded-full transition-colors"
+                    style={{textDecoration:"none"}}>
+                    <Icon size={11} className={color}/>{label}
                   </a>
+                ))}
+              </div>
+            </div>
+
+            {/* ── End Goal section ── */}
+            <div className="mb-8 rounded-xl border border-blue-500/20 bg-blue-500/5 p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center">
+                  <Rocket size={15} className="text-blue-400"/>
+                </div>
+                <p className="text-sm font-bold text-white">After completing this roadmap, you can:</p>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-2">
+                {[
+                  "Build and deploy production AI applications",
+                  "Design RAG systems over any data source",
+                  "Create autonomous AI agents with tool use",
+                  "Fine-tune open-source LLMs on custom data",
+                  "Integrate AI into any web or API stack",
+                  "Speak about AI architecture with real depth",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-2">
+                    <Check size={13} className="text-blue-400 flex-shrink-0 mt-0.5"/>
+                    <span className="text-sm text-gray-300">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4"><Wrench size={12} className="inline mr-1.5 align-middle"/>Essential Tools You'll Use</p>
+              <div className="space-y-4">
+                {[
+                  { category: "Model access", items: [
+                    { name: "Hugging Face", desc: "Models, datasets, free Spaces", url: "https://huggingface.co" },
+                    { name: "Google Colab", desc: "Free cloud GPUs for training", url: "https://colab.research.google.com" },
+                  ]},
+                  { category: "Local inference", items: [
+                    { name: "Ollama", desc: "Run any LLM locally for free", url: "https://ollama.com" },
+                    { name: "LM Studio", desc: "GUI for local models", url: "https://lmstudio.ai" },
+                  ]},
+                  { category: "Frameworks", items: [
+                    { name: "LangChain", desc: "Build RAG and agent apps", url: "https://python.langchain.com" },
+                    { name: "Unsloth", desc: "Fast fine-tuning on free GPUs", url: "https://github.com/unslothai/unsloth" },
+                  ]},
+                ].map(({ category, items }) => (
+                  <div key={category}>
+                    <p className="text-[10px] text-gray-600 uppercase tracking-wider font-medium mb-2">{category}</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {items.map((t) => (
+                        <a key={t.name} href={t.url} target="_blank" rel="noopener noreferrer"
+                          className="bg-gray-900 border border-gray-800 hover:border-gray-600 rounded-lg p-3 transition-colors">
+                          <p className="text-sm font-medium text-blue-400">{t.name}</p>
+                          <p className="text-xs text-gray-400 mt-0.5">{t.desc}</p>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -4235,6 +4338,168 @@ function KnowledgeGaps() {
       );
     }
 
+    // ═══════════════════════════════════════════════════════════
+    // AI ENGINEERING ROADMAP SEO PAGE  (/ai-engineering-roadmap/)
+    // ═══════════════════════════════════════════════════════════
+    function AiEngineeringRoadmapPage() {
+      useSeo(
+        "AI Engineering Roadmap 2026 – Learn AI Step by Step",
+        "A complete roadmap to becoming an AI engineer. Learn AI step by step with projects, tools, and real-world skills."
+      );
+      const phases = [
+        { n:1, title:"AI Foundations",         time:"4–6 wks",  color:"from-green-500 to-emerald-600",  tools:["Karpathy YouTube","3Blue1Brown","fast.ai"],        outcome:"Understand how neural networks, LLMs, and GenAI work. Build mental models that last the whole journey." },
+        { n:2, title:"LLM Setup & APIs",        time:"2–3 wks",  color:"from-slate-500 to-gray-600",     tools:["Ollama","OpenAI API","Anthropic API","HF"],         outcome:"Run local models with Ollama. Call cloud LLMs from Python. Compare models and tune parameters." },
+        { n:3, title:"Prompt Engineering",      time:"3–4 wks",  color:"from-blue-500 to-indigo-600",    tools:["LangChain","OpenAI API","DSPy"],                    outcome:"Ship your first AI-powered app. Master zero-shot, few-shot, and chain-of-thought prompting." },
+        { n:4, title:"RAG & Your Data",         time:"4–5 wks",  color:"from-purple-500 to-violet-600",  tools:["LangChain","Chroma","Pinecone","LlamaIndex"],       outcome:"Build document Q&A chatbots over any data source. Integrate vector databases into real apps." },
+        { n:5, title:"Agentic AI",              time:"4–5 wks",  color:"from-orange-500 to-amber-600",   tools:["LangGraph","CrewAI","Anthropic MCP","AutoGen"],     outcome:"Build agents that plan, use tools, and execute multi-step tasks autonomously." },
+        { n:6, title:"Fine-tuning LLMs",        time:"6–8 wks",  color:"from-rose-500 to-pink-600",      tools:["Unsloth","Axolotl","QLoRA","Google Colab"],         outcome:"Fine-tune Llama 3 on custom data. Know when to train vs prompt vs RAG." },
+        { n:7, title:"Ship Real Projects",      time:"Ongoing",  color:"from-teal-500 to-cyan-600",      tools:["FastAPI","Vercel","Supabase","Fly.io"],             outcome:"Deploy AI apps to production. Build a portfolio of 2–3 real projects that demonstrate depth." },
+      ];
+      const timeline = [
+        { label:"Months 1–3", phases:"Phases 1–3", milestone:"Ship first AI app (prompt-based)", color:"text-green-400" },
+        { label:"Months 4–6", phases:"Phases 4–5", milestone:"Deploy a RAG chatbot + basic agent", color:"text-blue-400" },
+        { label:"Months 7–9", phases:"Phase 6",    milestone:"Fine-tune a model on custom data", color:"text-purple-400" },
+        { label:"Month 10+",  phases:"Phase 7",    milestone:"2–3 live projects in portfolio", color:"text-amber-400" },
+      ];
+      const tools = [
+        { category:"Run Models",   items:[{name:"Ollama",       desc:"Run any LLM locally (free)"},{name:"LM Studio",    desc:"GUI for local models"}] },
+        { category:"Cloud APIs",   items:[{name:"OpenAI",       desc:"GPT-4 / GPT-4o API"},{name:"Anthropic",   desc:"Claude API — best for coding"}] },
+        { category:"Build",        items:[{name:"LangChain",    desc:"RAG pipelines & agents"},{name:"LangGraph",   desc:"Stateful multi-agent apps"}] },
+        { category:"Fine-tune",    items:[{name:"Unsloth",      desc:"2× faster QLoRA, free Colab"},{name:"Axolotl",     desc:"Config-driven fine-tuning"}] },
+        { category:"Data & Models",items:[{name:"Hugging Face", desc:"Models, datasets, Spaces"},{name:"Google Colab", desc:"Free cloud GPU notebooks"}] },
+      ];
+      return (
+        <div className="max-w-3xl mx-auto px-4 py-10 text-gray-100">
+
+          {/* Hero */}
+          <div className="mb-10">
+            <span className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-5">
+              The Developer Roadmap to AI Engineering · 2026
+            </span>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">AI Engineering Roadmap 2026 – Learn AI Step by Step</h1>
+            <p className="text-gray-400 text-lg leading-relaxed mb-6">A complete, opinionated roadmap to becoming an AI engineer. 7 phases with clear outcomes, real projects, and curated free resources — built for software developers, not researchers.</p>
+            <div className="flex flex-wrap gap-3">
+              <a href="/" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all shadow-[0_0_18px_rgba(59,130,246,0.3)]">
+                Open Interactive Roadmap <ArrowRight size={14}/>
+              </a>
+              <a href="/blog/" className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-200 text-sm font-medium px-5 py-2.5 rounded-xl border border-white/8 transition-all">
+                Read the Guides <BookOpen size={14}/>
+              </a>
+            </div>
+          </div>
+
+          {/* Visual roadmap summary */}
+          <div className="mb-10">
+            <h2 className="text-xl font-bold text-white mb-4">The 7-Phase Learning Path</h2>
+            <div className="space-y-3">
+              {phases.map(({ n, title, time, color, tools: phaseTools, outcome }) => (
+                <div key={n} className="flex items-start gap-4 bg-gray-800/40 rounded-xl p-4 border border-white/8 hover:border-white/15 transition-colors">
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-lg`}>{n}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-1">
+                      <span className="text-white font-semibold">{title}</span>
+                      <span className="text-xs text-gray-500 bg-gray-800 px-2 py-0.5 rounded-full">{time}</span>
+                    </div>
+                    <p className="text-gray-400 text-sm mb-2">{outcome}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {phaseTools.map(t => (
+                        <span key={t} className="text-[10px] text-gray-500 bg-gray-900 border border-white/8 px-2 py-0.5 rounded-full">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Learning timeline */}
+          <div className="mb-10">
+            <h2 className="text-xl font-bold text-white mb-4">Learning Timeline</h2>
+            <p className="text-gray-400 text-sm mb-5">Estimated at 4–6 hours per week. Most developers complete the full roadmap in 10–14 months.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {timeline.map(({ label, phases: ph, milestone, color }) => (
+                <div key={label} className="bg-gray-800/40 rounded-xl p-4 border border-white/8">
+                  <div className={`text-xs font-bold ${color} mb-1`}>{label} · {ph}</div>
+                  <p className="text-sm text-white font-medium">{milestone}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Essential tools */}
+          <div className="mb-10">
+            <h2 className="text-xl font-bold text-white mb-4">Essential Tools by Phase</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {tools.map(({ category, items }) => (
+                <div key={category} className="bg-gray-800/40 rounded-xl p-4 border border-white/8">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">{category}</p>
+                  <div className="space-y-2">
+                    {items.map(({ name, desc }) => (
+                      <div key={name} className="flex items-start gap-2">
+                        <span className="text-sm font-semibold text-blue-400 w-28 flex-shrink-0">{name}</span>
+                        <span className="text-xs text-gray-400">{desc}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Full roadmap explanation */}
+          <div className="mb-10 space-y-5">
+            <h2 className="text-xl font-bold text-white">What Is the AI Engineering Roadmap?</h2>
+            <p className="text-gray-400 text-sm leading-relaxed">The AI Engineering Roadmap is a structured, opinionated learning path that takes software developers from zero AI knowledge to shipping production AI applications. It covers 7 phases: AI Foundations, LLM Setup & APIs, Prompt Engineering, Retrieval-Augmented Generation (RAG), Agentic AI, Fine-tuning LLMs, and deploying real projects.</p>
+            <p className="text-gray-400 text-sm leading-relaxed">Unlike generic "learn AI" lists, this roadmap is designed for developers — it prioritizes building over reading, practical tools over theory, and real projects over certificates. Every phase ends with a concrete project milestone so you always know when you've truly learned something.</p>
+
+            <h2 className="text-xl font-bold text-white pt-2">Who Is This Roadmap For?</h2>
+            <div className="space-y-2">
+              {[
+                ["New to AI", "Start at Phase 1. You'll build intuition for how LLMs work before touching any code."],
+                ["Developer leveling up", "Jump to Phase 2 if you've used LLMs before. You'll set up a proper AI dev environment."],
+                ["ML Engineer → GenAI", "Skip to Phase 4 (RAG). You already know the fundamentals — focus on building with LLMs."],
+              ].map(([type, detail]) => (
+                <div key={type} className="flex items-start gap-3 bg-gray-800/40 rounded-xl p-4 border border-white/8">
+                  <Check size={14} className="text-green-400 flex-shrink-0 mt-0.5"/>
+                  <div>
+                    <span className="text-white font-semibold text-sm">{type}: </span>
+                    <span className="text-gray-400 text-sm">{detail}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* FAQ */}
+          <div className="mb-10 space-y-3">
+            <h2 className="text-xl font-bold text-white">Frequently Asked Questions</h2>
+            {[
+              ["How long does it take to become an AI engineer?","Most software developers complete this roadmap in 10–14 months at 4–6 hours per week. The first 3 phases (fundamentals through your first AI app) take around 3 months."],
+              ["Do I need a math background to follow this roadmap?","No. Phases 1–5 are entirely practical — APIs, RAG pipelines, and agents. Phase 6 (fine-tuning) benefits from linear algebra intuition but QLoRA works without deep math."],
+              ["What programming language do I need?","Python. All AI frameworks — LangChain, Hugging Face, Unsloth — use Python. Basic Python knowledge (functions, loops, packages) is enough to start."],
+              ["Is this roadmap free?","Yes. Every resource in Phases 1–5 is free: Karpathy's YouTube series, DeepLearning.AI short courses, Hugging Face tutorials, and Ollama for local model inference."],
+              ["How is this different from a machine learning roadmap?","This roadmap focuses on LLM applications — building products with pre-trained models. A classical ML roadmap focuses on model training from scratch (scikit-learn, PyTorch, data preprocessing). See our Machine Learning Roadmap for that path."],
+            ].map(([q, a]) => (
+              <div key={q} className="bg-gray-800/40 rounded-xl p-5 border border-white/8">
+                <p className="text-white font-semibold text-sm mb-2">{q}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{a}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="bg-blue-600/10 border border-blue-500/30 rounded-xl p-6 text-center">
+            <p className="text-white font-bold text-lg mb-2">Ready to start your AI engineering journey?</p>
+            <p className="text-gray-400 text-sm mb-5">The interactive roadmap has topic checklists, progress tracking, curated resources, and phase projects.</p>
+            <a href="/" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-[0_0_20px_rgba(59,130,246,0.35)]">
+              Open the Interactive Roadmap <ArrowRight size={14}/>
+            </a>
+          </div>
+
+        </div>
+      );
+    }
+
     // ─── MASTER APP ───
     const TABS = [
       { label: "Roadmap",         slug: "roadmap",               icon: BrainCircuit, Component: Roadmap },
@@ -4245,7 +4510,8 @@ function KnowledgeGaps() {
       { label: "Readiness",       slug: "readiness",             icon: CheckCircle,  Component: ReadinessChecker,     nav: false },
       { label: "Beyond Roadmap",  slug: "beyond-roadmap",        icon: Compass,      Component: BeyondRoadmap,        nav: false },
       { label: "Assessment",      slug: "assessment",            icon: BarChart2,    Component: KnowledgeAssessment,  nav: false },
-      { label: "AI Roadmap",      slug: "ai-roadmap",               icon: BrainCircuit, Component: AiRoadmapPage,              nav: false },
+      { label: "AI Roadmap",            slug: "ai-roadmap",               icon: BrainCircuit, Component: AiRoadmapPage,              nav: false },
+      { label: "AI Engineering Roadmap", slug: "ai-engineering-roadmap",   icon: BrainCircuit, Component: AiEngineeringRoadmapPage,   nav: false },
       { label: "LLM Roadmap",     slug: "llm-roadmap",              icon: Cpu,          Component: LlmRoadmapPage,             nav: false },
       { label: "RAG Tutorial",    slug: "rag-tutorial",             icon: BookOpen,     Component: RagTutorialPage,            nav: false },
       { label: "ML Roadmap",      slug: "machine-learning-roadmap", icon: BarChart2,    Component: MachineLearningRoadmapPage, nav: false },

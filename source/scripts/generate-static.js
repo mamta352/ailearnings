@@ -428,6 +428,52 @@ const PAGES = [
     ],
   },
   {
+    slug:        'ai-engineering-roadmap',
+    outDir:      'ai-engineering-roadmap',
+    url:         'http://localhost:3131/ai-engineering-roadmap/',
+    title:       'AI Engineering Roadmap 2026 – Learn AI Step by Step',
+    description: 'A complete roadmap to becoming an AI engineer. Learn AI step by step with projects, tools, and real-world skills. 7 phases from foundations to shipping production AI.',
+    canonical:   'https://ailearnings.in/ai-engineering-roadmap/',
+    ogUrl:       'https://ailearnings.in/ai-engineering-roadmap/',
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: 'AI Engineering Roadmap 2026 – Learn AI Step by Step',
+        description: 'A complete step-by-step roadmap to becoming an AI engineer. Covers 7 phases: AI Foundations, LLM APIs, Prompt Engineering, RAG, Agentic AI, Fine-tuning, and shipping real projects.',
+        totalTime: 'P10M',
+        step: [
+          { '@type': 'HowToStep', position: 1, name: 'Phase 1: AI Foundations', text: 'Build intuition for how neural networks, LLMs, and GenAI work. Watch Karpathy\'s Neural Networks: Zero to Hero series and 3Blue1Brown.' },
+          { '@type': 'HowToStep', position: 2, name: 'Phase 2: LLM Setup & APIs', text: 'Run local models with Ollama. Call OpenAI, Anthropic, and Gemini APIs from Python. Learn key config parameters.' },
+          { '@type': 'HowToStep', position: 3, name: 'Phase 3: Prompt Engineering', text: 'Master zero-shot, few-shot, and chain-of-thought prompting. Build your first AI-powered app.' },
+          { '@type': 'HowToStep', position: 4, name: 'Phase 4: RAG & Your Data', text: 'Build retrieval-augmented generation pipelines with vector databases. Deploy document Q&A systems.' },
+          { '@type': 'HowToStep', position: 5, name: 'Phase 5: Agentic AI', text: 'Build agents that plan, use tools, and execute multi-step tasks autonomously with LangGraph and CrewAI.' },
+          { '@type': 'HowToStep', position: 6, name: 'Phase 6: Fine-tuning LLMs', text: 'Fine-tune Llama 3 with QLoRA on free Colab GPUs. Understand when to prompt vs RAG vs fine-tune.' },
+          { '@type': 'HowToStep', position: 7, name: 'Phase 7: Ship Real Projects', text: 'Deploy AI apps to production. Build 2–3 real projects for your portfolio. Ship things people use.' },
+        ],
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ailearnings.in/' },
+          { '@type': 'ListItem', position: 2, name: 'AI Engineering Roadmap', item: 'https://ailearnings.in/ai-engineering-roadmap/' },
+        ],
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          { '@type': 'Question', name: 'What is the AI engineering roadmap?', acceptedAnswer: { '@type': 'Answer', text: 'The AI engineering roadmap is a structured 7-phase learning path for software developers to become AI engineers. It covers AI foundations, LLM APIs, prompt engineering, RAG, agentic AI, fine-tuning, and shipping real AI projects. Full guide at ailearnings.in/ai-engineering-roadmap.' } },
+          { '@type': 'Question', name: 'How long does it take to become an AI engineer?', acceptedAnswer: { '@type': 'Answer', text: 'Most software developers become AI engineers in 10–14 months at 4–6 hours per week. The first 3 phases (fundamentals + first app) take about 3 months. RAG and Agents add another 2 months. Fine-tuning and real projects complete the journey.' } },
+          { '@type': 'Question', name: 'What programming language do I need for AI engineering?', acceptedAnswer: { '@type': 'Answer', text: 'Python is the primary language for AI engineering. Basic Python knowledge — functions, loops, pip packages — is enough to start. All major AI frameworks (LangChain, Hugging Face, Unsloth) use Python.' } },
+          { '@type': 'Question', name: 'Do I need a math background to become an AI engineer?', acceptedAnswer: { '@type': 'Answer', text: 'No. Phases 1–5 of the AI engineering roadmap are entirely practical — calling APIs, building RAG pipelines, deploying agents. Phase 6 (fine-tuning) benefits from linear algebra intuition but QLoRA and Unsloth make it accessible without deep math.' } },
+          { '@type': 'Question', name: 'What tools do AI engineers use?', acceptedAnswer: { '@type': 'Answer', text: 'Core AI engineering tools in 2026: Ollama (local LLMs), LangChain / LangGraph (pipelines and agents), Hugging Face (models and datasets), Unsloth (fine-tuning), OpenAI / Anthropic / Gemini APIs (cloud LLMs), and Google Colab (free GPU compute).' } },
+        ],
+      },
+    ],
+  },
+  {
     slug:        'llm-roadmap',
     outDir:      'llm-roadmap',
     url:         'http://localhost:3131/llm-roadmap/',
