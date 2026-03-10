@@ -12,11 +12,12 @@ const fs   = require('fs');
 const path = require('path');
 const { marked } = require('marked');
 
-const ROOT          = path.resolve(__dirname, '../..');
-const POSTS_DIR     = path.join(__dirname, '../blog/posts');
-const TEMPLATES_DIR = path.join(__dirname, '../templates');
-const BLOG_OUT      = path.join(ROOT, 'blog');
-const CSS_FILE      = path.join(ROOT, 'dist/app.css');
+const ROOT              = path.resolve(__dirname, '../..');
+const POSTS_DIR         = path.join(__dirname, '../blog/posts');
+const ROADMAP_GUIDES_DIR = path.join(__dirname, '../blog/roadmap-guides');
+const TEMPLATES_DIR     = path.join(__dirname, '../templates');
+const BLOG_OUT          = path.join(ROOT, 'blog');
+const CSS_FILE          = path.join(ROOT, 'dist/app.css');
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -169,6 +170,98 @@ function main() {
   fs.writeFileSync(path.join(BLOG_OUT, 'index.html'), indexHtml, 'utf8');
   const idxKb = Math.round(Buffer.byteLength(indexHtml, 'utf8') / 1024);
   console.log(`   ✓ Wrote blog/index.html (${idxKb} KB) — ${posts.length} posts`);
+
+  // ── Roadmap Guides ───────────────────────────────────────────────────────────
+  if (fs.existsSync(ROADMAP_GUIDES_DIR)) {
+    const rgFiles = fs.readdirSync(ROADMAP_GUIDES_DIR).filter(f => f.endsWith('.md')).sort();
+    const rgOut   = path.join(BLOG_OUT, 'roadmap-guides');
+    const rgPosts = [];
+
+    for (const file of rgFiles) {
+      const raw = fs.readFileSync(path.join(ROADMAP_GUIDES_DIR, file), 'utf8');
+      const { meta, content } = parseFrontmatter(raw);
+
+      const slug        = meta.slug || file.replace('.md', '');
+      const title       = meta.title || slug;
+      const description = meta.description || '';
+      const date        = meta.date || '2026-03-10';
+      const canonical   = `https://ailearnings.in/blog/roadmap-guides/${slug}/`;
+      const mins        = readTime(content);
+      const htmlContent = marked.parse(content);
+
+      const articleSchema = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        description: description,
+        url: canonical,
+        datePublished: date,
+        dateModified: date,
+        author: { '@type': 'Organization', name: 'AI Learning Hub', url: 'https://ailearnings.in/' },
+        publisher: { '@type': 'Organization', name: 'AI Learning Hub', url: 'https://ailearnings.in/' },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+      }, null, 2);
+
+      const breadcrumbSchema = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home',           item: 'https://ailearnings.in/' },
+          { '@type': 'ListItem', position: 2, name: 'Blog',           item: 'https://ailearnings.in/blog/' },
+          { '@type': 'ListItem', position: 3, name: 'Roadmap Guides', item: 'https://ailearnings.in/blog/roadmap-guides/' },
+          { '@type': 'ListItem', position: 4, name: title,            item: canonical },
+        ],
+      }, null, 2);
+
+      let html = postTemplate
+        .replace(/\{\{TITLE\}\}/g,           esc(title))
+        .replace(/\{\{TITLE_SHORT\}\}/g,      esc(title.length > 50 ? title.slice(0, 47) + '…' : title))
+        .replace(/\{\{DESCRIPTION\}\}/g,      esc(description))
+        .replace(/\{\{CANONICAL\}\}/g,        canonical)
+        .replace(/\{\{DATE\}\}/g,             date)
+        .replace(/\{\{DATE_DISPLAY\}\}/g,     formatDate(date))
+        .replace(/\{\{READ_TIME\}\}/g,        String(mins))
+        .replace(/\{\{CONTENT\}\}/g,          htmlContent)
+        .replace(/\{\{INLINE_CSS\}\}/g,       inlineCss)
+        .replace(/\{\{ARTICLE_SCHEMA\}\}/g,   articleSchema)
+        .replace(/\{\{BREADCRUMB_SCHEMA\}\}/, breadcrumbSchema);
+
+      html = html.replace(
+        /(<link[^>]*fonts\.bunny\.net[^>]*)\bmedia="all"([^>]*>)/,
+        '$1media="print"$2'
+      );
+
+      const outDir = path.join(rgOut, slug);
+      fs.mkdirSync(outDir, { recursive: true });
+      fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
+      const kb = Math.round(Buffer.byteLength(html, 'utf8') / 1024);
+      console.log(`   ✓ Wrote blog/roadmap-guides/${slug}/index.html (${kb} KB)`);
+
+      rgPosts.push({ slug, title, description, date });
+    }
+
+    // Generate blog/roadmap-guides/index.html
+    rgPosts.sort((a, b) => b.date.localeCompare(a.date));
+    const rgListHtml = rgPosts.map(({ slug, title, description, date }) => `
+    <a href="/blog/roadmap-guides/${slug}/" class="block bg-gray-800/40 rounded-xl p-5 border border-white/8 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all" style="text-decoration:none;">
+      <div class="text-xs text-gray-500 mb-2">${formatDate(date)}</div>
+      <h2 class="text-white font-semibold text-base mb-2 leading-snug">${esc(title)}</h2>
+      <p class="text-gray-400 text-sm leading-relaxed">${esc(description)}</p>
+    </a>`).join('\n');
+
+    let rgIndexHtml = indexTemplate
+      .replace('{{POST_LIST}}', rgListHtml)
+      .replace('{{INLINE_CSS}}', inlineCss);
+    rgIndexHtml = rgIndexHtml.replace(
+      /(<link[^>]*fonts\.bunny\.net[^>]*)\bmedia="all"([^>]*>)/,
+      '$1media="print"$2'
+    );
+
+    fs.mkdirSync(rgOut, { recursive: true });
+    fs.writeFileSync(path.join(rgOut, 'index.html'), rgIndexHtml, 'utf8');
+    const rgIdxKb = Math.round(Buffer.byteLength(rgIndexHtml, 'utf8') / 1024);
+    console.log(`   ✓ Wrote blog/roadmap-guides/index.html (${rgIdxKb} KB) — ${rgPosts.length} guides`);
+  }
 
   console.log('\n✅ Blog generation complete');
 }
