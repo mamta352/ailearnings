@@ -15,12 +15,29 @@ An automated code review assistant that analyzes Git diffs, identifies real bugs
 
 ---
 
-## Learning Goals
+## Learning Outcomes
 
-- Parse and understand Git diffs programmatically
-- Design effective code review prompts with security focus
-- Integrate with the GitHub API for inline PR comments
-- Build a GitHub Actions workflow for automated reviews
+After completing this project you will be able to:
+
+- Parse **Git diff format** and map changed lines to GitHub review comment positions
+- Write **structured output prompts** that return machine-parseable JSON findings with severity labels
+- Implement **webhook security** using HMAC-SHA256 signature verification
+- Integrate the **GitHub REST API** to create inline PR review comments programmatically
+- Handle **token budget management** by chunking large diffs per file
+- Build an **event-driven AI pipeline** triggered by external webhooks — the core agent integration pattern
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| Web server | FastAPI + uvicorn | Webhook endpoint and async processing |
+| LLM | GPT-4o or Claude claude-sonnet-4-6 | Code analysis and structured review output |
+| GitHub integration | PyGithub | Fetch diffs, post PR comments |
+| Diff parsing | Python stdlib | Extract file hunks and line numbers |
+| Background tasks | FastAPI BackgroundTasks | Async review without webhook timeout |
+| Language | Python 3.11+ | Core implementation |
 
 ---
 

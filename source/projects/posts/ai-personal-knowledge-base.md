@@ -15,12 +15,31 @@ A personal knowledge management system (second brain) that ingests notes, web ar
 
 ---
 
-## Learning Goals
+## Learning Outcomes
 
-- Build a multi-source ingestion pipeline (Markdown, PDF, web URLs)
-- Auto-generate tags and link related notes using embeddings
-- Implement semantic search + conversation over personal knowledge
-- Design a note graph with bidirectional links
+After completing this project you will be able to:
+
+- Build a **multi-source ingestion pipeline** that handles Markdown, PDF, and web URLs in a unified way
+- Use **embeddings to auto-link** related notes and explain why cosine similarity works for this
+- Implement **semantic search over personal knowledge** with source attribution in LLM answers
+- Design a **hybrid retrieval system** combining vector search (ChromaDB) with keyword search (SQLite FTS5)
+- Structure **LLM-generated metadata** (tags, summaries) for reliable downstream filtering
+- Create a **Streamlit multi-tab app** combining chat, ingestion, and browse interfaces
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| LLM | OpenAI gpt-4o-mini | Answer synthesis and metadata generation |
+| Embeddings | text-embedding-3-small | Semantic similarity between notes |
+| Vector DB | ChromaDB | Semantic search over note embeddings |
+| Relational DB | SQLite (via sqlite-utils) | Note metadata, tags, and link graph |
+| PDF parsing | pypdf | Extract text from uploaded PDFs |
+| Web scraping | requests + BeautifulSoup | Ingest articles from URLs |
+| UI | Streamlit | Chat, ingestion, and browse interface |
+| Language | Python 3.11+ | Core implementation |
 
 ---
 

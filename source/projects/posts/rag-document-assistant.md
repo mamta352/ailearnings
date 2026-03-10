@@ -15,12 +15,28 @@ A document Q&A assistant that ingests PDFs and text files, stores them in a vect
 
 ---
 
-## Learning Goals
+## Learning Outcomes
 
-- Build a complete RAG pipeline from scratch
-- Use OpenAI embeddings to convert text to vectors
-- Query ChromaDB for semantic similarity search
-- Design prompts that cite sources and stay grounded
+After completing this project you will be able to:
+
+- Build a complete **RAG pipeline** from document ingestion to grounded answers
+- Implement **text chunking strategies** and explain why chunk size affects retrieval quality
+- Use **OpenAI embeddings** to convert text into vectors and store them in ChromaDB
+- Write **retrieval-augmented prompts** that force the model to cite sources and stay within context
+- Evaluate RAG quality by testing with questions whose answers are and aren't in the documents
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| LLM | OpenAI gpt-4o-mini | Answer generation |
+| Embeddings | text-embedding-3-small | Convert text to vectors |
+| Vector DB | ChromaDB | Semantic similarity search |
+| PDF parsing | pypdf | Extract text from documents |
+| UI | Streamlit | Chat interface and file upload |
+| Language | Python 3.11+ | Core implementation |
 
 ---
 
