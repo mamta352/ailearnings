@@ -347,7 +347,7 @@
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-[0_0_24px_rgba(59,130,246,0.35)] hover:shadow-[0_0_32px_rgba(59,130,246,0.5)] text-sm">
                 {totalDone > 0 ? "Continue learning" : "Start the AI roadmap"} <ArrowRight size={15}/>
               </button>
-              <a href="https://github.com/amit352/ailearnings" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/mamta352/ailearnings" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
                 <Github size={14}/> Star on GitHub
               </a>
@@ -928,9 +928,9 @@
               <p className="text-sm text-gray-400 mb-4">This roadmap is community-driven. If you spot something outdated, missing, or wrong — please say so.</p>
               <div className="grid grid-cols-1 gap-2 mb-4">
                 {[
-                  { icon: Lightbulb, label: "Suggest a missing resource", href: "https://github.com/amit352/ailearnings/discussions/new?category=ideas", color: "text-yellow-400" },
-                  { icon: AlertTriangle, label: "Report an outdated or broken link", href: "https://github.com/amit352/ailearnings/discussions/new?category=general", color: "text-orange-400" },
-                  { icon: Check, label: "Share your experience after completing a phase", href: "https://github.com/amit352/ailearnings/discussions/new?category=general", color: "text-green-400" },
+                  { icon: Lightbulb, label: "Suggest a missing resource", href: "https://github.com/mamta352/ailearnings/discussions/new?category=ideas", color: "text-yellow-400" },
+                  { icon: AlertTriangle, label: "Report an outdated or broken link", href: "https://github.com/mamta352/ailearnings/discussions/new?category=general", color: "text-orange-400" },
+                  { icon: Check, label: "Share your experience after completing a phase", href: "https://github.com/mamta352/ailearnings/discussions/new?category=general", color: "text-green-400" },
                 ].map(({ icon: Icon, label, href, color }, i) => (
                   <a key={i} href={href} target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-2.5 bg-gray-900/60 hover:bg-gray-800/80 border border-white/8 hover:border-white/15 rounded-lg px-3 py-2.5 transition-all group">
@@ -940,7 +940,7 @@
                   </a>
                 ))}
               </div>
-              <a href="https://github.com/amit352/ailearnings/discussions" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/mamta352/ailearnings/discussions" target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 text-xs text-gray-400 hover:text-gray-200 transition-colors">
                 <Github size={12} /> View all discussions on GitHub
               </a>
@@ -5368,17 +5368,17 @@ print(response["message"]["content"])`}</pre>
                 <p className="text-white font-semibold text-sm mb-1">ailearnings.in</p>
                 <p className="text-gray-400 text-xs">Free AI roadmap for software developers</p>
                 <div className="flex items-center gap-4 mt-3">
-                  <a href="https://github.com/amit352" target="_blank" rel="noopener noreferrer"
+                  <a href="https://github.com/mamta352" target="_blank" rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors flex items-center gap-1.5" aria-label="GitHub">
                     <Github size={16}/>
-                    <span className="text-xs">@amit352</span>
+                    <span className="text-xs">@mamta352</span>
                   </a>
-                  <a href="https://github.com/amit352/ailearnings/discussions" target="_blank" rel="noopener noreferrer"
+                  <a href="https://github.com/mamta352/ailearnings/discussions" target="_blank" rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
                     <MessageSquare size={14}/>
                     <span className="text-xs">Discussions</span>
                   </a>
-                  <a href="https://github.com/sponsors/amit352" target="_blank" rel="noopener noreferrer"
+                  <a href="https://github.com/sponsors/mamta352" target="_blank" rel="noopener noreferrer"
                     className="text-pink-400 hover:text-pink-300 transition-colors flex items-center gap-1.5">
                     <Heart size={14}/>
                     <span className="text-xs">Support</span>
