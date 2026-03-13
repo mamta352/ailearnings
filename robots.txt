@@ -8,4 +8,6 @@ Disallow: /author/
 Disallow: /lander
 Disallow: /wp-
 
+Host: ailearnings.in
+
 Sitemap: https://ailearnings.in/sitemap.xml

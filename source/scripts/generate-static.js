@@ -568,8 +568,8 @@ const PAGES = [
     url:         'http://localhost:3131/machine-learning-roadmap/',
     title:       'Machine Learning Roadmap 2026: From Beginner to AI Engineer',
     description: 'The complete machine learning roadmap for 2026. Go from absolute beginner to AI engineer — covering Python, math fundamentals, classical ML, deep learning, LLMs, and real-world ML projects with free resources.',
-    canonical:   'https://ailearnings.in/machine-learning-roadmap/',
-    ogUrl:       'https://ailearnings.in/machine-learning-roadmap/',
+    canonical:   'https://ailearnings.in/blog/machine-learning-roadmap/',
+    ogUrl:       'https://ailearnings.in/blog/machine-learning-roadmap/',
     schema: [
       {
         '@context': 'https://schema.org',
