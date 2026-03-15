@@ -1,0 +1,174 @@
+{
+  "site": "ailearnings.in",
+  "total_posts": 80,
+  "clusters": [
+    {
+      "cluster": "Prompt Engineering",
+      "pillar": {
+        "title": "Prompt Engineering Guide for AI Developers",
+        "slug": "/blog/prompt-engineering-guide",
+        "primary_keyword": "prompt engineering",
+        "secondary_keywords": ["llm prompting", "prompt design", "prompt engineering tutorial"],
+        "search_intent": "guide",
+        "word_count": 3500,
+        "internal_links": []
+      },
+      "posts": [
+        {"title":"26 Prompt Engineering Techniques Every AI Developer Should Know (2026 Guide)","slug":"/blog/prompt-engineering-techniques","primary_keyword":"prompt engineering techniques","secondary_keywords":["prompt engineering patterns","prompt design methods"],"search_intent":"tutorial","word_count":2800,"internal_links":["/blog/prompt-engineering-guide"]},
+        {"title":"Prompt Engineering Examples for Real AI Applications","slug":"/blog/prompt-engineering-examples","primary_keyword":"prompt engineering examples","secondary_keywords":["llm prompt examples","prompt templates ai"],"search_intent":"examples","word_count":2600,"internal_links":["/blog/prompt-engineering-guide","/blog/prompt-engineering-techniques"]},
+        {"title":"Prompt Engineering Best Practices for Large Language Models","slug":"/blog/prompt-engineering-best-practices","primary_keyword":"prompt engineering best practices","secondary_keywords":["prompt optimization","prompt design tips"],"search_intent":"guide","word_count":2400,"internal_links":["/blog/prompt-engineering-guide"]},
+        {"title":"Few-Shot vs Zero-Shot Prompting Explained","slug":"/blog/few-shot-vs-zero-shot","primary_keyword":"few shot vs zero shot prompting","secondary_keywords":["few shot prompting","zero shot prompting"],"search_intent":"comparison","word_count":2200,"internal_links":["/blog/prompt-engineering-guide"]},
+        {"title":"Chain-of-Thought Prompting Explained for Developers","slug":"/blog/chain-of-thought-prompting","primary_keyword":"chain of thought prompting","secondary_keywords":["cot prompting","reasoning prompts"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/prompt-engineering-guide"]},
+        {"title":"System Prompts: How to Control LLM Behavior","slug":"/blog/system-prompts-guide","primary_keyword":"system prompts","secondary_keywords":["system prompt examples","llm system prompts"],"search_intent":"guide","word_count":2300,"internal_links":["/blog/prompt-engineering-guide"]},
+        {"title":"Prompt Templates for AI Applications","slug":"/blog/prompt-templates","primary_keyword":"prompt templates","secondary_keywords":["prompt template examples","llm prompt templates"],"search_intent":"tutorial","word_count":2200,"internal_links":["/blog/prompt-engineering-guide"]},
+        {"title":"Prompt Injection Attacks and How to Prevent Them","slug":"/blog/prompt-injection","primary_keyword":"prompt injection attack","secondary_keywords":["prompt injection prevention","llm security"],"search_intent":"security","word_count":2300,"internal_links":["/blog/prompt-engineering-guide"]},
+        {"title":"Role Prompting Explained for LLMs","slug":"/blog/role-prompting","primary_keyword":"role prompting","secondary_keywords":["role based prompting","llm role prompts"],"search_intent":"concept","word_count":2100,"internal_links":["/blog/prompt-engineering-guide"]},
+        {"title":"Common Prompt Engineering Mistakes Developers Make","slug":"/blog/prompt-engineering-mistakes","primary_keyword":"prompt engineering mistakes","secondary_keywords":["prompt design mistakes","llm prompting errors"],"search_intent":"guide","word_count":2200,"internal_links":["/blog/prompt-engineering-guide"]}
+      ]
+    },
+    {
+      "cluster": "RAG Systems",
+      "pillar": {
+        "title": "RAG Architecture Guide for AI Developers",
+        "slug": "/blog/rag-architecture-guide",
+        "primary_keyword": "retrieval augmented generation",
+        "secondary_keywords": ["rag architecture","rag systems"],
+        "search_intent": "guide",
+        "word_count": 3500,
+        "internal_links": []
+      },
+      "posts": [
+        {"title":"RAG Tutorial: Build Retrieval-Augmented Generation Systems (2026)","slug":"/blog/rag-tutorial","primary_keyword":"rag tutorial","secondary_keywords":["build rag system","rag architecture tutorial"],"search_intent":"tutorial","word_count":3000,"internal_links":["/blog/rag-architecture-guide"]},
+        {"title":"Build a RAG Chatbot with Python and Vector Databases","slug":"/blog/rag-chatbot","primary_keyword":"rag chatbot tutorial","secondary_keywords":["rag chatbot python","rag chatbot langchain"],"search_intent":"tutorial","word_count":2800,"internal_links":["/blog/rag-tutorial"]},
+        {"title":"Hybrid Search in RAG Systems","slug":"/blog/hybrid-search-rag","primary_keyword":"hybrid search rag","secondary_keywords":["rag hybrid retrieval","semantic + keyword search rag"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/rag-architecture-guide"]},
+        {"title":"RAG vs Fine-Tuning: When to Use Each","slug":"/blog/rag-vs-finetuning","primary_keyword":"rag vs fine tuning","secondary_keywords":["rag vs finetuning llm"],"search_intent":"comparison","word_count":2400,"internal_links":["/blog/rag-architecture-guide","/blog/llm-fine-tuning-guide"]},
+        {"title":"Multi-Document Retrieval in RAG Pipelines","slug":"/blog/multi-document-rag","primary_keyword":"multi document rag","secondary_keywords":["rag document retrieval","multi context rag"],"search_intent":"tutorial","word_count":2500,"internal_links":["/blog/rag-architecture-guide"]},
+        {"title":"Context Window Optimization in RAG Systems","slug":"/blog/context-window-rag","primary_keyword":"rag context window","secondary_keywords":["context management rag","llm context optimization"],"search_intent":"concept","word_count":2200,"internal_links":["/blog/rag-architecture-guide"]},
+        {"title":"Production RAG System Design","slug":"/blog/production-rag","primary_keyword":"production rag systems","secondary_keywords":["rag scaling","rag production architecture"],"search_intent":"architecture","word_count":2600,"internal_links":["/blog/rag-architecture-guide"]},
+        {"title":"Vector Search vs Keyword Search in RAG","slug":"/blog/vector-vs-keyword-search","primary_keyword":"vector search vs keyword search","secondary_keywords":["semantic search vs bm25"],"search_intent":"comparison","word_count":2200,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Chunking Strategies for RAG Pipelines","slug":"/blog/rag-chunking-strategies","primary_keyword":"rag chunking strategies","secondary_keywords":["text chunking rag","document splitting rag"],"search_intent":"tutorial","word_count":2300,"internal_links":["/blog/rag-architecture-guide"]},
+        {"title":"RAG Evaluation Metrics Explained","slug":"/blog/rag-evaluation","primary_keyword":"rag evaluation metrics","secondary_keywords":["rag benchmarking","rag evaluation methods"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/rag-architecture-guide"]}
+      ]
+    },
+    {
+      "cluster": "Vector Databases",
+      "pillar": {
+        "title": "Vector Databases Guide for AI Applications",
+        "slug": "/blog/vector-database-guide",
+        "primary_keyword": "vector database",
+        "secondary_keywords": ["vector search","embedding database"],
+        "search_intent": "guide",
+        "word_count": 3200,
+        "internal_links": []
+      },
+      "posts": [
+        {"title":"Vector Databases Explained: Chroma vs Pinecone vs FAISS (2026)","slug":"/blog/vector-database-comparison","primary_keyword":"vector database comparison","secondary_keywords":["pinecone vs chroma","faiss vs pinecone"],"search_intent":"comparison","word_count":2600,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Vector Search Explained for AI Developers","slug":"/blog/vector-search-explained","primary_keyword":"vector search explained","secondary_keywords":["semantic search","embedding search"],"search_intent":"concept","word_count":2400,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Embeddings Explained: How AI Understands Text","slug":"/blog/embeddings-explained","primary_keyword":"ai embeddings explained","secondary_keywords":["vector embeddings","embedding models"],"search_intent":"concept","word_count":2400,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Semantic Search with Vector Databases","slug":"/blog/semantic-search-vector","primary_keyword":"semantic search vector database","secondary_keywords":["semantic search tutorial","embedding search"],"search_intent":"tutorial","word_count":2400,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Approximate Nearest Neighbor Algorithms Explained","slug":"/blog/ann-algorithms","primary_keyword":"ann algorithms","secondary_keywords":["hnsw algorithm","ivf indexing"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Vector Indexing Techniques Explained","slug":"/blog/vector-indexing","primary_keyword":"vector indexing","secondary_keywords":["vector indexing methods"],"search_intent":"concept","word_count":2200,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Scaling Vector Databases in Production","slug":"/blog/vector-database-scaling","primary_keyword":"vector database scaling","secondary_keywords":["scaling vector search"],"search_intent":"architecture","word_count":2500,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Embedding Model Comparison for Vector Search","slug":"/blog/embedding-model-comparison","primary_keyword":"embedding models comparison","secondary_keywords":["bge embeddings","openai embeddings"],"search_intent":"comparison","word_count":2400,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Building Recommendation Systems with Vector Search","slug":"/blog/vector-recommendation-systems","primary_keyword":"vector recommendation systems","secondary_keywords":["embedding recommendation engine"],"search_intent":"tutorial","word_count":2500,"internal_links":["/blog/vector-database-guide"]},
+        {"title":"Vector Database vs Traditional Database","slug":"/blog/vector-vs-relational-db","primary_keyword":"vector database vs relational","secondary_keywords":["vector db vs sql"],"search_intent":"comparison","word_count":2200,"internal_links":["/blog/vector-database-guide"]}
+      ]
+    },
+    {
+      "cluster": "AI Agents",
+      "pillar": {
+        "title": "AI Agents Guide: Architecture and Design Patterns",
+        "slug": "/blog/ai-agents-guide",
+        "primary_keyword": "ai agents",
+        "secondary_keywords": ["agentic ai","autonomous ai systems"],
+        "search_intent": "guide",
+        "word_count": 3500,
+        "internal_links": []
+      },
+      "posts": [
+        {"title":"AI Agents Tutorial: Build Autonomous AI Systems (2026)","slug":"/blog/ai-agents-tutorial","primary_keyword":"ai agents tutorial","secondary_keywords":["build ai agents","agentic ai tutorial"],"search_intent":"tutorial","word_count":3000,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"AI Agent Architecture Explained","slug":"/blog/ai-agent-architecture","primary_keyword":"ai agent architecture","secondary_keywords":["agent architecture ai"],"search_intent":"concept","word_count":2600,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"Multi-Agent Systems Explained","slug":"/blog/multi-agent-systems","primary_keyword":"multi agent systems ai","secondary_keywords":["multi agent llm"],"search_intent":"concept","word_count":2400,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"Planning Algorithms in AI Agents","slug":"/blog/agent-planning","primary_keyword":"ai agent planning","secondary_keywords":["planning algorithms agents"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"Memory Systems in AI Agents","slug":"/blog/agent-memory","primary_keyword":"ai agent memory","secondary_keywords":["long term memory agents"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"Tool Use in AI Agents","slug":"/blog/agent-tools","primary_keyword":"ai agent tools","secondary_keywords":["tool calling agents"],"search_intent":"concept","word_count":2200,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"CrewAI vs LangGraph vs AutoGPT","slug":"/blog/agent-framework-comparison","primary_keyword":"ai agent frameworks comparison","secondary_keywords":["crewai vs langgraph"],"search_intent":"comparison","word_count":2500,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"Building Agents with LangChain","slug":"/blog/langchain-agents","primary_keyword":"langchain agents tutorial","secondary_keywords":["langchain agent"],"search_intent":"tutorial","word_count":2500,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"Autonomous Task Execution in AI Agents","slug":"/blog/autonomous-agents","primary_keyword":"autonomous ai agents","secondary_keywords":["task planning ai agents"],"search_intent":"concept","word_count":2400,"internal_links":["/blog/ai-agents-guide"]},
+        {"title":"Agent Evaluation Metrics","slug":"/blog/agent-evaluation","primary_keyword":"ai agent evaluation","secondary_keywords":["agent benchmarks"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/ai-agents-guide"]}
+      ]
+    },
+    {
+      "cluster": "LLM APIs",
+      "pillar": {
+        "title": "LLM APIs Guide for Developers",
+        "slug": "/blog/llm-api-guide",
+        "primary_keyword": "llm api",
+        "secondary_keywords": ["ai api tutorial","llm api integration"],
+        "search_intent": "guide",
+        "word_count": 3200,
+        "internal_links": []
+      },
+      "posts": [
+        {"title":"OpenAI API Tutorial for Developers (2026)","slug":"/blog/openai-api-tutorial","primary_keyword":"openai api tutorial","secondary_keywords":["openai api python"],"search_intent":"tutorial","word_count":2800,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"Anthropic Claude API Tutorial","slug":"/blog/anthropic-api-tutorial","primary_keyword":"anthropic api tutorial","secondary_keywords":["claude api python"],"search_intent":"tutorial","word_count":2600,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"Google Gemini API Tutorial","slug":"/blog/gemini-api-tutorial","primary_keyword":"gemini api tutorial","secondary_keywords":["google ai api tutorial"],"search_intent":"tutorial","word_count":2600,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"Streaming Responses from LLM APIs","slug":"/blog/llm-streaming","primary_keyword":"llm streaming api","secondary_keywords":["streaming llm responses"],"search_intent":"tutorial","word_count":2300,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"Function Calling with LLM APIs","slug":"/blog/llm-function-calling","primary_keyword":"llm function calling","secondary_keywords":["openai function calling"],"search_intent":"tutorial","word_count":2400,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"Rate Limiting Strategies for LLM APIs","slug":"/blog/llm-rate-limits","primary_keyword":"llm api rate limits","secondary_keywords":["api throttling llm"],"search_intent":"concept","word_count":2200,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"Cost Optimization for LLM APIs","slug":"/blog/llm-api-cost-optimization","primary_keyword":"llm api cost optimization","secondary_keywords":["reduce openai api cost"],"search_intent":"guide","word_count":2300,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"Building AI Apps with OpenAI and LangChain","slug":"/blog/openai-langchain","primary_keyword":"openai langchain tutorial","secondary_keywords":["langchain openai example"],"search_intent":"tutorial","word_count":2600,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"API vs Local LLM Inference","slug":"/blog/api-vs-local-llm","primary_keyword":"api vs local llm","secondary_keywords":["cloud vs local llm"],"search_intent":"comparison","word_count":2300,"internal_links":["/blog/llm-api-guide"]},
+        {"title":"LLM API Error Handling Best Practices","slug":"/blog/llm-api-errors","primary_keyword":"llm api error handling","secondary_keywords":["api retries ai"],"search_intent":"guide","word_count":2200,"internal_links":["/blog/llm-api-guide"]}
+      ]
+    },
+    {
+      "cluster": "Open Source LLMs",
+      "pillar": {
+        "title": "Open Source LLMs Guide",
+        "slug": "/blog/open-source-llm-guide",
+        "primary_keyword": "open source llm",
+        "secondary_keywords": ["local llm","open models ai"],
+        "search_intent": "guide",
+        "word_count": 3200,
+        "internal_links": []
+      },
+      "posts": [
+        {"title":"Best Open Source LLMs Compared: Llama vs Mistral vs Qwen (2026)","slug":"/blog/open-source-llm-comparison","primary_keyword":"open source llm comparison","secondary_keywords":["llama vs mistral"],"search_intent":"comparison","word_count":2600,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"Running LLMs Locally with Ollama","slug":"/blog/ollama-tutorial","primary_keyword":"ollama tutorial","secondary_keywords":["run llm locally"],"search_intent":"tutorial","word_count":2600,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"Quantization Explained for LLMs","slug":"/blog/llm-quantization","primary_keyword":"llm quantization","secondary_keywords":["int4 quantization"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"GGUF Models Explained","slug":"/blog/gguf-models","primary_keyword":"gguf models","secondary_keywords":["llm gguf format"],"search_intent":"concept","word_count":2200,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"GPU Requirements for Running LLMs","slug":"/blog/llm-hardware-guide","primary_keyword":"llm gpu requirements","secondary_keywords":["run llm hardware"],"search_intent":"guide","word_count":2300,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"Local AI Development Setup","slug":"/blog/local-ai-development","primary_keyword":"local ai development setup","secondary_keywords":["run ai locally"],"search_intent":"tutorial","word_count":2500,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"Benchmarking Open Source LLMs","slug":"/blog/llm-benchmarks","primary_keyword":"llm benchmarks","secondary_keywords":["llm benchmark comparison"],"search_intent":"concept","word_count":2400,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"Model Distillation Explained","slug":"/blog/model-distillation","primary_keyword":"model distillation llm","secondary_keywords":["distilled models ai"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"Fine-Tuning Open Source LLMs","slug":"/blog/fine-tune-open-source-llm","primary_keyword":"fine tune open source llm","secondary_keywords":["train llama model"],"search_intent":"tutorial","word_count":2600,"internal_links":["/blog/open-source-llm-guide"]},
+        {"title":"Open Source vs Proprietary LLMs","slug":"/blog/open-vs-closed-llm","primary_keyword":"open vs closed llm","secondary_keywords":["open source ai models"],"search_intent":"comparison","word_count":2300,"internal_links":["/blog/open-source-llm-guide"]}
+      ]
+    },
+    {
+      "cluster": "LLM Training",
+      "pillar": {
+        "title": "LLM Fine-Tuning Guide",
+        "slug": "/blog/llm-fine-tuning-guide",
+        "primary_keyword": "llm fine tuning",
+        "secondary_keywords": ["llm training","fine tuning llm"],
+        "search_intent": "guide",
+        "word_count": 3200,
+        "internal_links": []
+      },
+      "posts": [
+        {"title":"LoRA Fine-Tuning Tutorial for LLMs (2026 Guide)","slug":"/blog/lora-fine-tuning-tutorial","primary_keyword":"lora fine tuning tutorial","secondary_keywords":["lora fine tuning"],"search_intent":"tutorial","word_count":2800,"internal_links":["/blog/llm-fine-tuning-guide"]},
+        {"title":"QLoRA Explained: Efficient LLM Fine-Tuning","slug":"/blog/qlora-explained","primary_keyword":"qlora explained","secondary_keywords":["efficient llm training"],"search_intent":"concept","word_count":2400,"internal_links":["/blog/llm-fine-tuning-guide","/blog/lora-fine-tuning-tutorial"]},
+        {"title":"Full Fine-Tuning vs LoRA","slug":"/blog/full-vs-lora","primary_keyword":"lora vs full fine tuning","secondary_keywords":["llm fine tuning methods"],"search_intent":"comparison","word_count":2300,"internal_links":["/blog/llm-fine-tuning-guide"]},
+        {"title":"Instruction Tuning Explained","slug":"/blog/instruction-tuning","primary_keyword":"instruction tuning","secondary_keywords":["instruction tuned models"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/llm-fine-tuning-guide"]},
+        {"title":"Dataset Preparation for Fine-Tuning","slug":"/blog/finetuning-datasets","primary_keyword":"llm finetuning dataset","secondary_keywords":["prepare dataset llm"],"search_intent":"tutorial","word_count":2500,"internal_links":["/blog/llm-fine-tuning-guide"]},
+        {"title":"Training LLMs with HuggingFace","slug":"/blog/huggingface-training","primary_keyword":"huggingface training tutorial","secondary_keywords":["train transformers"],"search_intent":"tutorial","word_count":2600,"internal_links":["/blog/llm-fine-tuning-guide"]},
+        {"title":"Evaluation Metrics for LLMs","slug":"/blog/llm-evaluation","primary_keyword":"llm evaluation metrics","secondary_keywords":["llm benchmark metrics"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/llm-fine-tuning-guide"]},
+        {"title":"RLHF Explained for Developers","slug":"/blog/rlhf-guide","primary_keyword":"rlhf explained","secondary_keywords":["reinforcement learning human feedback"],"search_intent":"concept","word_count":2400,"internal_links":["/blog/llm-fine-tuning-guide"]},
+        {"title":"Synthetic Data for LLM Training","slug":"/blog/synthetic-data-llm","primary_keyword":"synthetic data llm","secondary_keywords":["generate training data ai"],"search_intent":"concept","word_count":2300,"internal_links":["/blog/llm-fine-tuning-guide"]},
+        {"title":"Distributed Training for LLMs","slug":"/blog/distributed-llm-training","primary_keyword":"distributed llm training","secondary_keywords":["train llm cluster"],"search_intent":"concept","word_count":2500,"internal_links":["/blog/llm-fine-tuning-guide"]}
+      ]
+    }
+  ]
+}
