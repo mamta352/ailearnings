@@ -67,21 +67,24 @@
     .author-bio .bio-name { font-weight: 700; font-size: 0.95rem; color: #f3f4f6; margin-bottom: 0.25rem; }
     .author-bio .bio-title { font-size: 0.8rem; color: #818cf8; margin-bottom: 0.5rem; }
     .author-bio .bio-text { font-size: 0.82rem; color: #9ca3af; line-height: 1.6; }
-    /* Author byline */
+    /* Author card — full card on blog post pages */
     .author-card {
-      display: flex; align-items: center; gap: 0.625rem;
-      margin: 1.25rem 0 2rem;
+      display: flex; align-items: center; gap: 0.875rem;
+      padding: 1rem 1.25rem; margin: 1.5rem 0 2rem;
+      background: rgba(99,102,241,0.06);
+      border: 1px solid rgba(99,102,241,0.15);
+      border-radius: 0.75rem;
     }
     .author-avatar {
-      width: 2rem; height: 2rem; border-radius: 50%; flex-shrink: 0;
-      background: rgba(99,102,241,0.25);
+      width: 2.75rem; height: 2.75rem; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg,#6366f1,#8b5cf6);
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.65rem; color: #818cf8; letter-spacing: 0.02em;
+      font-weight: 700; font-size: 1rem; color: #fff; letter-spacing: 0.02em;
     }
-    .author-meta { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; font-size: 0.8rem; color: #6b7280; }
-    .author-meta .author-name { color: #d1d5db; font-weight: 600; }
-    .author-meta .sep { color: #374151; }
-    .post-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; font-size: 0.78rem; color: #6b7280; margin-top: 0.4rem; }
+    .author-info { flex: 1; min-width: 0; }
+    .author-name { font-weight: 600; font-size: 0.9rem; color: #f3f4f6; }
+    .author-title { font-size: 0.78rem; color: #9ca3af; margin-top: 0.1rem; }
+    .post-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.75rem; font-size: 0.78rem; color: #6b7280; margin-top: 0.4rem; }
     .post-meta-row .sep { color: #374151; }
   </style>
   <script type="application/ld+json">
@@ -219,13 +222,15 @@
 
         <div class="author-card">
           <div class="author-avatar">AK</div>
-          <div class="author-meta">
-            <span class="author-name">Amit K Chauhan</span>
-            <span class="sep">·</span>
-            <time datetime="2026-03-15">March 15, 2026</time>
-            
-            <span class="sep">·</span>
-            <span>11 min read</span>
+          <div class="author-info">
+            <div class="author-name">Amit K Chauhan</div>
+            <div class="author-title">Software Engineer &amp; AI Builder</div>
+            <div class="post-meta-row">
+              <span>Published <time datetime="2026-03-15">March 15, 2026</time></span>
+              
+              <span class="sep">·</span>
+              <span>11 min read</span>
+            </div>
           </div>
         </div>
       </header>
