@@ -1,56 +1,62 @@
 ---
-title: "QLoRA Explained – Efficient LLM Fine-Tuning"
-description: "Learn how QLoRA reduces memory requirements when fine-tuning LLMs."
-date: "2026-03-13"
-slug: "qlora-explained"
-keywords: ["QLoRA", "QLoRA explained", "quantized LoRA", "4-bit fine-tuning", "efficient LLM fine-tuning"]
+title: "QLoRA Explained: Efficient LLM Fine-Tuning on Consumer Hardware"
+description: "QLoRA combines 4-bit NF4 quantization with LoRA adapters to fine-tune 13B+ LLMs on a single GPU. Complete guide with BitsAndBytes, PEFT, and TRL code."
+date: "2026-03-15"
+updatedAt: "2026-03-15"
+slug: "/blog/qlora-explained"
+keywords: ["qlora explained", "qlora fine tuning", "4-bit quantization llm", "bitsandbytes qlora", "efficient llm fine tuning"]
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"
-updatedAt: "2026-03-13"
+level: "intermediate"
+time: "13 min"
+stack: ["Python", "HuggingFace", "PyTorch"]
 ---
 
-# QLoRA Explained – Efficient LLM Fine-Tuning
+# QLoRA Explained: Efficient LLM Fine-Tuning on Consumer Hardware
 
-Before 2023, fine-tuning a 70B parameter language model was a six-figure infrastructure project. You needed a cluster of A100 GPUs, deep familiarity with distributed training, and a dataset large enough to justify the cost. Then Tim Dettmers and colleagues published the QLoRA paper, and the economics collapsed. A 7B model now fine-tunes on a single RTX 3090. A 70B model fits on one A100. The technique is precise, principled, and available in open-source tooling today. This guide explains exactly how it works and how to use it.
+Before QLoRA, fine-tuning a 13B model required at least 100GB of GPU VRAM — two A100 80GB GPUs at minimum. That kind of hardware costs $5–10/hour on cloud providers, and fine-tuning runs typically last multiple hours. For most developers and smaller teams, 13B+ fine-tuning was economically inaccessible.
 
----
+QLoRA, introduced by Tim Dettmers et al. in 2023, changed that. By combining LoRA adapters with aggressive 4-bit quantization, it reduces the VRAM required to fine-tune a 13B model to around 16GB — a single RTX 3090, A10G, or A100 40GB. A 70B model drops from ~500GB to ~48GB. The technique has remarkably low quality degradation, and it is fully available in open-source tooling.
 
-## What QLoRA Does
+Understanding why QLoRA works requires unpacking three distinct ideas: NF4 quantization, double quantization, and paged optimizers. Each solves a specific piece of the memory problem.
 
-QLoRA combines three ideas to dramatically reduce the GPU memory required for fine-tuning:
+## Concept Overview
 
-**1. NF4 Quantization** — The pre-trained model weights are compressed from 16-bit or 32-bit floats to 4-bit NormalFloat (NF4) format. NF4 is designed specifically for normally distributed weights (which neural network weights are, after training). This reduces the model's memory footprint by 4–8x with minimal quality loss.
+QLoRA stacks three memory reduction techniques on top of standard LoRA:
 
-**2. LoRA Adapters** — Instead of updating the quantized base model's weights (which would require dequantizing them), small trainable adapter matrices are added on top of specific layers. During training, only these adapters are updated. The quantized base model is completely frozen.
+**NF4 (NormalFloat 4-bit) quantization** compresses the frozen base model's weights from 16-bit floats to 4-bit values. A 16-bit weight takes 2 bytes; a 4-bit weight takes 0.5 bytes — a 4x compression. NF4 is specifically designed for normally distributed values, which neural network weights follow after training. This makes it more accurate than naive 4-bit integer quantization.
 
-**3. Paged Optimizers** — Optimizer states (the momentum and variance terms tracked by Adam) consume roughly 2x the parameter memory. QLoRA uses NVIDIA's unified memory to page optimizer states to CPU RAM when GPU memory is full, preventing out-of-memory errors during training spikes.
+**Double quantization** applies a second round of quantization to the quantization constants themselves. Each NF4 group of 64 weights requires a 32-bit scaling constant. Double quantization compresses these constants to 8-bit, saving approximately 0.37 bits per parameter — around 400MB on a 7B model.
 
-A fourth technique, **double quantization**, quantizes the quantization constants themselves, saving an additional ~0.37 bits per parameter — roughly 400MB for a 7B model.
+**Paged optimizers** address optimizer state memory. Adam optimizer stores momentum and variance for every trainable parameter, doubling the memory cost of the adapter. Paged optimizers use NVIDIA's unified memory to transparently page optimizer states between GPU and CPU RAM, preventing out-of-memory crashes during memory spikes.
 
-The result:
+The result of all three techniques combined:
 
-| Model Size | Standard Fine-Tuning | QLoRA |
-|------------|---------------------|-------|
-| 7B | ~56GB VRAM | ~10GB VRAM |
-| 13B | ~104GB VRAM | ~16GB VRAM |
-| 33B | ~264GB VRAM | ~24GB VRAM |
-| 70B | ~560GB VRAM | ~48GB VRAM |
+| Model Size | Full Fine-Tuning | LoRA (fp16) | QLoRA (4-bit) |
+|------------|-----------------|-------------|---------------|
+| 7B         | ~112 GB VRAM    | ~16 GB      | ~10 GB        |
+| 13B        | ~208 GB VRAM    | ~30 GB      | ~16 GB        |
+| 33B        | ~528 GB VRAM    | ~75 GB      | ~24 GB        |
+| 70B        | ~1.1 TB VRAM   | ~160 GB     | ~48 GB        |
 
----
+## How It Works
 
-## How LoRA Works (the Foundation)
+```mermaid
+graph TD
+    A[Pre-trained Model<br/>16-bit fp16/bf16] --> B[NF4 Quantization<br/>4-bit NormalFloat]
+    B --> C[Frozen Base Model<br/>~4x smaller footprint]
+    C --> D[Forward Pass<br/>Dequantize to fp16 on-the-fly]
+    D --> E[LoRA Adapter Forward<br/>A × B in fp16]
+    E --> F[Combined Output]
+    F --> G[Loss Computation]
+    G --> H[Backprop through Adapters only]
+    H --> I[Paged AdamW<br/>Optimizer States in CPU RAM]
+    I --> J[Adapter Weight Update<br/>Only 0.5% of params]
+```
 
-LoRA — Low-Rank Adaptation — is the adapter technique QLoRA builds on. Understanding it makes QLoRA's design immediately clear.
+One thing many developers overlook: the base model is dequantized back to fp16 during the forward pass computation. The 4-bit weights are stored in 4-bit, but computation happens in 16-bit. This is what makes QLoRA lossless enough to be practically useful — you get 4-bit storage with 16-bit compute quality.
 
-In a transformer layer, weight matrices like the query and value projection matrices are large: a Llama 3 8B model has attention weight matrices of shape `[4096, 4096]`. Updating all of these during fine-tuning is expensive.
-
-LoRA's insight: the weight updates needed for fine-tuning tend to be low-rank. Instead of updating the full 4096×4096 matrix, LoRA adds two small matrices A (4096×r) and B (r×4096) where r is the rank (typically 8–64). The effective weight update is A×B, but you only train 2×4096×r parameters instead of 4096×4096.
-
-At rank 16, this is 2×4096×16 = 131,072 parameters instead of 16,777,216 — a 128x reduction in trainable parameters for that layer.
-
----
-
-## Step-by-Step: QLoRA Fine-Tuning
+## Implementation Example
 
 ### Step 1: Install Dependencies
 
@@ -58,192 +64,278 @@ At rank 16, this is 2×4096×16 = 131,072 parameters instead of 16,777,216 — a
 pip install transformers peft trl bitsandbytes accelerate datasets
 ```
 
-### Step 2: Load the Base Model in 4-bit
+BitsAndBytes provides the NF4 quantization engine. On CUDA-enabled hardware, it installs and works automatically.
+
+### Step 2: Configure 4-bit Quantization
 
 ```python
-from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+from transformers import BitsAndBytesConfig
 import torch
 
-quantization_config = BitsAndBytesConfig(
+bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
-    bnb_4bit_quant_type="nf4",              # NormalFloat4 — optimal for neural networks
-    bnb_4bit_compute_dtype=torch.float16,   # Computation happens in fp16
-    bnb_4bit_use_double_quant=True,         # Double quantization saves ~400MB on 7B models
+    bnb_4bit_quant_type="nf4",              # NormalFloat4 — best for neural networks
+    bnb_4bit_compute_dtype=torch.bfloat16,  # fp16 also works; bf16 preferred on Ampere+
+    bnb_4bit_use_double_quant=True,         # Double quantization saves ~400MB on 7B
 )
-
-model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Meta-Llama-3-8B-Instruct",
-    quantization_config=quantization_config,
-    device_map="auto"   # automatically places layers across available GPUs/CPU
-)
-
-print(f"Memory footprint: {model.get_memory_footprint() / 1e9:.2f} GB")
 ```
 
-### Step 3: Prepare the Model and Add LoRA Adapters
+The `quant_type="nf4"` is important. The alternative, `"fp4"`, is less accurate for typical neural network weight distributions. Always use NF4 unless you have a specific reason not to.
+
+### Step 3: Load the Model in 4-bit
 
 ```python
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, TaskType
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# This step is required for quantized models — it handles gradient checkpointing setup
-model = prepare_model_for_kbit_training(model)
+model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
+
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+tokenizer.pad_token = tokenizer.eos_token  # Required for batched training
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    quantization_config=bnb_config,
+    device_map="auto",         # Distributes layers across available GPUs/CPU
+    attn_implementation="eager",  # Flash attention has compatibility issues with some quant configs
+)
+
+memory_gb = model.get_memory_footprint() / 1e9
+print(f"Model loaded. Memory footprint: {memory_gb:.2f} GB")
+# Llama 3.1 8B → ~4.5 GB in NF4, vs ~16 GB in fp16
+```
+
+### Step 4: Prepare Model for k-bit Training
+
+```python
+from peft import prepare_model_for_kbit_training, LoraConfig, get_peft_model, TaskType
+
+# This sets up gradient checkpointing for quantized models
+# Required when using standard PEFT (not Unsloth)
+model = prepare_model_for_kbit_training(
+    model,
+    use_gradient_checkpointing=True,
+    gradient_checkpointing_kwargs={"use_reentrant": False},
+)
 
 lora_config = LoraConfig(
     task_type=TaskType.CAUSAL_LM,
-    r=64,               # rank — higher gives more adapter capacity
-    lora_alpha=16,      # scaling factor: effective lr = lr * (lora_alpha / r)
+    r=64,                # Higher rank for 8B+ models
+    lora_alpha=64,       # Keep alpha == r for normalized scaling
     target_modules=[
-        "q_proj", "k_proj", "v_proj", "o_proj",    # attention layers
-        "gate_proj", "up_proj", "down_proj"          # MLP layers
+        "q_proj", "k_proj", "v_proj", "o_proj",
+        "gate_proj", "up_proj", "down_proj",
     ],
     lora_dropout=0.05,
-    bias="none",        # don't train bias terms
+    bias="none",
+    inference_mode=False,
 )
 
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
-# trainable params: 41,943,040 || all params: 8,072,884,224 || trainable%: 0.52%
+# trainable params: 167,772,160 || all params: 8,198,656,000 || trainable%: 2.05%
 ```
 
-Only 0.52% of the model's parameters are being trained. The quantized base model is frozen; only the 42M adapter parameters update during training.
-
-### Step 4: Prepare Training Data
-
-QLoRA requires instruction-following data in a chat template format. Each example is a conversation with system/user/assistant turns.
+### Step 5: Format Dataset and Train
 
 ```python
 from datasets import load_dataset
-from transformers import AutoTokenizer
-
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
-tokenizer.pad_token = tokenizer.eos_token
-
-def format_example(sample):
-    """Format each training example using the model's chat template."""
-    messages = [
-        {"role": "system",    "content": sample.get("system", "You are a helpful assistant.")},
-        {"role": "user",      "content": sample["input"]},
-        {"role": "assistant", "content": sample["output"]},
-    ]
-    return {"text": tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=False
-    )}
+from trl import SFTTrainer, SFTConfig
 
 dataset = load_dataset("json", data_files="train.jsonl", split="train")
-dataset = dataset.map(format_example)
-print(f"Training examples: {len(dataset)}")
-print(dataset[0]["text"][:500])  # Verify format
-```
 
-### Step 5: Train
+def apply_chat_template(example):
+    messages = [
+        {"role": "system", "content": example.get("system", "You are a helpful assistant.")},
+        {"role": "user",   "content": example["instruction"]},
+        {"role": "assistant", "content": example["output"]},
+    ]
+    return {
+        "text": tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=False
+        )
+    }
 
-```python
-from transformers import TrainingArguments
-from trl import SFTTrainer
+dataset = dataset.map(apply_chat_template)
+split = dataset.train_test_split(test_size=0.1, seed=42)
 
-training_args = TrainingArguments(
+training_config = SFTConfig(
     output_dir="./qlora-output",
     num_train_epochs=2,
     per_device_train_batch_size=2,
-    gradient_accumulation_steps=8,     # effective batch size = 16
-    optim="paged_adamw_32bit",         # paged optimizer — critical for QLoRA
+    gradient_accumulation_steps=8,
+    # Critical for QLoRA: use paged optimizer
+    optim="paged_adamw_32bit",
     learning_rate=2e-4,
-    bf16=True,                         # bfloat16 for forward pass computation
+    bf16=True,
     max_grad_norm=0.3,
     warmup_ratio=0.03,
     lr_scheduler_type="cosine",
     logging_steps=25,
+    eval_strategy="steps",
+    eval_steps=100,
     save_strategy="epoch",
+    max_seq_length=2048,
+    dataset_text_field="text",
     report_to="none",
 )
 
 trainer = SFTTrainer(
     model=model,
     tokenizer=tokenizer,
-    train_dataset=dataset,
-    dataset_text_field="text",
-    max_seq_length=2048,
-    args=training_args,
+    train_dataset=split["train"],
+    eval_dataset=split["test"],
+    args=training_config,
 )
 
 trainer.train()
 
-# Save only the LoRA adapter — small (50–200MB) and portable
+# Save only the adapter — small and portable
 trainer.model.save_pretrained("./qlora-adapter")
 tokenizer.save_pretrained("./qlora-adapter")
-print("Adapter saved.")
+print("QLoRA adapter saved.")
 ```
 
----
-
-## Merging and Deploying the Adapter
-
-For inference, you can either load the adapter on top of the base model (adds ~50ms overhead per request) or merge the adapter weights into the base model for production.
+### Step 6: Merge Adapter for Production Deployment
 
 ```python
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-# Load base model in full precision for clean merging
+# Load base model in full precision for a clean merge
+print("Loading base model in fp16 for merging...")
 base_model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Meta-Llama-3-8B-Instruct",
+    model_id,
     torch_dtype=torch.bfloat16,
-    device_map="auto"
+    device_map="auto",
 )
 
 # Load and merge the adapter
 model = PeftModel.from_pretrained(base_model, "./qlora-adapter")
+print("Merging adapter weights into base model...")
 merged_model = model.merge_and_unload()
-merged_model.save_pretrained("./merged-model")
 
-tokenizer = AutoTokenizer.from_pretrained("./qlora-adapter")
+# Save merged model
+merged_model.save_pretrained("./merged-model", safe_serialization=True)
 tokenizer.save_pretrained("./merged-model")
-print("Merged model saved. Ready for deployment.")
+print("Merged model saved. Ready for vLLM, Ollama, or TGI deployment.")
 ```
 
----
+### Fine-Tuning a 13B Model
 
-## Running on Google Colab
-
-If you do not have a local GPU, Google Colab provides free T4 GPUs (16GB VRAM) that are sufficient for QLoRA on 7B models. Colab Pro+ provides A100 access for 13B–33B models.
+The process for 13B is identical to 8B — only the model name changes:
 
 ```python
-# In a Colab cell — install required libraries
-# !pip install -q transformers peft trl bitsandbytes accelerate datasets
+# Llama 3.1 13B with QLoRA — fits in ~16GB VRAM
+model_id = "meta-llama/Meta-Llama-3.1-13B-Instruct"
 
-import torch
-print(f"GPU: {torch.cuda.get_device_name()}")
-print(f"Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
-# T4: 16GB — fine for 7B with QLoRA
-# A100 40GB: fine for 13B with QLoRA
-# A100 80GB: fine for 33B with QLoRA
+# With double quantization enabled, memory footprint:
+# 13B × 0.5 bytes (NF4) = ~6.5 GB base model
+# + 400MB (double quant savings offset slightly by quantization constants)
+# + LoRA adapter ~200MB
+# + activations/gradients ~8-10 GB
+# Total: ~16-18 GB → fits on RTX 3090 or A10G
+
+# Use a smaller rank for 13B to keep adapter parameters manageable
+lora_config_13b = LoraConfig(
+    task_type=TaskType.CAUSAL_LM,
+    r=32,
+    lora_alpha=32,
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
+    lora_dropout=0.05,
+    bias="none",
+)
 ```
 
-For production fine-tuning runs, use cloud GPU providers like Lambda Labs, RunPod, or Vast.ai — they offer A100 access at $1–3/hour, which is far cheaper than a dedicated cluster for occasional fine-tuning.
+## Best Practices
 
----
+**Always use `paged_adamw_32bit` as the optimizer.** Standard AdamW requires optimizer states proportional to trainable parameters. With paged AdamW, states are offloaded to CPU RAM during memory spikes. This prevents out-of-memory errors during the backward pass on long sequences without meaningful throughput loss.
+
+**Set `bnb_4bit_compute_dtype=torch.bfloat16` on Ampere+ GPUs (RTX 30xx, A100).** BFloat16 has better dynamic range than float16 and reduces training instability. On older GPUs (V100, T4), use `torch.float16` instead.
+
+**Enable double quantization unconditionally.** The quality loss from double quantization is negligible (the quantization constants represent a tiny fraction of model weights), while the memory savings are real. There is no practical reason to disable it.
+
+**Use `device_map="auto"` only for single-host training.** When scaling to multi-GPU, explicit device assignment or FSDP is more predictable. `device_map="auto"` distributes layers greedily and can create bottlenecks.
+
+**Checkpoint the adapter, not the merged model, during training.** Adapter checkpoints are 50–200MB. Merged model checkpoints are 15–140GB. Save adapters during training and only merge once at the end.
 
 ## Common Mistakes
 
-**Forgetting `prepare_model_for_kbit_training`** — Quantized models need this step before LoRA is applied. It sets up gradient checkpointing correctly for quantized weights. Skipping it causes errors or silent training quality degradation.
+1. **Forgetting `prepare_model_for_kbit_training`.** When using standard PEFT (not Unsloth), quantized models need this call before adding LoRA adapters. It configures gradient checkpointing correctly for quantized layers. Skipping it produces either errors or incorrect gradients.
 
-**Using standard AdamW** — Standard AdamW optimizer states require as much memory as the model parameters. With a large quantized base model, this causes out-of-memory errors. Always use `paged_adamw_32bit` or `paged_adamw_8bit`.
+2. **Using a standard Adam optimizer.** `optim="adamw_hf"` or `optim="adamw_torch"` stores optimizer states in GPU VRAM. With a large quantized base model, this pushes memory usage over the limit. Always use `paged_adamw_32bit` or `paged_adamw_8bit` with QLoRA.
 
-**Too low a rank for large models** — For 70B models, r=8 or r=16 likely underfit. Use r=64 for general fine-tuning on large models; r=16 is sufficient for simple task adaptation on small models.
+3. **Setting `load_in_4bit=True` and also using `torch_dtype=torch.float16` in `from_pretrained`.** These arguments conflict. When using BitsAndBytes quantization config, let the quantization config handle precision. Remove the explicit `torch_dtype` argument.
 
-**Disabling double quantization** — `bnb_4bit_use_double_quant=True` saves ~400MB on a 7B model at almost no quality cost. Always enable it — there is no good reason not to.
+4. **Training with `bf16=True` on a GPU that doesn't support bfloat16.** Pre-Ampere GPUs (GTX 10xx, 20xx, V100, T4) do not support bfloat16. Check with `torch.cuda.is_bf16_supported()` and use `fp16=True` on older hardware.
 
-**Merging before validating** — Merging is not reversible unless you keep both the base model and adapter checkpoints. Evaluate your adapter on a test set before merging and deleting the adapter files.
+5. **Merging the adapter without preserving checkpoints.** Always keep both the base model identifier and the adapter checkpoint before merging. If the merged model has quality issues, you will need to revert to the adapter and adjust training — which requires the original adapter checkpoint.
 
-**Training on too few epochs** — With a small dataset (under 1,000 examples), 2–3 epochs is typically appropriate. With larger datasets, monitor validation loss and stop when it plateaus.
+## Summary
 
----
+QLoRA makes large-model fine-tuning accessible by combining three memory reduction strategies: NF4 4-bit quantization reduces the base model footprint by 4x, double quantization saves an additional ~400MB, and paged optimizers prevent out-of-memory errors during training. The frozen quantized base model is dequantized to fp16 during computation, preserving quality while maintaining the storage efficiency of 4-bit representation.
 
-## What to Learn Next
+For most production fine-tuning workflows, QLoRA + LoRA with `r=16` to `r=64` is the right starting point. It is fast, memory-efficient, and produces models that are competitive with full fine-tuning for task adaptation scenarios.
 
-QLoRA is one technique in the broader fine-tuning toolkit. Understanding when to use it — and what alternatives exist — is as important as knowing how to use it:
+## Related Articles
 
-- **Full fine-tuning guide with LoRA and QLoRA** → [Fine-Tuning LLMs Guide](/blog/fine-tuning-llms-guide/)
-- **Prompt engineering as an alternative to fine-tuning** → [Prompt Engineering Guide](/blog/prompt-engineering-guide/)
-- **Building AI projects to practice these skills** → [Projects](/projects/)
+- [LLM Fine-Tuning Guide: LoRA, QLoRA, and Full Fine-Tuning](/blog/llm-fine-tuning-guide/) — Complete decision framework for fine-tuning methods
+- [LoRA Fine-Tuning Tutorial for LLMs](/blog/lora-fine-tuning-tutorial/) — Step-by-step LoRA implementation with Unsloth and TRL
+- [Full Fine-Tuning vs LoRA: When to Use Each](/blog/full-vs-lora/) — Head-to-head comparison with real numbers
+- [Dataset Preparation for LLM Fine-Tuning](/blog/finetuning-datasets/) — Data format, quality, and synthetic generation
+- [Open Source LLM Guide](/blog/open-source-llm-guide/) — Choosing the right base model for fine-tuning
+
+## FAQ
+
+**What GPUs can run QLoRA fine-tuning?**
+A 7B model with QLoRA fits in 10GB VRAM — accessible on RTX 3080 (10GB), RTX 3090 (24GB), RTX 4090 (24GB), A10G (24GB), or free Colab T4 (16GB). A 13B model needs ~16GB: RTX 3090, A10G, or A100 40GB. A 70B model needs ~48GB: A100 80GB.
+
+**Does QLoRA reduce output quality compared to full fine-tuning?**
+The original paper showed QLoRA-fine-tuned models matched full fine-tuning quality on benchmark tasks. In practice, the quality difference is task-dependent. For narrow task adaptation, QLoRA is indistinguishable. For major domain shifts requiring deep knowledge restructuring, full fine-tuning may have an edge — but the infrastructure cost is rarely justified.
+
+**Can I use QLoRA with models other than Llama?**
+Yes. QLoRA works with any transformer architecture that BitsAndBytes supports — Mistral, Phi, Gemma, Qwen, and others. The only model-specific configuration is `target_modules`, which varies by architecture. Check the model's config.json for the attention layer names.
+
+**How long does a QLoRA training run take?**
+On a single A100 40GB GPU: ~30–60 minutes for 1,000 examples at 2,048 token sequence length for a 7B model. 13B takes roughly 2x longer. Cloud GPU providers (Lambda Labs, RunPod, Vast.ai) typically charge $1–3/hour for A100 access, making fine-tuning affordable even for individuals.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What GPUs can run QLoRA fine-tuning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 7B model with QLoRA fits in 10GB VRAM: RTX 3080, RTX 3090, RTX 4090, A10G, or free Colab T4. A 13B model needs ~16GB. A 70B model needs ~48GB (A100 80GB)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does QLoRA reduce output quality compared to full fine-tuning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The QLoRA paper showed matched quality to full fine-tuning on benchmarks. For narrow task adaptation, QLoRA is indistinguishable. For major domain shifts, full fine-tuning may have an edge, but the infrastructure cost is rarely justified."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use QLoRA with models other than Llama?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. QLoRA works with any BitsAndBytes-supported transformer — Mistral, Phi, Gemma, Qwen, and others. The only model-specific config is target_modules, which varies by architecture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a QLoRA training run take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a single A100 40GB: ~30–60 minutes for 1,000 examples at 2,048 token sequence length for a 7B model. 13B takes roughly 2x longer. Cloud GPU providers charge $1–3/hour for A100 access."
+      }
+    }
+  ]
+}
+</script>

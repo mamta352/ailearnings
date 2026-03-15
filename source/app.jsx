@@ -356,7 +356,7 @@
             {/* ── Platform Cards — Row 1 (primary) ── */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
               {[
-                { href: "/blog/",     icon: BookOpen, color: "text-blue-400",   activeBg: "bg-blue-500/10",   activeBorder: "border-blue-500/25",   hoverBorder: "hover:border-blue-500/50",   hoverBg: "hover:bg-blue-500/12",   title: "Developer Guides", meta: "28 guides",   desc: "Deep-dives on ML, LLMs, RAG, prompt engineering, and AI agents." },
+                { href: "/blog/",     icon: BookOpen, color: "text-blue-400",   activeBg: "bg-blue-500/10",   activeBorder: "border-blue-500/25",   hoverBorder: "hover:border-blue-500/50",   hoverBg: "hover:bg-blue-500/12",   title: "Developer Guides", meta: `${BLOG_POSTS.length} guides`,   desc: "Deep-dives on ML, LLMs, RAG, prompt engineering, and AI agents." },
                 { href: "/projects/", icon: Wrench,   color: "text-green-400",  activeBg: "bg-green-500/10",  activeBorder: "border-green-500/25",  hoverBorder: "hover:border-green-500/50",  hoverBg: "hover:bg-green-500/12",  title: "AI Projects",      meta: "20 projects", desc: "Hands-on builds from beginner chatbots to multi-agent systems." },
                 { href: "/paths/",    icon: Layers,   color: "text-purple-400", activeBg: "bg-purple-500/10", activeBorder: "border-purple-500/25", hoverBorder: "hover:border-purple-500/50", hoverBg: "hover:bg-purple-500/12", title: "Career Paths",     meta: "5 paths",     desc: "Role-based paths for AI Engineer, ML Engineer, LLM Engineer." },
               ].map(({ href, icon: Icon, color, activeBg, activeBorder, hoverBorder, hoverBg, title, meta, desc }) => (
@@ -4225,34 +4225,72 @@ function KnowledgeGaps() {
       const [tab, setTab] = React.useState("articles");
       const posts  = tab === "articles" ? BLOG_POSTS : ROADMAP_GUIDES;
       const prefix = tab === "articles" ? "/blog/" : "/blog/roadmap-guides/";
-      const cta    = tab === "articles" ? "Read article" : "Read guide";
+      const tagPalette = [
+        "text-blue-400 bg-blue-500/10",
+        "text-purple-400 bg-purple-500/10",
+        "text-green-400 bg-green-500/10",
+        "text-amber-400 bg-amber-500/10",
+        "text-rose-400 bg-rose-500/10",
+        "text-cyan-400 bg-cyan-500/10",
+        "text-indigo-400 bg-indigo-500/10",
+      ];
       return (
-        <div className="max-w-3xl mx-auto px-4 py-10">
-          <div className="mb-6">
-            <span className="inline-block bg-blue-600/20 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">Blog</span>
-            <h1 className="text-3xl font-bold text-white mb-3">AI Engineering Articles</h1>
-            <p className="text-gray-400 text-base">Practical guides and tutorials for developers learning AI — LLMs, RAG, prompt engineering, machine learning, and agentic AI.</p>
+        <div className="max-w-2xl mx-auto px-4 py-10">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-white mb-2">AI Engineering Blog</h1>
+            <p className="text-gray-400 text-sm">Practical guides for developers building with LLMs, RAG, and agentic AI.</p>
           </div>
-          {/* Sub-tabs */}
-          <div className="flex gap-2 mb-6">
-            {[["articles","Developer Guides","28"],["guides","Roadmap Guides","14"]].map(([id,label,count]) => (
+          {/* Medium-style underline tabs */}
+          <div className="flex gap-6 mb-8 border-b border-white/8">
+            {[["articles","Developer Guides",BLOG_POSTS.length],["guides","Roadmap Guides",ROADMAP_GUIDES.length]].map(([id,label,count]) => (
               <button key={id} onClick={() => setTab(id)}
-                className={`text-xs px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 ${tab === id ? "bg-blue-600 text-white font-semibold" : "bg-gray-800 text-gray-400 hover:text-white"}`}>
-                {label} <span className="opacity-60">{count}</span>
+                className={`text-sm pb-3 px-0 transition-colors border-b-2 -mb-px font-medium ${tab === id ? "border-blue-500 text-white" : "border-transparent text-gray-500 hover:text-gray-300"}`}>
+                {label} <span className="text-xs opacity-50 ml-1">{count}</span>
               </button>
             ))}
           </div>
-          <div className="space-y-3">
-            {posts.map(post => (
-              <a key={post.slug} href={`${prefix}${post.slug}/`}
-                className="group block bg-gray-800/40 rounded-xl p-5 border border-white/8 hover:border-blue-500/30 hover:bg-gray-800/60 transition-all" style={{textDecoration:"none"}}>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs text-gray-500">{post.date_display}</span>
-                  <span className="text-xs text-gray-600">{post.mins} min read</span>
+          {/* Featured first post */}
+          {posts.length > 0 && (() => {
+            const fp = posts[0];
+            return (
+              <a href={`${prefix}${fp.slug}/`} className="group block mb-8 pb-8 border-b border-white/8" style={{textDecoration:"none"}}>
+                <span className={`inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full mb-3 ${tagPalette[0]}`}>
+                  {tab === "articles" ? "Developer Guide" : "Roadmap Guide"}
+                </span>
+                <h2 className="text-white font-bold text-2xl leading-snug mb-2 group-hover:text-blue-300 transition-colors">{fp.title}</h2>
+                <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">{fp.description}</p>
+                <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <span className="w-6 h-6 rounded-full bg-blue-600/30 text-blue-400 flex items-center justify-center text-[10px] font-bold flex-shrink-0">AK</span>
+                  <span className="text-gray-400 font-medium">Amit K Chauhan</span>
+                  <span>·</span>
+                  <span>{fp.date_display}</span>
+                  <span>·</span>
+                  <span>{fp.mins} min read</span>
                 </div>
-                <h2 className="text-white font-semibold text-base mb-2 leading-snug group-hover:text-blue-300 transition-colors">{post.title}</h2>
-                <p className="text-gray-400 text-sm leading-relaxed mb-3">{post.description}</p>
-                <div className="flex items-center gap-1 text-xs text-blue-400">{cta} <ArrowRight size={11}/></div>
+              </a>
+            );
+          })()}
+          {/* Post list */}
+          <div className="divide-y divide-white/6">
+            {posts.slice(1).map((post, i) => (
+              <a key={post.slug} href={`${prefix}${post.slug}/`}
+                className="group flex items-start gap-4 py-5 hover:no-underline" style={{textDecoration:"none"}}>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${tagPalette[(i+1) % tagPalette.length]}`}>
+                      {tab === "articles" ? "Developer Guide" : "Roadmap Guide"}
+                    </span>
+                    <span className="text-[11px] text-gray-600">{post.mins} min read</span>
+                  </div>
+                  <h2 className="text-white font-bold text-base leading-snug mb-1 group-hover:text-blue-300 transition-colors line-clamp-2">{post.title}</h2>
+                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-2">{post.description}</p>
+                  <div className="flex items-center gap-1.5 text-[11px] text-gray-600">
+                    <span>Amit K Chauhan</span>
+                    <span>·</span>
+                    <span>{post.date_display}</span>
+                  </div>
+                </div>
               </a>
             ))}
           </div>
@@ -4264,37 +4302,60 @@ function KnowledgeGaps() {
     // PROJECTS INDEX
     // ═══════════════════════════════════════════════════════════
     function ProjectsIndexPage() {
-      useSeo("AI Projects for Developers 2026 – Hands-On Builds | AI Learning Hub", "20 hands-on AI project guides for developers — beginner to advanced. Build chatbots, RAG systems, AI agents, and real-world AI applications.");
+      useSeo("AI Projects for Developers 2026 – Hands-On Builds | AI Learning Hub", "Hands-on AI project guides for developers — beginner to advanced. Build chatbots, RAG systems, AI agents, and real-world AI applications.");
       const levels = ["Beginner", "Intermediate", "Advanced"];
-      const levelColor = { Beginner: "bg-green-600/20 text-green-400", Intermediate: "bg-yellow-600/20 text-yellow-400", Advanced: "bg-red-600/20 text-red-400" };
+      const levelMeta = {
+        Beginner:     { pill: "text-green-400 bg-green-500/10",  dot: "bg-green-500",  label: "Beginner"     },
+        Intermediate: { pill: "text-amber-400 bg-amber-500/10",  dot: "bg-amber-500",  label: "Intermediate" },
+        Advanced:     { pill: "text-rose-400 bg-rose-500/10",    dot: "bg-rose-500",   label: "Advanced"     },
+      };
       return (
-        <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="max-w-2xl mx-auto px-4 py-10">
+          {/* Header */}
           <div className="mb-8">
-            <span className="inline-block bg-green-600/20 text-green-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">Projects</span>
-            <h1 className="text-3xl font-bold text-white mb-3">AI Project Library</h1>
-            <p className="text-gray-400 text-base">Hands-on AI projects from beginner to advanced. Each guide includes architecture, full implementation, and deployment steps.</p>
+            <h1 className="text-3xl font-bold text-white mb-2">AI Project Library</h1>
+            <p className="text-gray-400 text-sm">Hands-on builds from beginner chatbots to production RAG systems and multi-agent pipelines.</p>
           </div>
+          {/* Level stats bar */}
+          <div className="flex gap-4 mb-8 pb-6 border-b border-white/8">
+            {levels.map(lv => {
+              const count = PROJECT_LIST.filter(p => p.level === lv).length;
+              const m = levelMeta[lv];
+              return (
+                <div key={lv} className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full ${m.dot} flex-shrink-0`}/>
+                  <span className={`text-xs font-semibold ${m.pill.split(" ")[0]}`}>{lv}</span>
+                  <span className="text-xs text-gray-600">{count}</span>
+                </div>
+              );
+            })}
+            <span className="ml-auto text-xs text-gray-600">{PROJECT_LIST.length} total</span>
+          </div>
+          {/* Level sections */}
           {levels.map(level => {
             const items = PROJECT_LIST.filter(p => p.level === level);
             if (!items.length) return null;
+            const m = levelMeta[level];
             return (
-              <div key={level} className="mb-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className={`text-xs font-semibold px-3 py-1 rounded-full ${levelColor[level]}`}>{level}</span>
-                  <div className="flex-1 h-px bg-gray-800"/>
+              <div key={level} className="mb-10">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide ${m.pill}`}>{level}</span>
+                  <div className="flex-1 h-px bg-white/6"/>
+                  <span className="text-[11px] text-gray-600">{items.length} projects</span>
                 </div>
-                <div className="space-y-3">
+                <div className="divide-y divide-white/6">
                   {items.map(p => (
                     <a key={p.slug} href={`/projects/${p.slug}/`}
-                      className="group block bg-gray-800/40 rounded-xl p-5 border border-white/8 hover:border-green-500/30 hover:bg-gray-800/60 transition-all" style={{textDecoration:"none"}}>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${levelColor[level]}`}>{p.level}</span>
-                        <span className="text-xs text-gray-500">{p.time}</span>
-                        <span className="text-xs text-gray-600">· {p.stack}</span>
+                      className="group flex items-start gap-4 py-5" style={{textDecoration:"none"}}>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                          <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${m.pill}`}>{level}</span>
+                          <span className="text-[11px] text-gray-600">{p.time}</span>
+                          {p.stack && <span className="text-[11px] text-gray-700">· {Array.isArray(p.stack) ? p.stack.join(", ") : p.stack}</span>}
+                        </div>
+                        <h2 className="text-white font-bold text-base leading-snug mb-1 group-hover:text-green-300 transition-colors line-clamp-2">{p.title}</h2>
+                        <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{p.description}</p>
                       </div>
-                      <h2 className="text-white font-semibold text-base mb-2 leading-snug group-hover:text-green-300 transition-colors">{p.title}</h2>
-                      <p className="text-gray-400 text-sm leading-relaxed mb-3">{p.description}</p>
-                      <div className="flex items-center gap-1 text-xs text-green-400">View project <ArrowRight size={11}/></div>
                     </a>
                   ))}
                 </div>
@@ -4310,27 +4371,42 @@ function KnowledgeGaps() {
     // ═══════════════════════════════════════════════════════════
     function PathsIndexPage() {
       useSeo("AI Engineering Learning Paths | AI Learning Hub", "Structured learning paths for AI engineers, ML engineers, LLM engineers, and AI researchers. Find the right roadmap for your career goal.");
-      const demandColor = { "Very High": "bg-green-500/10 text-green-400", "High": "bg-blue-500/10 text-blue-400", "Moderate": "bg-yellow-500/10 text-yellow-400" };
+      const demandColor = { "Very High": "text-green-400 bg-green-500/10", "High": "text-blue-400 bg-blue-500/10", "Moderate": "text-amber-400 bg-amber-500/10" };
+      const pathAccent = ["from-blue-600/20 to-purple-600/20","from-purple-600/20 to-rose-600/20","from-green-600/20 to-teal-600/20","from-amber-600/20 to-orange-600/20","from-rose-600/20 to-pink-600/20"];
       return (
-        <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="max-w-2xl mx-auto px-4 py-10">
+          {/* Header */}
           <div className="mb-8">
-            <span className="inline-block bg-purple-600/20 text-purple-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">Career Paths</span>
-            <h1 className="text-3xl font-bold text-white mb-3">AI Engineering Learning Paths</h1>
-            <p className="text-gray-400 text-base">Choose your role and get a structured, curated path with guides, projects, and milestones tailored to that career track.</p>
+            <h1 className="text-3xl font-bold text-white mb-2">AI Engineering Learning Paths</h1>
+            <p className="text-gray-400 text-sm">Role-based roadmaps with curated guides, projects, and milestones. Pick your target role and follow the path.</p>
           </div>
-          <div className="space-y-4">
-            {PATH_LIST.map(p => (
+          {/* Stats row */}
+          <div className="flex items-center gap-4 mb-8 pb-6 border-b border-white/8 text-xs text-gray-500">
+            <span><span className="text-white font-semibold">{PATH_LIST.length}</span> career paths</span>
+            <span>·</span>
+            <span>6–12 month timelines</span>
+            <span>·</span>
+            <span>Beginner to advanced</span>
+          </div>
+          {/* Path cards — medium editorial style */}
+          <div className="divide-y divide-white/6">
+            {PATH_LIST.map((p, i) => (
               <a key={p.slug} href={`/paths/${p.slug}/`}
-                className="group block bg-gray-800/40 rounded-xl p-5 border border-white/8 hover:border-purple-500/30 hover:bg-gray-800/60 transition-all" style={{textDecoration:"none"}}>
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-2.5 py-0.5 rounded-full">Learning Path</span>
-                  <span className="bg-green-500/10 text-green-400 text-xs font-semibold px-2.5 py-0.5 rounded-full">{p.timeline}</span>
-                  <span className="bg-yellow-500/10 text-yellow-400 text-xs font-semibold px-2.5 py-0.5 rounded-full">{p.salary}</span>
-                  {p.demand && <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${demandColor[p.demand] || "bg-gray-700 text-gray-400"}`}>Demand: {p.demand}</span>}
+                className="group flex gap-4 py-6" style={{textDecoration:"none"}}>
+                {/* Gradient number accent */}
+                <div className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${pathAccent[i % pathAccent.length]} flex items-center justify-center text-white font-bold text-sm`}>
+                  {String(i+1).padStart(2,"0")}
                 </div>
-                <h2 className="text-white font-semibold text-lg mb-2 leading-snug group-hover:text-purple-300 transition-colors">{p.title}</h2>
-                <p className="text-gray-400 text-sm leading-relaxed mb-3">{p.description}</p>
-                <div className="flex items-center gap-1 text-xs text-purple-400">View path <ArrowRight size={11}/></div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full text-purple-400 bg-purple-500/10">Learning Path</span>
+                    {p.timeline && <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full text-green-400 bg-green-500/10">{p.timeline}</span>}
+                    {p.salary && <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full text-amber-400 bg-amber-500/10">{p.salary}</span>}
+                    {p.demand && <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${demandColor[p.demand] || "text-gray-400 bg-gray-700"}`}>Demand: {p.demand}</span>}
+                  </div>
+                  <h2 className="text-white font-bold text-base leading-snug mb-1 group-hover:text-purple-300 transition-colors">{p.title}</h2>
+                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{p.description}</p>
+                </div>
               </a>
             ))}
           </div>
