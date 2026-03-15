@@ -11,6 +11,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+  <link href="https://fonts.bunny.net/css?family=mona-sans:400,600,700,800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.bunny.net/css?family=mona-sans:400,600,700,800&display=swap" rel="stylesheet"></noscript>
   <meta property="og:title" content="{{TITLE}}">
   <meta property="og:description" content="{{DESCRIPTION}}">
   <meta property="og:type" content="article">
@@ -26,7 +29,11 @@
   <meta name="robots" content="index, follow">
   <style>{{INLINE_CSS}}</style>
   <style>
-    html, body { background-color: #030712 !important; color: #f3f4f6; }
+    pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-keyword,.hljs-formula{color:#c678dd}.hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-string,.hljs-regexp,.hljs-addition,.hljs-attribute,.hljs-meta .hljs-string{color:#98c379}.hljs-attr,.hljs-variable,.hljs-template-variable,.hljs-type,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-number{color:#d19a66}.hljs-symbol,.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-title{color:#61aeee}.hljs-built_in,.hljs-title.class_,.hljs-class .hljs-title{color:#e6c07b}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}.hljs-link{text-decoration:underline}
+  </style>
+  <style>
+    html, body { background-color: #030712 !important; color: #f3f4f6; font-family: 'Mona Sans', system-ui, sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Mona Sans', system-ui, sans-serif; }
     * { box-sizing: border-box; }
     a { color: inherit; }
     .prose h2 { font-size: 1.5rem; font-weight: 700; color: #f9fafb; margin: 2rem 0 0.75rem; }
@@ -38,8 +45,17 @@
     .prose a { color: #818cf8; text-decoration: none; }
     .prose a:hover { color: #a5b4fc; text-decoration: underline; }
     .prose code { background: rgba(99,102,241,0.15); color: #a5b4fc; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.875em; }
-    .prose pre { background: #111827; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
-    .prose pre code { background: none; color: #86efac; padding: 0; font-size: 0.85rem; }
+    .prose .code-viewer { border-radius: 0.625rem; overflow: hidden; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1); background: #21252b; }
+    .prose .code-viewer-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1rem; background: #181c22; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .prose .code-viewer-dot { width: 0.65rem; height: 0.65rem; border-radius: 50%; flex-shrink: 0; }
+    .prose .code-viewer-lang { font-size: 0.72rem; color: #9ca3af; font-family: 'Mona Sans', system-ui, sans-serif; font-weight: 600; letter-spacing: 0.04em; flex: 1; }
+    .prose .code-copy-btn { font-size: 0.68rem; padding: 0.2rem 0.55rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: #9ca3af; border-radius: 4px; cursor: pointer; font-family: 'Mona Sans', system-ui, sans-serif; transition: all 0.15s; }
+    .prose .code-copy-btn:hover { background: rgba(255,255,255,0.12); color: #e5e7eb; }
+    .prose .code-copy-btn.copied { color: #86efac; border-color: rgba(134,239,172,0.3); }
+    .prose .code-viewer pre { margin: 0; background: #282c34; }
+    .prose .code-viewer pre code.hljs { background: #282c34; font-size: 0.84rem; font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace; line-height: 1.65; padding: 1.1rem 1.25rem; }
+    .prose pre { background: #282c34; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; overflow: hidden; margin: 1.5rem 0; }
+    .prose pre code.hljs { background: #282c34; font-size: 0.84rem; font-family: ui-monospace, monospace; line-height: 1.6; padding: 1.1rem 1.25rem; }
     .prose blockquote { border-left: 3px solid #6366f1; padding-left: 1rem; color: #9ca3af; margin: 1.5rem 0; font-style: italic; }
     .prose hr { border-color: rgba(255,255,255,0.08); margin: 2rem 0; }
     .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }

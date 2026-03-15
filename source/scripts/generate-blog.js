@@ -11,6 +11,50 @@
 const fs   = require('fs');
 const path = require('path');
 const { marked } = require('marked');
+const hljs = require('highlight.js');
+
+// Language display names and dot colors
+const LANG_META = {
+  python: { label: 'Python', dot: '#3b82f6' },
+  py: { label: 'Python', dot: '#3b82f6' },
+  javascript: { label: 'JavaScript', dot: '#f59e0b' },
+  js: { label: 'JavaScript', dot: '#f59e0b' },
+  typescript: { label: 'TypeScript', dot: '#60a5fa' },
+  ts: { label: 'TypeScript', dot: '#60a5fa' },
+  bash: { label: 'Bash', dot: '#10b981' },
+  sh: { label: 'Shell', dot: '#10b981' },
+  shell: { label: 'Shell', dot: '#10b981' },
+  json: { label: 'JSON', dot: '#a78bfa' },
+  yaml: { label: 'YAML', dot: '#fb923c' },
+  html: { label: 'HTML', dot: '#f87171' },
+  css: { label: 'CSS', dot: '#38bdf8' },
+  sql: { label: 'SQL', dot: '#34d399' },
+  rust: { label: 'Rust', dot: '#f97316' },
+  go: { label: 'Go', dot: '#22d3ee' },
+  java: { label: 'Java', dot: '#f59e0b' },
+  cpp: { label: 'C++', dot: '#60a5fa' },
+  c: { label: 'C', dot: '#60a5fa' },
+};
+
+// Configure marked to use highlight.js for code blocks
+marked.use({
+  renderer: {
+    code(token) {
+      const lang = (token.lang || '').toLowerCase();
+      const code = token.text;
+      let highlighted;
+      if (lang && hljs.getLanguage(lang)) {
+        highlighted = hljs.highlight(code, { language: lang, ignoreIllegals: true }).value;
+      } else {
+        highlighted = hljs.highlightAuto(code).value;
+      }
+      const meta = LANG_META[lang];
+      const label = meta ? meta.label : (lang || 'plaintext');
+      const dot = meta ? meta.dot : '#6b7280';
+      return `<div class="code-viewer"><div class="code-viewer-header"><span class="code-viewer-dot" style="background:${dot}"></span><span class="code-viewer-lang">${label}</span><button class="code-copy-btn" onclick="(function(b){var p=b.closest('.code-viewer').querySelector('code');navigator.clipboard.writeText(p.innerText).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied');},2000);});})(this)">Copy</button></div><pre><code class="hljs language-${lang || 'plaintext'}">${highlighted}</code></pre></div>`;
+    }
+  }
+});
 
 const ROOT              = path.resolve(__dirname, '../..');
 const POSTS_DIR         = path.join(__dirname, '../blog/posts');
@@ -89,16 +133,26 @@ function main() {
     const description = meta.description || '';
     const date        = meta.date || '2026-03-09';
     const updatedAt   = meta.updatedAt || meta.updated_at || date;
-    const authorName  = meta.author || 'AI Learning Hub';
-    const authorTitle = meta.authorTitle || meta.author_title || 'AI Learning Hub';
+
+    // Auto-assign Mamta as author for weekday posts
+    const postDay = new Date(date + 'T12:00:00Z').getUTCDay(); // 0=Sun,6=Sat
+    const isWeekday = postDay >= 1 && postDay <= 5;
+    const defaultAuthor = isWeekday ? 'Mamta Chauhan' : 'AI Learning Hub';
+    const defaultAuthorTitle = isWeekday ? 'Content Creator and AI Enthusiast' : 'AI Learning Hub';
+    const defaultAuthorBio = isWeekday
+      ? 'Mamta Chauhan is an AI enthusiast and content creator behind ailearnings.in. She writes practical guides on LLMs, RAG, and AI engineering to help developers navigate the fast-moving world of artificial intelligence. Passionate about bridging the gap between cutting-edge research and real-world application.'
+      : 'Software engineer building practical AI systems — RAG pipelines, LLM applications, and developer AI tools. Created AI Learning Hub to provide a structured, no-fluff roadmap for developers entering AI.';
+
+    // Weekday rule overrides frontmatter author
+    const authorName  = isWeekday ? 'Mamta Chauhan' : (meta.author || defaultAuthor);
+    const authorTitle = isWeekday ? 'Content Creator and AI Enthusiast' : (meta.authorTitle || meta.author_title || defaultAuthorTitle);
     const canonical   = `https://ailearnings.in/blog/${slug}/`;
     const mins        = readTime(content);
     const htmlContent = marked.parse(content);
 
     // Author initials (up to 2 chars)
     const authorInitials = authorName.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-    const authorBio = meta.authorBio || meta.author_bio ||
-      'Software engineer building practical AI systems — RAG pipelines, LLM applications, and developer AI tools. Created AI Learning Hub to provide a structured, no-fluff roadmap for developers entering AI.';
+    const authorBio = meta.authorBio || meta.author_bio || defaultAuthorBio;
 
     // Updated meta snippet — only shown if updatedAt differs from date
     const updatedMeta = updatedAt !== date
@@ -187,15 +241,23 @@ function main() {
       const description = meta.description || '';
       const date        = meta.date || '2026-03-10';
       const updatedAt   = meta.updatedAt || meta.updated_at || date;
-      const authorName  = meta.author || 'AI Learning Hub';
-      const authorTitle = meta.authorTitle || meta.author_title || 'AI Learning Hub';
+
+      const rgDay = new Date(date + 'T12:00:00Z').getUTCDay();
+      const rgIsWeekday = rgDay >= 1 && rgDay <= 5;
+      const rgDefaultAuthor = rgIsWeekday ? 'Mamta Chauhan' : 'AI Learning Hub';
+      const rgDefaultTitle = rgIsWeekday ? 'Content Creator and AI Enthusiast' : 'AI Learning Hub';
+      const rgDefaultBio = rgIsWeekday
+        ? 'Mamta Chauhan is an AI enthusiast and content creator behind ailearnings.in. She writes practical guides on LLMs, RAG, and AI engineering to help developers navigate the fast-moving world of artificial intelligence. Passionate about bridging the gap between cutting-edge research and real-world application.'
+        : 'Software engineer building practical AI systems — RAG pipelines, LLM applications, and developer AI tools. Created AI Learning Hub to provide a structured, no-fluff roadmap for developers entering AI.';
+
+      const authorName  = rgIsWeekday ? 'Mamta Chauhan' : (meta.author || rgDefaultAuthor);
+      const authorTitle = rgIsWeekday ? 'Content Creator and AI Enthusiast' : (meta.authorTitle || meta.author_title || rgDefaultTitle);
       const canonical   = `https://ailearnings.in/blog/roadmap-guides/${slug}/`;
       const mins        = readTime(content);
       const htmlContent = marked.parse(content);
 
       const authorInitials = authorName.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-      const authorBio = meta.authorBio || meta.author_bio ||
-        'Software engineer building practical AI systems — RAG pipelines, LLM applications, and developer AI tools. Created AI Learning Hub to provide a structured, no-fluff roadmap for developers entering AI.';
+      const authorBio = meta.authorBio || meta.author_bio || rgDefaultBio;
       const updatedMeta = updatedAt !== date
         ? `<span class="sep">·</span><span>Updated <time datetime="${updatedAt}">${formatDate(updatedAt)}</time></span>`
         : '';

@@ -11,6 +11,37 @@
 const fs   = require('fs');
 const path = require('path');
 const { marked } = require('marked');
+const hljs = require('highlight.js');
+
+const LANG_META = {
+  python: { label: 'Python', dot: '#3b82f6' }, py: { label: 'Python', dot: '#3b82f6' },
+  javascript: { label: 'JavaScript', dot: '#f59e0b' }, js: { label: 'JavaScript', dot: '#f59e0b' },
+  typescript: { label: 'TypeScript', dot: '#60a5fa' }, ts: { label: 'TypeScript', dot: '#60a5fa' },
+  bash: { label: 'Bash', dot: '#10b981' }, sh: { label: 'Shell', dot: '#10b981' }, shell: { label: 'Shell', dot: '#10b981' },
+  json: { label: 'JSON', dot: '#a78bfa' }, yaml: { label: 'YAML', dot: '#fb923c' },
+  html: { label: 'HTML', dot: '#f87171' }, css: { label: 'CSS', dot: '#38bdf8' },
+  sql: { label: 'SQL', dot: '#34d399' }, rust: { label: 'Rust', dot: '#f97316' },
+  go: { label: 'Go', dot: '#22d3ee' }, java: { label: 'Java', dot: '#f59e0b' },
+};
+
+marked.use({
+  renderer: {
+    code(token) {
+      const lang = (token.lang || '').toLowerCase();
+      const code = token.text;
+      let highlighted;
+      if (lang && hljs.getLanguage(lang)) {
+        highlighted = hljs.highlight(code, { language: lang, ignoreIllegals: true }).value;
+      } else {
+        highlighted = hljs.highlightAuto(code).value;
+      }
+      const meta = LANG_META[lang];
+      const label = meta ? meta.label : (lang || 'plaintext');
+      const dot = meta ? meta.dot : '#6b7280';
+      return `<div class="code-viewer"><div class="code-viewer-header"><span class="code-viewer-dot" style="background:${dot}"></span><span class="code-viewer-lang">${label}</span><button class="code-copy-btn" onclick="(function(b){var p=b.closest('.code-viewer').querySelector('code');navigator.clipboard.writeText(p.innerText).then(function(){b.textContent='Copied!';b.classList.add('copied');setTimeout(function(){b.textContent='Copy';b.classList.remove('copied');},2000);});})(this)">Copy</button></div><pre><code class="hljs language-${lang || 'plaintext'}">${highlighted}</code></pre></div>`;
+    }
+  }
+});
 
 const ROOT          = path.resolve(__dirname, '../..');
 const POSTS_DIR     = path.join(__dirname, '../projects/posts');
