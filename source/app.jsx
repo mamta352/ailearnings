@@ -4272,7 +4272,8 @@ function KnowledgeGaps() {
             <h1 className="text-3xl font-bold text-white mb-1.5">AI Engineering Blog</h1>
             <p className="text-gray-400 text-sm">Practical guides for developers building with LLMs, RAG, and agentic AI.</p>
           </div>
-          {/* Tabs */}
+
+          {/* Section tabs */}
           <div className="flex gap-6 mb-8 border-b border-white/8">
             {[["articles","Developer Guides",BLOG_POSTS.length],["guides","Roadmap Guides",ROADMAP_GUIDES.length]].map(([id,label,count]) => (
               <button key={id} onClick={() => changeTab(id)}
@@ -4282,27 +4283,12 @@ function KnowledgeGaps() {
             ))}
           </div>
 
-          {/* Mobile category chips */}
-          <div className="md:hidden flex gap-2 overflow-x-auto pb-3 mb-6 -mx-4 px-4">
-            {CATS.map(cat => {
-              const count = cat === "All" ? allPosts.length : allPosts.filter(p => getCategory(p.slug) === cat).length;
-              const m = catMeta[cat] || catMeta["General"];
-              const isActive = category === cat;
-              return (
-                <button key={cat} onClick={() => changeCat(cat)}
-                  className={`flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full transition-all ${isActive ? `${m.text} ${m.activeBg}` : "text-gray-500 bg-gray-800 hover:text-white"}`}>
-                  {cat} <span className="opacity-50 ml-0.5">{count}</span>
-                </button>
-              );
-            })}
-          </div>
+          {/* Two-column: left sidebar + content */}
+          <div className="flex gap-8">
 
-          {/* Layout: sidebar + content */}
-          <div className="flex gap-10">
-
-            {/* Left sidebar */}
-            <aside className="hidden md:flex flex-col w-44 flex-shrink-0">
-              <p className="text-[10px] uppercase tracking-widest text-gray-600 font-bold mb-2 px-3">Topics</p>
+            {/* Left vertical sidebar */}
+            <aside className="w-48 flex-shrink-0">
+              <p className="text-[10px] uppercase tracking-widest text-gray-600 font-bold mb-3 px-2">Topics</p>
               <nav className="space-y-0.5">
                 {CATS.map(cat => {
                   const count = cat === "All" ? allPosts.length : allPosts.filter(p => getCategory(p.slug) === cat).length;
@@ -4310,14 +4296,14 @@ function KnowledgeGaps() {
                   const isActive = category === cat;
                   return (
                     <button key={cat} onClick={() => changeCat(cat)}
-                      className={`w-full flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-left text-sm transition-all ${
+                      className={`w-full flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg text-left text-sm transition-all ${
                         isActive
                           ? `${m.text} ${m.activeBg} font-semibold`
                           : "text-gray-500 hover:text-gray-200 hover:bg-white/5"
                       }`}>
                       <div className="flex items-center gap-2 min-w-0">
                         {m.dot && <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${m.dot}`}/>}
-                        <span className="truncate">{cat}</span>
+                        <span className="truncate text-xs">{cat}</span>
                       </div>
                       <span className="text-[10px] opacity-50 flex-shrink-0">{count}</span>
                     </button>
@@ -4326,7 +4312,7 @@ function KnowledgeGaps() {
               </nav>
             </aside>
 
-            {/* Content area */}
+            {/* Right content area */}
             <div className="flex-1 min-w-0">
               {/* Featured hero post */}
               {showFeatured && (() => {
@@ -4354,7 +4340,7 @@ function KnowledgeGaps() {
                 <p className="text-gray-500 text-sm py-8">No posts in this category yet.</p>
               )}
               <div className="divide-y divide-white/6">
-                {listPosts.map((post, i) => {
+                {listPosts.map((post) => {
                   const m = catMeta[getCategory(post.slug)] || catMeta["General"];
                   return (
                     <a key={post.slug} href={`${prefix}${post.slug}/`}

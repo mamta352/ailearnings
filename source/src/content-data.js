@@ -113,6 +113,14 @@ const BLOG_POSTS = [
     "mins": 8
   },
   {
+    "slug": "/blog/distributed-llm-training",
+    "title": "Distributed Training for LLMs: Scale Beyond One GPU",
+    "description": "Data parallelism, model parallelism, tensor and pipeline parallelism for LLMs. DeepSpeed ZeRO stages, FSDP with HuggingFace Accelerate, and config examples.",
+    "date": "2026-03-15",
+    "date_display": "March 15, 2026",
+    "mins": 11
+  },
+  {
     "slug": "embedding-model-comparison",
     "title": "Embedding Model Comparison for Vector Search",
     "description": "Compare OpenAI, BGE, E5, Cohere, and Voyage embedding models for vector search — benchmarks, pricing, dimensions, and which to use for production RAG.",
