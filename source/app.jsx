@@ -4266,28 +4266,70 @@ function KnowledgeGaps() {
       const listPosts  = showFeatured ? paginated.slice(1) : paginated;
 
       return (
-        <div className="max-w-5xl mx-auto px-4 py-10">
+        <div className="max-w-5xl mx-auto px-4 py-6 md:py-10">
           {/* Header */}
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-white mb-1.5">AI Engineering Blog</h1>
+          <div className="mb-5">
+            <h1 className="text-2xl md:text-3xl font-bold text-white mb-1.5">AI Engineering Blog</h1>
             <p className="text-gray-400 text-sm">Practical guides for developers building with LLMs, RAG, and agentic AI.</p>
           </div>
 
           {/* Section tabs */}
-          <div className="flex gap-6 mb-8 border-b border-white/8">
+          <div className="flex gap-4 md:gap-6 mb-6 border-b border-white/8">
             {[["articles","Developer Guides",BLOG_POSTS.length],["guides","Roadmap Guides",ROADMAP_GUIDES.length]].map(([id,label,count]) => (
               <button key={id} onClick={() => changeTab(id)}
-                className={`text-sm pb-3 px-0 transition-colors border-b-2 -mb-px font-medium ${tab === id ? "border-blue-500 text-white" : "border-transparent text-gray-500 hover:text-gray-300"}`}>
+                className={`text-sm pb-3 px-0 transition-colors border-b-2 -mb-px font-medium whitespace-nowrap ${tab === id ? "border-blue-500 text-white" : "border-transparent text-gray-500 hover:text-gray-300"}`}>
                 {label} <span className="text-xs opacity-50 ml-1">{count}</span>
               </button>
             ))}
           </div>
 
+          {/* Mobile: fancy topic dropdown */}
+          {(() => {
+            const [open, setOpen] = React.useState(false);
+            const activeMeta = catMeta[category] || catMeta["General"];
+            return (
+              <div className="md:hidden mb-5 relative">
+                <button onClick={() => setOpen(o => !o)}
+                  className="w-full flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-xl bg-gray-900 border border-white/10 hover:border-white/20 transition-colors">
+                  <div className="flex items-center gap-2">
+                    {activeMeta.dot && <span className={`w-2 h-2 rounded-full ${activeMeta.dot}`}/>}
+                    <span className={`text-sm font-medium ${activeMeta.text}`}>{category}</span>
+                    <span className="text-xs text-gray-600">
+                      {category === "All" ? allPosts.length : allPosts.filter(p => getCategory(p.slug) === category).length} posts
+                    </span>
+                  </div>
+                  <ChevronDown size={15} className={`text-gray-500 transition-transform duration-200 ${open ? "rotate-180" : ""}`}/>
+                </button>
+                {open && (
+                  <div className="absolute z-50 top-full left-0 right-0 mt-1.5 rounded-xl bg-gray-900 border border-white/10 shadow-xl shadow-black/40 overflow-hidden">
+                    {CATS.map(cat => {
+                      const count = cat === "All" ? allPosts.length : allPosts.filter(p => getCategory(p.slug) === cat).length;
+                      const m = catMeta[cat] || catMeta["General"];
+                      const isActive = category === cat;
+                      return (
+                        <button key={cat} onClick={() => { changeCat(cat); setOpen(false); }}
+                          className={`w-full flex items-center justify-between px-3.5 py-2.5 text-sm transition-colors ${
+                            isActive ? `${m.activeBg} ${m.text} font-semibold` : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
+                          }`}>
+                          <div className="flex items-center gap-2.5">
+                            {m.dot && <span className={`w-2 h-2 rounded-full flex-shrink-0 ${m.dot}`}/>}
+                            <span>{cat}</span>
+                          </div>
+                          <span className="text-xs opacity-50">{count}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })()}
+
           {/* Two-column: left sidebar + content */}
           <div className="flex gap-8">
 
-            {/* Left vertical sidebar */}
-            <aside className="w-48 flex-shrink-0">
+            {/* Left vertical sidebar — desktop only */}
+            <aside className="hidden md:block w-48 flex-shrink-0">
               <p className="text-[10px] uppercase tracking-widest text-gray-600 font-bold mb-3 px-2">Topics</p>
               <nav className="space-y-0.5">
                 {CATS.map(cat => {
@@ -4323,7 +4365,7 @@ function KnowledgeGaps() {
                     <span className={`inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full mb-3 ${m.text} ${m.bg}`}>
                       {getCategory(fp.slug)}
                     </span>
-                    <h2 className="text-white font-bold text-2xl leading-snug mb-2 group-hover:text-blue-300 transition-colors">{fp.title}</h2>
+                    <h2 className="text-white font-bold text-xl md:text-2xl leading-snug mb-2 group-hover:text-blue-300 transition-colors">{fp.title}</h2>
                     <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">{fp.description}</p>
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                       <span className="w-6 h-6 rounded-full bg-blue-600/30 text-blue-400 flex items-center justify-center text-[10px] font-bold flex-shrink-0">AK</span>
@@ -4371,7 +4413,8 @@ function KnowledgeGaps() {
                     className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
                     <ArrowRight size={14} className="rotate-180"/> Prev
                   </button>
-                  <div className="flex items-center gap-1">
+                  {/* Desktop: individual page buttons */}
+                  <div className="hidden sm:flex items-center gap-1">
                     {Array.from({length: totalPages}, (_,i) => i+1).map(pg => (
                       <button key={pg} onClick={() => changePage(pg)}
                         className={`w-8 h-8 rounded-lg text-sm font-medium transition-all ${pg === page ? "bg-blue-600 text-white" : "text-gray-500 hover:text-white hover:bg-white/8"}`}>
@@ -4379,6 +4422,8 @@ function KnowledgeGaps() {
                       </button>
                     ))}
                   </div>
+                  {/* Mobile: page X of Y */}
+                  <span className="sm:hidden text-sm text-gray-500">Page {page} of {totalPages}</span>
                   <button onClick={() => changePage(Math.min(totalPages,page+1))} disabled={page===totalPages}
                     className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
                     Next <ArrowRight size={14}/>

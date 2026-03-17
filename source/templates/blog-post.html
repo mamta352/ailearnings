@@ -173,12 +173,12 @@
 
   <!-- Breadcrumbs -->
   <div class="max-w-3xl mx-auto px-4 pt-6 pb-3">
-    <nav class="flex items-center gap-2 text-xs text-gray-500" aria-label="Breadcrumb">
-      <a href="/" class="hover:text-gray-300 transition-colors">Home</a>
-      <span>›</span>
-      <a href="/blog/" class="hover:text-gray-300 transition-colors">Blog</a>
-      <span>›</span>
-      <span class="text-gray-400">{{TITLE_SHORT}}</span>
+    <nav class="flex items-center gap-2 text-xs text-gray-500 min-w-0" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-gray-300 transition-colors flex-shrink-0">Home</a>
+      <span class="flex-shrink-0">›</span>
+      <a href="/blog/" class="hover:text-gray-300 transition-colors flex-shrink-0">Blog</a>
+      <span class="flex-shrink-0">›</span>
+      <span class="text-gray-400 truncate">{{TITLE_SHORT}}</span>
     </nav>
   </div>
 
