@@ -26,15 +26,23 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Prepare site
+      - name: Create Pages artifact from docs/
         run: |
-          mkdir -p _site
-          cp -r docs/. _site/
+          tar \
+            --dereference --hard-dereference \
+            -C docs/ \
+            --exclude='.git' \
+            --exclude='.github' \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            .
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          path: _site
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Deploy to GitHub Pages
         id: deployment
