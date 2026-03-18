@@ -1,10 +1,9 @@
 {
   "scripts": {
     "generate:content-data": "node scripts/generate-content-data.js",
-    "build:js": "node scripts/generate-content-data.js && cat src/icons.jsx src/content-data.js app.jsx > ../dist/combined.jsx && babel ../dist/combined.jsx --presets @babel/preset-react -o ../dist/app.js && terser ../dist/app.js -o ../dist/app.js --compress --mangle && rm ../dist/combined.jsx",
-    "build:css": "tailwindcss -i tailwind.css -o ../dist/app.css --minify",
+    "build:js": "node scripts/generate-content-data.js && vite build",
     "build:inline": "node scripts/inline.js",
-    "build": "npm run build:js && npm run build:css && npm run build:inline",
+    "build": "npm run build:js && npm run build:inline",
     "generate": "npm run build && node scripts/generate-static.js",
     "generate:blog": "node scripts/generate-blog.js",
     "generate:projects": "node scripts/generate-projects.js",
@@ -33,5 +32,13 @@
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.19",
     "terser": "^5.46.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "vite": "^8.0.0"
   }
 }

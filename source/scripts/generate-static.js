@@ -918,7 +918,8 @@ const MIME = {
 function startServer() {
   // Use absolute path for app.js so it works from any sub-route
   const indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')
-    .replace('src="dist/app.js"', 'src="/dist/app.js"');
+    // paths are already absolute (leading /) — no rewrite needed
+    ;
 
   const server = http.createServer((req, res) => {
     // Try to serve the exact file first (for dist/app.js, etc.)

@@ -1,3 +1,8 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { Brain,BookOpen,BarChart,BarChart2,Zap,Calendar,Cpu,MapIcon,Target,Sprout,Settings,Wrench,Bot,Building,Building2,Rocket,ExternalLink,Play,ChevronDown,ChevronUp,ArrowRight,Check,AlertTriangle,Menu,X,Lightbulb,GraduationCap,MessageSquare,Code,Code2,Palette,Layers,FlaskConical,Video,Eye,RotateCcw,Trophy,Shield,Globe,Search,ClipboardList,Music,BookMarked,Star,Lock,Database,Smartphone,BrainCircuit,RotateCw,PenLine,ShieldAlert,Sparkles,RefreshCw,Compass,CheckCircle,Clock,Tag,Github,Twitter,ArrowUp,MousePointer,Heart } from './src/icons.jsx'
+import { BLOG_POSTS, ROADMAP_GUIDES, PROJECT_LIST, PATH_LIST } from './src/content-data.js'
+
     const { useState } = React;
 
     // ── SEO helper — call at the top of each page component ──────────────────

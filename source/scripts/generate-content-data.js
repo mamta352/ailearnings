@@ -112,6 +112,7 @@ const BLOG_POSTS = ${JSON.stringify(blogPosts, null, 2)};
 const ROADMAP_GUIDES = ${JSON.stringify(roadmapGuides, null, 2)};
 const PROJECT_LIST = ${JSON.stringify(projects, null, 2)};
 const PATH_LIST = ${JSON.stringify(paths, null, 2)};
+export { BLOG_POSTS, ROADMAP_GUIDES, PROJECT_LIST, PATH_LIST };
 `;
 
 fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true });
