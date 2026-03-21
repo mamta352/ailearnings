@@ -1,17 +1,21 @@
 ---
-title: "Advanced Prompt Engineering Techniques for LLMs"
-description: "Learn advanced prompt engineering strategies including prompt chaining and tool use."
+title: "Advanced Prompt Engineering: ReAct, Tree of Thought & Agent Patterns (2026)"
+description: "Master advanced prompt engineering techniques — ReAct, plan-and-solve, Tree of Thought, self-critique, meta-prompting, and prompt ensembling. Patterns used in production AI agents and multi-step workflows."
 date: "2026-03-13"
 slug: "advanced-prompt-engineering"
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"
-updatedAt: "2026-03-13"
-keywords: ["advanced prompt engineering", "prompt chaining", "tool use prompting", "LLM reasoning strategies", "production prompting"]
+updatedAt: "2026-03-21"
+keywords: ["advanced prompt engineering", "ReAct prompting", "tree of thought", "prompt chaining", "self-critique prompting", "LLM agent patterns", "production prompting"]
 ---
 
-# Advanced Prompt Engineering Techniques for LLMs
+# Advanced Prompt Engineering: ReAct, Tree of Thought & Agent Patterns (2026)
 
-Your first AI feature works in the demo but breaks unpredictably in production — inconsistent formats, cascading errors, no way to debug which step failed. That is the gap between basic prompting and advanced prompt engineering. This guide covers the patterns that close it: prompt chaining, conditional routing, self-critique loops, and tool-augmented prompting.
+_Last updated: March 2026_
+
+Your first AI feature works in the demo but breaks unpredictably in production — inconsistent formats, cascading errors, no way to debug which step failed. That is the gap between basic prompting and advanced prompt engineering. This guide covers the patterns that close it: ReAct agent loops, Tree of Thought reasoning, self-critique, meta-prompting, plan-and-solve, and prompt ensembling.
+
+For foundational techniques (zero-shot, few-shot, chain-of-thought, constrained output), start with [17 Prompt Engineering Techniques](/blog/prompt-engineering-techniques/).
 
 ---
 
@@ -38,6 +42,234 @@ Advanced techniques let you build AI systems that:
 - Route different input types to specialized handling paths
 
 For developers building AI features into products, these patterns are the bridge between a demo that works once and a feature that works every time.
+
+---
+
+## 9 Advanced Prompt Engineering Techniques
+
+### Technique 18: ReAct Prompting
+
+Interleave **Thought → Action → Observation** cycles. The model reasons about what to do, calls a tool, observes the result, then reasons again. This pattern is the backbone of every production AI agent.
+
+```
+Thought: I need to find the current population of Tokyo.
+Action: search("Tokyo population 2026")
+Observation: Tokyo's population is approximately 13.96 million (2026 estimate).
+Thought: I now have the data needed to answer.
+Final Answer: Tokyo has approximately 13.96 million residents as of 2026.
+```
+
+ReAct works with any LLM API — agent frameworks like LangChain handle the tool-calling loop for you, but the underlying pattern is model-agnostic. See the full implementation below.
+
+---
+
+### Technique 19: Plan-and-Solve
+
+Ask the model to write a plan first, then execute it step by step. This separates planning from execution, dramatically reducing errors on complex multi-step tasks.
+
+```
+System: First write a numbered plan for how to solve this problem.
+        Then execute each step of the plan in order.
+
+User: Analyze this dataset and produce a quarterly revenue summary
+      with trend analysis and anomalies flagged.
+```
+
+The model produces a plan like "1. Parse columns, 2. Aggregate by quarter, 3. Calculate QoQ growth, 4. Flag >20% deviations" before executing. This works better than one-shot because the planning phase forces the model to identify steps it might otherwise skip.
+
+---
+
+### Technique 20: Scratchpad Prompting
+
+Give the model an explicit working area to think before committing to an answer.
+
+```
+Use a <scratchpad> section for your working and reasoning.
+Then provide your final answer in <answer> tags.
+Do not include the scratchpad content in the final answer.
+
+Question: {user_question}
+```
+
+Scratchpad keeps intermediate reasoning visible and separate from the response. It is useful for debugging — you can inspect the scratchpad to see exactly where the model went wrong without exposing the reasoning noise to end users.
+
+---
+
+### Technique 21: Tree of Thought (ToT)
+
+Explore multiple reasoning branches simultaneously, evaluate each, and select the best path. More powerful than linear CoT for complex planning and creative problem-solving.
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+def tree_of_thought(problem: str, n_branches: int = 3) -> str:
+    # Step 1: Generate multiple solution approaches
+    branches_response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": f"Generate {n_branches} distinct approaches to solve this problem. Number each approach."},
+            {"role": "user", "content": problem}
+        ],
+        temperature=0.8
+    )
+    branches = branches_response.choices[0].message.content
+
+    # Step 2: Evaluate and select best branch
+    selection = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "Evaluate each approach for correctness, efficiency, and completeness. Select the best one and execute it fully."},
+            {"role": "user", "content": f"Problem: {problem}\n\nApproaches:\n{branches}"}
+        ],
+        temperature=0
+    )
+    return selection.choices[0].message.content
+```
+
+ToT is expensive (multiple API calls per query) — use it for tasks where quality is worth the latency cost: complex planning, architectural decisions, multi-constraint optimization.
+
+---
+
+### Technique 22: Step-Back Prompting
+
+For complex questions, first ask a more general background question to surface relevant knowledge, then use that to answer the specific question.
+
+```python
+def step_back(specific_question: str) -> str:
+    # Step 1: Generate a more general background question
+    background_q = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "What general background knowledge or principle would help answer this specific question? State the background question."},
+            {"role": "user", "content": specific_question}
+        ],
+        temperature=0
+    ).choices[0].message.content
+
+    # Step 2: Answer the background question
+    background_a = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "user", "content": background_q}],
+        temperature=0
+    ).choices[0].message.content
+
+    # Step 3: Answer the original question using the background
+    final = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": f"Background knowledge:\n{background_a}\n\nUse this background to answer the specific question."},
+            {"role": "user", "content": specific_question}
+        ],
+        temperature=0
+    ).choices[0].message.content
+
+    return final
+```
+
+Reduces errors on questions that require domain background the model might not foreground automatically, especially in science, law, and engineering domains.
+
+---
+
+### Technique 23: Prompt Chaining
+
+Split complex tasks across multiple prompts where the output of one becomes the input of the next. More reliable than a single large prompt for multi-step workflows, and each step is independently testable.
+
+The key advantage: when a chain fails, you can run each step in isolation to find exactly which prompt produced bad output. You cannot do that with a single mega-prompt.
+
+See the full implementation in the [Practical Example](#practical-example) section below.
+
+---
+
+### Technique 24: Meta-Prompting
+
+Ask the model to generate or improve a prompt for a given task.
+
+```python
+def meta_prompt(task_description: str) -> str:
+    """Generate an optimized system prompt for a given task."""
+    return client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": """You are a prompt engineering expert.
+Write a production-quality system prompt for the task described.
+Include: role definition, task instructions, output format specification,
+constraints, and one or two examples if helpful.
+Return only the system prompt — no explanation."""},
+            {"role": "user", "content": f"Task: {task_description}"}
+        ],
+        temperature=0.3
+    ).choices[0].message.content
+
+# Example
+prompt = meta_prompt("Python code reviewer that catches security issues and returns structured JSON findings")
+print(prompt)
+```
+
+Meta-prompting is useful for rapid exploration when you are not sure where to start. Use the generated prompt as a starting point, then refine with your domain knowledge.
+
+---
+
+### Technique 25: Self-Critique
+
+Ask the model to critique its own output, then improve it. This adds a self-correction loop that measurably improves quality for writing, code generation, and structured outputs.
+
+```python
+def self_critique(task: str, initial_input: str) -> str:
+    # First pass — generate initial output
+    initial = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "user", "content": f"{task}\n\n{initial_input}"}],
+        temperature=0.3
+    ).choices[0].message.content
+
+    # Critique pass — identify issues
+    revised = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "user", "content": f"{task}\n\n{initial_input}"},
+            {"role": "assistant", "content": initial},
+            {"role": "user", "content": "Review your response for accuracy, completeness, and clarity. Rewrite it with improvements. If the original was correct, repeat it unchanged."}
+        ],
+        temperature=0.2
+    ).choices[0].message.content
+
+    return revised
+```
+
+Run the critique step at slightly higher temperature (0.2–0.4) to introduce diversity. The rewrite step at temperature=0 disciplines it. Self-critique improves quality but does not guarantee correctness — do not use it as a factual verification layer.
+
+---
+
+### Technique 26: Prompt Ensembling
+
+Run multiple differently-phrased prompts for the same task and aggregate the outputs. Reduces sensitivity to specific phrasing and improves robustness for high-stakes tasks.
+
+```python
+from collections import Counter
+
+def ensemble_classify(text: str, label_options: list[str]) -> str:
+    """Run three prompt variants and take the majority classification."""
+    prompts = [
+        f"Classify this text as {'/'.join(label_options)}. Return only the label.\n\nText: {text}",
+        f"What category best describes this? Options: {', '.join(label_options)}. Answer with just the category.\n\nText: {text}",
+        f"Label: {', '.join(label_options)}\nInput: {text}\nAnswer with exactly one label:"
+    ]
+
+    votes = []
+    for prompt in prompts:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0
+        )
+        votes.append(response.choices[0].message.content.strip())
+
+    return Counter(votes).most_common(1)[0][0]
+```
+
+Ensembling is especially valuable for classification tasks where consistent labeling matters more than raw accuracy. It smooths over phrasing sensitivity without requiring prompt optimization.
 
 ---
 
@@ -258,6 +490,15 @@ Yes, and often this is the right approach. Use a smaller, faster model for class
 **How do ReAct agents differ from prompt chaining?**
 Chains have a fixed sequence of steps defined at build time. ReAct agents determine the sequence dynamically — the model decides what to do next based on the result of the previous step. Agents are more flexible but less predictable.
 
+**When is Tree of Thought worth the extra cost?**
+When the task involves creative problem-solving, architectural planning, or constraint satisfaction where the first approach the model tries is often not the best. For simple generation or extraction tasks, linear CoT is sufficient and cheaper.
+
+**What is the best use case for meta-prompting?**
+Starting from scratch in a new domain. Meta-prompting gives you a reasonable first prompt faster than writing from scratch. Always refine the generated prompt with your domain knowledge and test it against real examples.
+
+**How do I know if prompt ensembling is helping?**
+Run your benchmark test set with single-prompt and ensembled versions. If the ensemble improves accuracy by less than 3–5%, the cost is not justified. Ensembling is most useful for high-stakes classification where consistency matters more than speed.
+
 ---
 
 ## Further Reading
@@ -272,6 +513,6 @@ Chains have a fixed sequence of steps defined at build time. ReAct agents determ
 
 ## What to Learn Next
 
-- [Prompt Engineering Guide](/blog/prompt-engineering-guide/) — foundational techniques that advanced patterns build on
+- [17 Prompt Engineering Techniques](/blog/prompt-engineering-techniques/) — foundational techniques that advanced patterns build on
 - [Chain-of-Thought Prompting Explained](/blog/chain-of-thought-prompting/) — the reasoning technique at the heart of most advanced patterns
 - [Build AI Agents Step-by-Step](/blog/build-ai-agents/) — put these techniques into a complete agent implementation

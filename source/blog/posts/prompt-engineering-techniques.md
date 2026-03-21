@@ -1,15 +1,15 @@
 ---
-title: "26 Prompt Engineering Techniques Every AI Developer Should Know (2026)"
-description: "26 battle-tested prompt engineering techniques with Python examples — zero-shot, chain-of-thought, ReAct, self-critique, and agent loop patterns used in production AI systems."
+title: "17 Prompt Engineering Techniques Every AI Developer Should Know (2026)"
+description: "17 foundational prompt engineering techniques with Python examples — zero-shot, few-shot, chain-of-thought, constrained output, RAG prompting, and more. Built for production AI systems."
 date: "2026-03-15"
 slug: "prompt-engineering-techniques"
-keywords: ["prompt engineering techniques", "llm prompting", "zero-shot prompting", "few-shot prompting", "chain of thought prompting", "ReAct prompting", "prompt design"]
+keywords: ["prompt engineering techniques", "llm prompting", "zero-shot prompting", "few-shot prompting", "chain of thought prompting", "constrained output prompting", "prompt design"]
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"
-updatedAt: "2026-03-15"
+updatedAt: "2026-03-21"
 ---
 
-# 26 Prompt Engineering Techniques Every AI Developer Should Know (2026 Guide)
+# 17 Prompt Engineering Techniques Every AI Developer Should Know (2026 Guide)
 
 _Last updated: March 2026_
 
@@ -17,7 +17,7 @@ Most teams spend more time on model selection than on prompt design — then shi
 
 When you switch from GPT-4o to Claude 3.5, you might gain 3–5% accuracy on benchmarks. When you switch from a vague instruction prompt to a structured few-shot prompt with explicit format constraints, you can gain 20–40% consistency on the same task. The leverage in prompting is enormous and underutilized.
 
-This guide covers 26 techniques developers use in production — organized from foundational to advanced. Use it as a reference when you need to pick the right tool for the task at hand.
+This guide covers 17 foundational techniques developers rely on in production — organized from basic to intermediate. For agent loops, ReAct, Tree of Thought, and multi-step workflow patterns, see [Advanced Prompt Engineering Techniques](/blog/advanced-prompt-engineering/).
 
 ## Concept Overview
 
@@ -25,7 +25,7 @@ A prompt technique is a structural pattern for how you present a task to a langu
 
 The best technique for any task depends on four things: task complexity, required consistency, token budget, and latency constraints. A classification task at high volume has different requirements than a one-off document analysis. Knowing which technique fits which constraint is the practical skill.
 
-One thing many developers overlook: techniques are composable. Few-shot + chain-of-thought + constrained output is a single prompt that combines three techniques. The art is knowing which combination to reach for.
+Techniques are composable. Few-shot + chain-of-thought + constrained output is a single prompt that combines three techniques. The art is knowing which combination to reach for.
 
 ## How It Works
 
@@ -106,7 +106,7 @@ def prompt_chain(document: str) -> dict:
     return {"facts": facts["facts"], "summary": summary}
 ```
 
-## 26 Prompt Engineering Techniques
+## 17 Prompt Engineering Techniques
 
 ### Foundational Techniques
 
@@ -230,73 +230,11 @@ prompt = REVIEW_TEMPLATE.substitute(
 )
 ```
 
-### Reasoning and Agents
-
-**18. ReAct Prompting**
-Interleave Thought → Action → Observation cycles. The model reasons about what to do, calls a tool, observes the result, then reasons again. This pattern is the backbone of every production AI agent.
-
-```
-Thought: I need to find the current population of Tokyo.
-Action: search("Tokyo population 2026")
-Observation: Tokyo's population is approximately 13.96 million (2026 estimate).
-Thought: I now have the data needed to answer.
-Final Answer: Tokyo has approximately 13.96 million residents as of 2026.
-```
-
-**19. Plan-and-Solve**
-Ask the model to write a plan first, then execute it. "First write a numbered plan. Then execute each step." Separates planning from execution, reducing errors on complex multi-step tasks.
-
-**20. Scratchpad Prompting**
-Give the model an explicit working area to think before answering. "Use a <scratchpad> section for your reasoning, then provide your answer in <answer> tags." Keeps reasoning visible and separate from the final response.
-
-**21. Tree of Thought (ToT)**
-Explore multiple reasoning branches, evaluate each, and select the best path. More powerful than linear CoT for complex planning and creative problem-solving. High cost — use only when the task justifies it.
-
-**22. Step-Back Prompting**
-For complex questions, first ask a more general question to retrieve background knowledge, then use that to answer the specific question. Reduces errors on questions that require domain background the model might not foreground automatically.
-
-### Workflow and Meta-Techniques
-
-**23. Prompt Chaining**
-Split complex tasks across multiple prompts where the output of one becomes the input of the next. More reliable than a single large prompt for multi-step workflows, and each step is independently testable.
-
-**24. Meta-Prompting**
-Ask the model to generate or improve a prompt for a given task. "Write an optimized system prompt for a Python code reviewer that catches security issues." Useful for rapid exploration of prompt designs.
-
-**25. Self-Critique**
-Ask the model to critique its own output, then improve it. "Review your answer for factual errors and rewrite if needed." Adds a self-correction loop that improves quality, especially for longer content generation.
-
-```python
-def self_critique(task: str, initial_input: str) -> str:
-    # First pass
-    initial = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": f"{task}\n\n{initial_input}"}],
-        temperature=0.3
-    ).choices[0].message.content
-
-    # Self-critique pass
-    revised = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[
-            {"role": "user", "content": f"{task}\n\n{initial_input}"},
-            {"role": "assistant", "content": initial},
-            {"role": "user", "content": "Review your response for accuracy, completeness, and clarity. Rewrite it with improvements. If the original was correct, repeat it unchanged."}
-        ],
-        temperature=0.2
-    ).choices[0].message.content
-
-    return revised
-```
-
-**26. Prompt Ensembling**
-Run multiple differently-phrased prompts for the same task and aggregate the outputs. Reduces sensitivity to specific phrasing and improves robustness for high-stakes tasks.
-
 ## Best Practices
 
 **Start minimal.** Zero-shot first, then add complexity only when you have evidence it helps. Most developers skip straight to few-shot CoT with constrained output when zero-shot would have been fine.
 
-**Match technique to task type.** Classification and extraction → zero-shot or few-shot. Math and logic → CoT. Agents and tools → ReAct. Multi-step workflows → chaining. Picking the wrong technique adds cost without benefit.
+**Match technique to task type.** Classification and extraction → zero-shot or few-shot. Math and logic → CoT. Structured output → constrained output + JSON schema. RAG applications → retrieval-augmented prompting with citation. Picking the wrong technique adds cost without benefit.
 
 **Measure before and after every change.** Maintain a test set. A prompt change that improves three examples might break four others. You cannot know without measurement.
 
@@ -318,14 +256,15 @@ Run multiple differently-phrased prompts for the same task and aggregate the out
 
 ## Summary
 
-The 26 techniques in this guide cover the full spectrum of prompt engineering — from simple zero-shot instructions to multi-step agent loops. The selection principle is straightforward: use the simplest technique that reliably solves the task.
+These 17 techniques cover the foundational spectrum of prompt engineering — from simple zero-shot instructions to retrieval-augmented generation prompts. The selection principle is straightforward: use the simplest technique that reliably solves the task.
 
-Foundational techniques (zero-shot, few-shot, CoT) handle 80% of production use cases. Advanced techniques (ReAct, ToT, self-consistency) are appropriate for agent systems, high-accuracy requirements, and complex planning tasks.
+Foundational techniques (zero-shot, few-shot, CoT) handle 80% of production use cases. For agent systems, multi-step workflows, and complex reasoning patterns (ReAct, Tree of Thought, self-critique, prompt ensembling), see [Advanced Prompt Engineering Techniques](/blog/advanced-prompt-engineering/).
 
-In practice, the best prompt engineers are the ones who evaluate systematically, version their prompts like code, and add complexity only when evidence demands it.
+In practice, the best prompt engineers evaluate systematically, version their prompts like code, and add complexity only when evidence demands it.
 
 ## Related Articles
 
+- [Advanced Prompt Engineering Techniques](/blog/advanced-prompt-engineering/) — ReAct, Tree of Thought, self-critique, and agent loop patterns
 - [Prompt Engineering Guide for AI Developers](/blog/prompt-engineering-guide/)
 - [Chain-of-Thought Prompting Explained for Developers](/blog/chain-of-thought-prompting/)
 - [Few-Shot vs Zero-Shot Prompting Explained](/blog/few-shot-vs-zero-shot/)
@@ -345,5 +284,8 @@ Start with 2–3. Test 5. Beyond 5–6 examples, returns diminish and costs rise
 **Can I combine multiple techniques in one prompt?**
 Yes, and this is common in production. Few-shot + CoT + constrained output is a standard pattern for structured reasoning tasks. The key is measuring whether each technique actually helps.
 
-**Is ReAct only for agent frameworks like LangChain?**
-No. The Thought/Action/Observation pattern can be implemented with any LLM API. Agent frameworks handle the tool-calling loop for you, but the underlying prompt pattern is model-agnostic.
+**What is the difference between zero-shot CoT and few-shot CoT?**
+Zero-shot CoT adds "Let's think step by step" with no examples — works well on modern models for many tasks. Few-shot CoT provides worked examples of reasoning chains before the question, which is more reliable for domain-specific or unusual reasoning patterns.
+
+**When should I move beyond these foundational techniques?**
+When your task involves multi-step agent behavior, tool use, or requires the model to evaluate and improve its own output. Those scenarios call for patterns like ReAct, plan-and-solve, or self-critique — covered in [Advanced Prompt Engineering](/blog/advanced-prompt-engineering/).
