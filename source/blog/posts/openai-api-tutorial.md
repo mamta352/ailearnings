@@ -3,7 +3,7 @@ title: "OpenAI API Tutorial for Developers (2026)"
 description: "Complete OpenAI API tutorial — setup, chat completions, streaming, function calling, embeddings, vision, token counting, error handling, and retry logic for 2026."
 date: "2026-03-15"
 updatedAt: "2026-03-15"
-slug: "/blog/openai-api-tutorial"
+slug: "openai-api-tutorial"
 keywords: ["openai api tutorial", "openai api python", "gpt-4o api tutorial", "openai sdk 2026"]
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"

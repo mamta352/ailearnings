@@ -3,7 +3,7 @@ title: "Building Agents with LangChain: Complete Tutorial"
 description: "Build a LangChain agent from scratch — AgentExecutor, tools, ReAct prompting. Working code for a research agent with DuckDuckGo, Wikipedia, and Python REPL."
 date: "2026-03-15"
 updatedAt: "2026-03-15"
-slug: "/blog/langchain-agents"
+slug: "langchain-agents"
 keywords: ["langchain agents tutorial", "langchain agentexecutor", "build langchain agent"]
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"

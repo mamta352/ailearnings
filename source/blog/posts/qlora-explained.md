@@ -3,7 +3,7 @@ title: "QLoRA Explained: Efficient LLM Fine-Tuning on Consumer Hardware"
 description: "QLoRA combines 4-bit NF4 quantization with LoRA adapters to fine-tune 13B+ LLMs on a single GPU. Complete guide with BitsAndBytes, PEFT, and TRL code."
 date: "2026-03-15"
 updatedAt: "2026-03-15"
-slug: "/blog/qlora-explained"
+slug: "qlora-explained"
 keywords: ["qlora explained", "qlora fine tuning", "4-bit quantization llm", "bitsandbytes qlora", "efficient llm fine tuning"]
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"

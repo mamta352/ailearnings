@@ -3,7 +3,7 @@ title: "LLM Fine-Tuning Guide: LoRA, QLoRA, and Full Fine-Tuning"
 description: "Complete guide to LLM fine-tuning: when to use LoRA vs QLoRA vs full fine-tuning, dataset prep, training infra, and evaluation with TRL and Unsloth."
 date: "2026-03-15"
 updatedAt: "2026-03-15"
-slug: "/blog/llm-fine-tuning-guide"
+slug: "llm-fine-tuning-guide"
 keywords: ["llm fine tuning", "lora fine tuning", "qlora fine tuning", "full fine tuning llm", "huggingface trl"]
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"

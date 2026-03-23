@@ -4224,7 +4224,13 @@ function KnowledgeGaps() {
       useSeo("AI Engineering Blog – Guides & Tutorials | AI Learning Hub", "AI engineering articles, tutorials, and roadmaps for software developers learning LLMs, RAG, and agentic AI.");
       const [tab, setTab]           = React.useState("articles");
       const [category, setCategory] = React.useState("All");
-      const [page, setPage]         = React.useState(1);
+      const [page, setPage]         = React.useState(() => {
+        if (typeof window !== "undefined") {
+          const p = parseInt(new URLSearchParams(window.location.search).get("page"), 10);
+          return p > 0 ? p : 1;
+        }
+        return 1;
+      });
       const PER_PAGE = 15;
 
       // Derive category from slug
@@ -4257,7 +4263,15 @@ function KnowledgeGaps() {
 
       const changeTab = (t)  => { setTab(t); setCategory("All"); setPage(1); };
       const changeCat = (c)  => { setCategory(c); setPage(1); };
-      const changePage = (p) => { setPage(p); if (typeof window !== "undefined") window.scrollTo({top:0,behavior:"smooth"}); };
+      const changePage = (p) => {
+        setPage(p);
+        if (typeof window !== "undefined") {
+          const url = new URL(window.location.href);
+          if (p === 1) { url.searchParams.delete("page"); } else { url.searchParams.set("page", p); }
+          window.history.pushState({}, "", url.toString());
+          window.scrollTo({top:0,behavior:"smooth"});
+        }
+      };
 
       const filtered   = category === "All" ? allPosts : allPosts.filter(p => getCategory(p.slug) === category);
       const totalPages = Math.ceil(filtered.length / PER_PAGE);
@@ -4409,25 +4423,25 @@ function KnowledgeGaps() {
               {/* Pagination */}
               {totalPages > 1 && (
                 <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/8">
-                  <button onClick={() => changePage(Math.max(1,page-1))} disabled={page===1}
-                    className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
-                    <ArrowRight size={14} className="rotate-180"/> Prev
-                  </button>
-                  {/* Desktop: individual page buttons */}
+                  {page === 1
+                    ? <span className="flex items-center gap-1.5 text-sm text-gray-600 opacity-30 cursor-not-allowed"><ArrowRight size={14} className="rotate-180"/> Prev</span>
+                    : <a href={page-1===1 ? "/blog/" : `/blog/?page=${page-1}`} onClick={(e)=>{e.preventDefault();changePage(page-1);}} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"><ArrowRight size={14} className="rotate-180"/> Prev</a>
+                  }
+                  {/* Desktop: individual page links */}
                   <div className="hidden sm:flex items-center gap-1">
                     {Array.from({length: totalPages}, (_,i) => i+1).map(pg => (
-                      <button key={pg} onClick={() => changePage(pg)}
-                        className={`w-8 h-8 rounded-lg text-sm font-medium transition-all ${pg === page ? "bg-blue-600 text-white" : "text-gray-500 hover:text-white hover:bg-white/8"}`}>
+                      <a key={pg} href={pg===1 ? "/blog/" : `/blog/?page=${pg}`} onClick={(e)=>{e.preventDefault();changePage(pg);}}
+                        className={`w-8 h-8 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${pg === page ? "bg-blue-600 text-white" : "text-gray-500 hover:text-white hover:bg-white/8"}`}>
                         {pg}
-                      </button>
+                      </a>
                     ))}
                   </div>
                   {/* Mobile: page X of Y */}
                   <span className="sm:hidden text-sm text-gray-500">Page {page} of {totalPages}</span>
-                  <button onClick={() => changePage(Math.min(totalPages,page+1))} disabled={page===totalPages}
-                    className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
-                    Next <ArrowRight size={14}/>
-                  </button>
+                  {page === totalPages
+                    ? <span className="flex items-center gap-1.5 text-sm text-gray-600 opacity-30 cursor-not-allowed">Next <ArrowRight size={14}/></span>
+                    : <a href={`/blog/?page=${page+1}`} onClick={(e)=>{e.preventDefault();changePage(page+1);}} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors">Next <ArrowRight size={14}/></a>
+                  }
                 </div>
               )}
             </div>

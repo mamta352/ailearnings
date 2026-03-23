@@ -3,7 +3,7 @@ title: "Multi-Agent Systems Explained"
 description: "Multi-agent coordination patterns — supervisor-worker, peer-to-peer, hierarchical. When to use multi-agent vs single agent, with CrewAI and LangGraph examples."
 date: "2026-03-15"
 updatedAt: "2026-03-15"
-slug: "/blog/multi-agent-systems"
+slug: "multi-agent-systems"
 keywords: ["multi agent systems ai", "multi-agent coordination", "crewai langgraph"]
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"

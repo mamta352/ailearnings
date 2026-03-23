@@ -65,7 +65,7 @@ const BLOG_POSTS = [
     "mins": 9
   },
   {
-    "slug": "/blog/ai-agents-guide",
+    "slug": "ai-agents-guide",
     "title": "AI Agents Guide: Architecture and Design Patterns",
     "description": "Complete guide to AI agent architecture — perception, planning, memory, tool use, and execution loops for senior engineers building production systems.",
     "date": "2026-03-15",
@@ -129,7 +129,7 @@ const BLOG_POSTS = [
     "mins": 8
   },
   {
-    "slug": "/blog/langchain-agents",
+    "slug": "langchain-agents",
     "title": "Building Agents with LangChain: Complete Tutorial",
     "description": "Build a LangChain agent from scratch — AgentExecutor, tools, ReAct prompting. Working code for a research agent with DuckDuckGo, Wikipedia, and Python REPL.",
     "date": "2026-03-15",
@@ -137,7 +137,7 @@ const BLOG_POSTS = [
     "mins": 10
   },
   {
-    "slug": "/blog/llm-fine-tuning-guide",
+    "slug": "llm-fine-tuning-guide",
     "title": "LLM Fine-Tuning Guide: LoRA, QLoRA, and Full Fine-Tuning",
     "description": "Complete guide to LLM fine-tuning: when to use LoRA vs QLoRA vs full fine-tuning, dataset prep, training infra, and evaluation with TRL and Unsloth.",
     "date": "2026-03-15",
@@ -153,7 +153,7 @@ const BLOG_POSTS = [
     "mins": 9
   },
   {
-    "slug": "/blog/multi-agent-systems",
+    "slug": "multi-agent-systems",
     "title": "Multi-Agent Systems Explained",
     "description": "Multi-agent coordination patterns — supervisor-worker, peer-to-peer, hierarchical. When to use multi-agent vs single agent, with CrewAI and LangGraph examples.",
     "date": "2026-03-15",
@@ -169,7 +169,7 @@ const BLOG_POSTS = [
     "mins": 9
   },
   {
-    "slug": "/blog/openai-api-tutorial",
+    "slug": "openai-api-tutorial",
     "title": "OpenAI API Tutorial for Developers (2026)",
     "description": "Complete OpenAI API tutorial — setup, chat completions, streaming, function calling, embeddings, vision, token counting, error handling, and retry logic for 2026.",
     "date": "2026-03-15",
@@ -241,7 +241,7 @@ const BLOG_POSTS = [
     "mins": 7
   },
   {
-    "slug": "/blog/qlora-explained",
+    "slug": "qlora-explained",
     "title": "QLoRA Explained: Efficient LLM Fine-Tuning on Consumer Hardware",
     "description": "QLoRA combines 4-bit NF4 quantization with LoRA adapters to fine-tune 13B+ LLMs on a single GPU. Complete guide with BitsAndBytes, PEFT, and TRL code.",
     "date": "2026-03-15",

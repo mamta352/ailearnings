@@ -3,7 +3,7 @@ title: "AI Agents Guide: Architecture and Design Patterns"
 description: "Complete guide to AI agent architecture — perception, planning, memory, tool use, and execution loops for senior engineers building production systems."
 date: "2026-03-15"
 updatedAt: "2026-03-15"
-slug: "/blog/ai-agents-guide"
+slug: "ai-agents-guide"
 keywords: ["ai agents", "ai agent architecture", "ai agent design patterns"]
 author: "Amit K Chauhan"
 authorTitle: "Software Engineer & AI Builder"
