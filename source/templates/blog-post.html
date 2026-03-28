@@ -33,7 +33,7 @@
     pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-keyword,.hljs-formula{color:#c678dd}.hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-string,.hljs-regexp,.hljs-addition,.hljs-attribute,.hljs-meta .hljs-string{color:#98c379}.hljs-attr,.hljs-variable,.hljs-template-variable,.hljs-type,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-number{color:#d19a66}.hljs-symbol,.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-title{color:#61aeee}.hljs-built_in,.hljs-title.class_,.hljs-class .hljs-title{color:#e6c07b}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}.hljs-link{text-decoration:underline}
   </style>
   <style>
-    html, body { background-color: #030712 !important; color: #f3f4f6; font-family: 'Mona Sans', system-ui, sans-serif; }
+    html, body { background-color: #030712 !important; color: #f3f4f6; font-family: 'Mona Sans', system-ui, sans-serif; overflow-x: hidden; }
     h1, h2, h3, h4, h5, h6 { font-family: 'Mona Sans', system-ui, sans-serif; }
     * { box-sizing: border-box; }
     a { color: inherit; }
@@ -56,19 +56,19 @@
     .prose .code-copy-btn { font-size: 0.68rem; padding: 0.2rem 0.55rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: #9ca3af; border-radius: 4px; cursor: pointer; font-family: 'Mona Sans', system-ui, sans-serif; transition: all 0.15s; }
     .prose .code-copy-btn:hover { background: rgba(255,255,255,0.12); color: #e5e7eb; }
     .prose .code-copy-btn.copied { color: #86efac; border-color: rgba(134,239,172,0.3); }
-    .prose .code-viewer pre { margin: 0; background: #282c34; }
+    .prose .code-viewer pre { margin: 0; background: #282c34; overflow-x: auto; }
     .prose .code-viewer pre code.hljs { background: #282c34; font-size: 0.84rem; font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace; line-height: 1.65; padding: 1.1rem 1.25rem; }
     /* fallback for bare pre (not in code-viewer) */
-    .prose pre { background: #282c34; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; overflow: hidden; margin: 1.5rem 0; }
+    .prose pre { background: #282c34; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; overflow-x: auto; margin: 1.5rem 0; }
     .prose pre code.hljs { background: #282c34; font-size: 0.84rem; font-family: ui-monospace, monospace; line-height: 1.6; padding: 1.1rem 1.25rem; }
     .prose blockquote { border-left: 3px solid #6366f1; padding-left: 1rem; color: #9ca3af; margin: 1.5rem 0; font-style: italic; }
     .prose hr { border-color: rgba(255,255,255,0.08); margin: 2rem 0; }
-    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; display: block; overflow-x: auto; }
     .prose th { text-align: left; padding: 0.6rem 1rem; background: rgba(99,102,241,0.15); color: #e5e7eb; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .prose td { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); color: #d1d5db; }
     .prose img { max-width: 100%; border-radius: 0.5rem; margin: 1.5rem auto; display: block; border: 1px solid rgba(255,255,255,0.08); }
-    .prose img[alt="Architecture diagram"] { max-width: none; width: 100%; min-width: 560px; border-radius: 0.75rem; border: 1px solid rgba(99,102,241,0.2); background: rgba(17,24,39,0.6); padding: 0.75rem; box-sizing: border-box; }
-    .prose p:has(img[alt="Architecture diagram"]) { overflow-x: auto; margin: 1.5rem -1rem; padding: 0 1rem; }
+    .prose img[alt="Architecture diagram"] { max-width: 100%; width: 100%; border-radius: 0.75rem; border: 1px solid rgba(99,102,241,0.2); background: rgba(17,24,39,0.6); padding: 0.75rem; box-sizing: border-box; }
+    .prose p:has(img[alt="Architecture diagram"]) { overflow-x: auto; margin: 1.5rem 0; }
     /* Author bio (bottom) */
     .author-bio {
       display: flex; align-items: flex-start; gap: 1rem;
