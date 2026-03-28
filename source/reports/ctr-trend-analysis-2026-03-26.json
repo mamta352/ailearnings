@@ -1,0 +1,3157 @@
+{
+  "generated": "2026-03-26T15:38:36.981Z",
+  "date_range": "2025-12-26 to 2026-03-26",
+  "summary": {
+    "total": 29,
+    "poor_alignment": 10,
+    "ok_alignment": 6,
+    "good_alignment": 7,
+    "avg_alignment_pct": 47,
+    "estimated_missed_clicks": 36
+  },
+  "results": [
+    {
+      "url": "https://ailearnings.in/blog/open-source-llms-guide/",
+      "impressions": 514,
+      "clicks": 1,
+      "ctr": 0.0019455252918287938,
+      "position": 8.414396887159533,
+      "title": "Best Open Source LLMs 2026: Run GGUF Models with Ollama",
+      "description": "Run Llama 3, Mistral, Gemma, and Phi-3 locally via Ollama — no cloud costs. Compare GGUF model sizes, benchmarks, and pick the right one for your hardware.",
+      "source": "blog/open-source-llms-guide.md",
+      "queries": [
+        {
+          "query": "best gguf chat model 2026 llama3.2 phi-4 mistral 7b 14b",
+          "impressions": 16,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 23.375,
+          "alignment": {
+            "score": 0.4375,
+            "matched": [
+              "gguf",
+              "2026",
+              "model",
+              "phi",
+              "mistral"
+            ],
+            "missing": [
+              "chat",
+              "llama3",
+              "14b"
+            ]
+          }
+        },
+        {
+          "query": "ollama supported models llama gemma phi mistral",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.5714285714285714,
+            "matched": [
+              "ollama",
+              "models",
+              "llama",
+              "gemma",
+              "phi",
+              "mistral"
+            ],
+            "missing": [
+              "supported"
+            ]
+          }
+        },
+        {
+          "query": "ollama supported models llama mistral gemma",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.5833333333333334,
+            "matched": [
+              "ollama",
+              "models",
+              "llama",
+              "mistral",
+              "gemma"
+            ],
+            "missing": [
+              "supported"
+            ]
+          }
+        },
+        {
+          "query": "ollama supported models llama phi gemma mistral",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.5714285714285714,
+            "matched": [
+              "ollama",
+              "models",
+              "llama",
+              "phi",
+              "gemma",
+              "mistral"
+            ],
+            "missing": [
+              "supported"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.4648809523809524,
+      "topMissingTerms": [
+        "chat",
+        "llama3",
+        "14b",
+        "supported"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.018054474708171207,
+      "ctrOpportunity": 9
+    },
+    {
+      "url": "https://ailearnings.in/openai-api-tutorial/",
+      "impressions": 355,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 6.636619718309859,
+      "title": "OpenAI API Tutorial (2026): Zero to Working App in 30 Min",
+      "description": "Get your API key and make your first Python chat completion. Copy-paste code — from zero to a working AI app in under 30 minutes.",
+      "source": "standalone",
+      "queries": [
+        {
+          "query": "ai writing api tutorial",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 29,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "writing"
+            ]
+          }
+        },
+        {
+          "query": "api ai tutorial",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 36,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "api",
+              "tutorial"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "how to use openai api",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 75,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "openai",
+              "api"
+            ],
+            "missing": [
+              "use"
+            ]
+          }
+        },
+        {
+          "query": "openai api getting started 2026",
+          "impressions": 7,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 7.285714285714286,
+          "alignment": {
+            "score": 0.6,
+            "matched": [
+              "openai",
+              "api",
+              "2026"
+            ],
+            "missing": [
+              "getting",
+              "started"
+            ]
+          }
+        },
+        {
+          "query": "openai api python sdk examples 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6.5,
+          "alignment": {
+            "score": 0.5833333333333334,
+            "matched": [
+              "openai",
+              "api",
+              "2026",
+              "python"
+            ],
+            "missing": [
+              "sdk",
+              "examples"
+            ]
+          }
+        },
+        {
+          "query": "openai api quickstart 2026",
+          "impressions": 3,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6.333333333333333,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "openai",
+              "api",
+              "2026"
+            ],
+            "missing": [
+              "quickstart"
+            ]
+          }
+        },
+        {
+          "query": "openai api quickstart python 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 5,
+          "alignment": {
+            "score": 0.7,
+            "matched": [
+              "openai",
+              "api",
+              "2026",
+              "python"
+            ],
+            "missing": [
+              "quickstart"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial",
+          "impressions": 227,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6.079295154185022,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "openai api tutorial for beginners",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "beginners"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial for developers",
+          "impressions": 3,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6.333333333333333,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "developers"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial for first responders",
+          "impressions": 7,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8.714285714285715,
+          "alignment": {
+            "score": 0.7,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial",
+              "first"
+            ],
+            "missing": [
+              "responders"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial for grandparents",
+          "impressions": 23,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6.478260869565218,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "grandparents"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial for new dads",
+          "impressions": 3,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6.333333333333333,
+          "alignment": {
+            "score": 0.6,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "new",
+              "dads"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial for renters",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "renters"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial for tall people",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.6,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "tall",
+              "people"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial for toddlers",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "toddlers"
+            ]
+          }
+        },
+        {
+          "query": "openai python sdk openai client chat.completions.create example 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 7,
+          "alignment": {
+            "score": 0.4,
+            "matched": [
+              "openai",
+              "openai",
+              "2026",
+              "python",
+              "chat"
+            ],
+            "missing": [
+              "sdk",
+              "client",
+              "completions",
+              "create",
+              "example"
+            ]
+          }
+        },
+        {
+          "query": "openai tutorial",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 35,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "openai",
+              "tutorial"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "platform.openai.com api key",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "openai",
+              "api",
+              "key"
+            ],
+            "missing": [
+              "platform",
+              "com"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.9385017421602788,
+      "topMissingTerms": [
+        "grandparents",
+        "getting",
+        "started",
+        "responders",
+        "quickstart"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.02,
+      "ctrOpportunity": 7
+    },
+    {
+      "url": "https://ailearnings.in/blog/prompt-engineering-techniques/",
+      "impressions": 992,
+      "clicks": 1,
+      "ctr": 0.0010080645161290322,
+      "position": 14.990927419354838,
+      "title": "17 Prompt Engineering Techniques for Production (2026)",
+      "description": "Zero-shot, few-shot, chain-of-thought, self-consistency, RAG prompting — 17 techniques with Python code and real production examples.",
+      "source": "blog/prompt-engineering-techniques.md",
+      "queries": [
+        {
+          "query": "prompt engineering techniques",
+          "impressions": 123,
+          "clicks": 1,
+          "ctr": 0.008130081300813009,
+          "position": 61.357723577235774,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "ai agent prompt engineering best practices 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.6,
+            "matched": [
+              "prompt",
+              "engineering",
+              "2026"
+            ],
+            "missing": [
+              "agent",
+              "practices"
+            ]
+          }
+        },
+        {
+          "query": "ai prompt engineering",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "prompt",
+              "engineering"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "ai prompt engineering best practices 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "prompt",
+              "engineering",
+              "2026"
+            ],
+            "missing": [
+              "practices"
+            ]
+          }
+        },
+        {
+          "query": "ai prompt engineering techniques",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 57,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "ai prompt engineering techniques 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8.5,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "answers",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "answers"
+            ]
+          }
+        },
+        {
+          "query": "anthropic prompt engineering guide 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9.5,
+          "alignment": {
+            "score": 0.6,
+            "matched": [
+              "prompt",
+              "engineering",
+              "2026"
+            ],
+            "missing": [
+              "anthropic",
+              "guide"
+            ]
+          }
+        },
+        {
+          "query": "best ai prompt engineering techniques 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 5,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "best ai prompting techniques 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.8333333333333334,
+            "matched": [
+              "techniques",
+              "2026",
+              "prompting"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "best practices prompt engineering 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "prompt",
+              "engineering",
+              "2026"
+            ],
+            "missing": [
+              "practices"
+            ]
+          }
+        },
+        {
+          "query": "best prompt engineering techniques 2025 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 4,
+          "alignment": {
+            "score": 0.8,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": [
+              "2025"
+            ]
+          }
+        },
+        {
+          "query": "best prompt engineering techniques 2026",
+          "impressions": 15,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8.066666666666666,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "best prompt engineering techniques 2026 llm",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 13,
+          "alignment": {
+            "score": 0.8,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": [
+              "llm"
+            ]
+          }
+        },
+        {
+          "query": "best prompt engineering techniques for ai agents 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6,
+          "alignment": {
+            "score": 0.8,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": [
+              "agents"
+            ]
+          }
+        },
+        {
+          "query": "best prompt engineering techniques for large language models 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.5714285714285714,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": [
+              "large",
+              "language",
+              "models"
+            ]
+          }
+        },
+        {
+          "query": "best prompt engineering techniques for llms 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.8,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": [
+              "llms"
+            ]
+          }
+        },
+        {
+          "query": "best prompt engineering techniques march 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 7,
+          "alignment": {
+            "score": 0.8,
+            "matched": [
+              "prompt",
+              "engineering",
+              "techniques",
+              "2026"
+            ],
+            "missing": [
+              "march"
+            ]
+          }
+        },
+        {
+          "query": "best prompt engineering templates 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "prompt",
+              "engineering",
+              "2026"
+            ],
+            "missing": [
+              "templates"
+            ]
+          }
+        },
+        {
+          "query": "best prompting techniques for large language models 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 0.4166666666666667,
+            "matched": [
+              "techniques",
+              "2026",
+              "prompting"
+            ],
+            "missing": [
+              "large",
+              "language",
+              "models"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.9664869721473497,
+      "topMissingTerms": [
+        "practices",
+        "anthropic",
+        "guide",
+        "agents",
+        "large"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.003991935483870968,
+      "ctrOpportunity": 4
+    },
+    {
+      "url": "https://ailearnings.in/blog/multi-document-rag/",
+      "impressions": 175,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 8.571428571428571,
+      "title": "Multi-Document RAG 2026: Retrieve Across Multiple Sources",
+      "description": "Cross-file retrieval from 100+ documents — routing, namespace filtering, and document fusion patterns. Includes LangChain RetrievalQA examples.",
+      "source": "blog/multi-document-rag.md",
+      "queries": [
+        {
+          "query": "from langchain.chains import retrievalqa not working",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 0.21428571428571427,
+            "matched": [
+              "from",
+              "langchain",
+              "retrievalqa"
+            ],
+            "missing": [
+              "chains",
+              "import",
+              "not",
+              "working"
+            ]
+          }
+        },
+        {
+          "query": "how should rag systems handle multiple document matches in retail faqs?",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 0.3333333333333333,
+            "matched": [
+              "rag",
+              "multiple",
+              "document"
+            ],
+            "missing": [
+              "should",
+              "systems",
+              "handle",
+              "matches",
+              "retail",
+              "faqs"
+            ]
+          }
+        },
+        {
+          "query": "how to migrate documents to rag",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 65,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "rag",
+              "documents"
+            ],
+            "missing": [
+              "migrate"
+            ]
+          }
+        },
+        {
+          "query": "multi document rag",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 5.5,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "multi",
+              "document",
+              "rag"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "rag multiple documents cross-file retrieval",
+          "impressions": 4,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 5.5,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "rag",
+              "multiple",
+              "documents",
+              "cross",
+              "file",
+              "retrieval"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "storing documents for rag",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 49,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "rag",
+              "documents"
+            ],
+            "missing": [
+              "storing"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.6103896103896104,
+      "topMissingTerms": [
+        "storing",
+        "chains",
+        "import",
+        "not",
+        "working"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.02,
+      "ctrOpportunity": 4
+    },
+    {
+      "url": "https://ailearnings.in/blog/rag-evaluation/",
+      "impressions": 562,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 11.784697508896798,
+      "title": "RAG Evaluation with RAGAS (2026): 4 Key Metrics Explained",
+      "description": "Your RAG pipeline hallucinates in production? Measure it with RAGAS — faithfulness, answer relevancy, context precision & recall — with Python code.",
+      "source": "blog/rag-evaluation.md",
+      "queries": [
+        {
+          "query": "from ragas.metrics import faithfulness answer_relevancy context_precision context_recall",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10.5,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "ragas",
+              "metrics",
+              "faithfulness",
+              "answer",
+              "relevancy",
+              "context",
+              "precision",
+              "context",
+              "recall"
+            ],
+            "missing": [
+              "from",
+              "import"
+            ]
+          }
+        },
+        {
+          "query": "okay sure",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 4,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "okay",
+              "sure"
+            ]
+          }
+        },
+        {
+          "query": "rag evaluation",
+          "impressions": 35,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 73.48571428571428,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "rag",
+              "evaluation"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "rag evaluation metrics",
+          "impressions": 7,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 35.714285714285715,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "rag",
+              "evaluation",
+              "metrics"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "rag evaluation metrics ragas faithfulness context precision recall",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 7,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "rag",
+              "evaluation",
+              "metrics",
+              "ragas",
+              "faithfulness",
+              "context",
+              "precision",
+              "recall"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "rag faithfulness evaluation tool visualization missing context",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 4,
+          "alignment": {
+            "score": 0.42857142857142855,
+            "matched": [
+              "rag",
+              "evaluation",
+              "faithfulness",
+              "context"
+            ],
+            "missing": [
+              "tool",
+              "visualization",
+              "missing"
+            ]
+          }
+        },
+        {
+          "query": "rag scores",
+          "impressions": 3,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 11.666666666666666,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "rag"
+            ],
+            "missing": [
+              "scores"
+            ]
+          }
+        },
+        {
+          "query": "ragas",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 5,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "ragas"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "ragas answer_relevancy faithfulness context_precision context_recall",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6,
+          "alignment": {
+            "score": 0.5625,
+            "matched": [
+              "ragas",
+              "answer",
+              "relevancy",
+              "faithfulness",
+              "context",
+              "precision",
+              "context",
+              "recall"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "ragas evaluate dataset format question answer contexts ground_truth",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 11,
+          "alignment": {
+            "score": 0.16666666666666666,
+            "matched": [
+              "ragas",
+              "answer"
+            ],
+            "missing": [
+              "evaluate",
+              "dataset",
+              "format",
+              "question",
+              "contexts",
+              "ground",
+              "truth"
+            ]
+          }
+        },
+        {
+          "query": "ragas evaluate dataset metrics responserelevancy faithfulness contextprecision contextrecall",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.3125,
+            "matched": [
+              "ragas",
+              "metrics",
+              "faithfulness"
+            ],
+            "missing": [
+              "evaluate",
+              "dataset",
+              "responserelevancy",
+              "contextprecision",
+              "contextrecall"
+            ]
+          }
+        },
+        {
+          "query": "ragas evaluate dataset.from_dict question answer contexts ground_truth",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 11,
+          "alignment": {
+            "score": 0.15,
+            "matched": [
+              "ragas",
+              "answer"
+            ],
+            "missing": [
+              "evaluate",
+              "dataset",
+              "from",
+              "dict",
+              "question",
+              "contexts",
+              "ground",
+              "truth"
+            ]
+          }
+        },
+        {
+          "query": "ragas evaluate responserelevancy faithfulness contextprecision contextrecall",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.25,
+            "matched": [
+              "ragas",
+              "faithfulness"
+            ],
+            "missing": [
+              "evaluate",
+              "responserelevancy",
+              "contextprecision",
+              "contextrecall"
+            ]
+          }
+        },
+        {
+          "query": "ragas evaluation metrics explained",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "ragas",
+              "evaluation",
+              "metrics",
+              "explained"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "ragas evaluation metrics faithfulness context precision recall",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 0.7142857142857143,
+            "matched": [
+              "ragas",
+              "evaluation",
+              "metrics",
+              "faithfulness",
+              "context",
+              "precision",
+              "recall"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "ragas faithfulness",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 45,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "ragas",
+              "faithfulness"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "ragas faithfulness metric definition",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 11,
+          "alignment": {
+            "score": 0.375,
+            "matched": [
+              "ragas",
+              "faithfulness"
+            ],
+            "missing": [
+              "metric",
+              "definition"
+            ]
+          }
+        },
+        {
+          "query": "ragas faithfulness score how it works",
+          "impressions": 3,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8.666666666666668,
+          "alignment": {
+            "score": 0.375,
+            "matched": [
+              "ragas",
+              "faithfulness"
+            ],
+            "missing": [
+              "score",
+              "works"
+            ]
+          }
+        },
+        {
+          "query": "ragas metrics context relevance faithfulness answer relevancy",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9.5,
+          "alignment": {
+            "score": 0.5714285714285714,
+            "matched": [
+              "ragas",
+              "metrics",
+              "context",
+              "faithfulness",
+              "answer",
+              "relevancy"
+            ],
+            "missing": [
+              "relevance"
+            ]
+          }
+        },
+        {
+          "query": "ragas metrics context_precision context_recall faithfulness answer_relevancy",
+          "impressions": 3,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8.333333333333332,
+          "alignment": {
+            "score": 0.6111111111111112,
+            "matched": [
+              "ragas",
+              "metrics",
+              "context",
+              "precision",
+              "context",
+              "recall",
+              "faithfulness",
+              "answer",
+              "relevancy"
+            ],
+            "missing": []
+          }
+        }
+      ],
+      "alignmentScore": 0.8001552795031056,
+      "topMissingTerms": [
+        "evaluate",
+        "from",
+        "dataset",
+        "scores",
+        "question"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.005,
+      "ctrOpportunity": 3
+    },
+    {
+      "url": "https://ailearnings.in/blog/openai-api-complete-guide/",
+      "impressions": 169,
+      "clicks": 1,
+      "ctr": 0.005917159763313609,
+      "position": 8.414201183431953,
+      "title": "OpenAI API Tutorial & Guide 2026: Chat, Embeddings & Streaming",
+      "description": "Step-by-step OpenAI API tutorial — chat completions, function calling, embeddings, streaming, and error handling with copy-paste Python examples.",
+      "source": "blog/openai-api-complete-guide.md",
+      "queries": [
+        {
+          "query": "from openai import openai client = openai() embeddings.create chat.completions.create",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "openai",
+              "openai",
+              "openai",
+              "embeddings",
+              "chat",
+              "completions"
+            ],
+            "missing": [
+              "from",
+              "import",
+              "client",
+              "create",
+              "create"
+            ]
+          }
+        },
+        {
+          "query": "from openai import openai embeddings.create chat.completions.create",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 11,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "openai",
+              "openai",
+              "embeddings",
+              "chat",
+              "completions"
+            ],
+            "missing": [
+              "from",
+              "import",
+              "create",
+              "create"
+            ]
+          }
+        },
+        {
+          "query": "openai api",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 35,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "openai",
+              "api"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "openai api tutorial for back sleepers",
+          "impressions": 10,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8.7,
+          "alignment": {
+            "score": 0.6,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "back",
+              "sleepers"
+            ]
+          }
+        },
+        {
+          "query": "openai api tutorial for heavy sleepers",
+          "impressions": 10,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6.6,
+          "alignment": {
+            "score": 0.6,
+            "matched": [
+              "openai",
+              "api",
+              "tutorial"
+            ],
+            "missing": [
+              "heavy",
+              "sleepers"
+            ]
+          }
+        },
+        {
+          "query": "openai conversations api",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "openai",
+              "api"
+            ],
+            "missing": [
+              "conversations"
+            ]
+          }
+        },
+        {
+          "query": "openai embeddings api response usage total_tokens",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.42857142857142855,
+            "matched": [
+              "openai",
+              "embeddings",
+              "api"
+            ],
+            "missing": [
+              "response",
+              "usage",
+              "total",
+              "tokens"
+            ]
+          }
+        },
+        {
+          "query": "openai python client chat.completions.create embeddings.create",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "openai",
+              "chat",
+              "embeddings",
+              "python",
+              "completions"
+            ],
+            "missing": [
+              "client",
+              "create",
+              "create"
+            ]
+          }
+        },
+        {
+          "query": "openai python client embeddings.create chat.completions.create",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "openai",
+              "embeddings",
+              "chat",
+              "python",
+              "completions"
+            ],
+            "missing": [
+              "client",
+              "create",
+              "create"
+            ]
+          }
+        },
+        {
+          "query": "openai python client embeddings.create chat.completions.create gpt-4o-mini text-embedding-3-small",
+          "impressions": 3,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6.333333333333333,
+          "alignment": {
+            "score": 0.3076923076923077,
+            "matched": [
+              "openai",
+              "embeddings",
+              "chat",
+              "python",
+              "completions"
+            ],
+            "missing": [
+              "client",
+              "create",
+              "create",
+              "gpt",
+              "mini",
+              "text",
+              "embedding",
+              "small"
+            ]
+          }
+        },
+        {
+          "query": "openai python client embeddings.create chat.completions.create usage",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 6,
+          "alignment": {
+            "score": 0.4444444444444444,
+            "matched": [
+              "openai",
+              "embeddings",
+              "chat",
+              "python",
+              "completions"
+            ],
+            "missing": [
+              "client",
+              "create",
+              "create",
+              "usage"
+            ]
+          }
+        },
+        {
+          "query": "openai python library openai client embeddings.create chat.completions.create",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 11,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "openai",
+              "openai",
+              "embeddings",
+              "chat",
+              "python",
+              "completions"
+            ],
+            "missing": [
+              "library",
+              "client",
+              "create",
+              "create"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.5613362332112332,
+      "topMissingTerms": [
+        "sleepers",
+        "create",
+        "back",
+        "heavy",
+        "client"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.014082840236686392,
+      "ctrOpportunity": 2
+    },
+    {
+      "url": "https://ailearnings.in/langchain-tutorial/",
+      "impressions": 110,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 7.872727272727273,
+      "title": "LangChain Tutorial: Build LLM Apps in Python (2026)",
+      "description": "Build RAG pipelines, AI agents, and LLM apps in Python with LangChain. Covers core concepts, a complete RAG example, and LangChain vs alternatives.",
+      "source": "standalone",
+      "queries": [
+        {
+          "query": "best free langchain rag tutorial 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 7,
+          "alignment": {
+            "score": 0.7,
+            "matched": [
+              "langchain",
+              "tutorial",
+              "2026",
+              "rag"
+            ],
+            "missing": [
+              "free"
+            ]
+          }
+        },
+        {
+          "query": "best free langchain tutorial 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "langchain",
+              "tutorial",
+              "2026"
+            ],
+            "missing": [
+              "free"
+            ]
+          }
+        },
+        {
+          "query": "best langchain tutorial 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "langchain",
+              "tutorial",
+              "2026"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "best langchain tutorials 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "langchain",
+              "2026"
+            ],
+            "missing": [
+              "tutorials"
+            ]
+          }
+        },
+        {
+          "query": "langchain learning path 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8.5,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "langchain",
+              "2026"
+            ],
+            "missing": [
+              "learning",
+              "path"
+            ]
+          }
+        },
+        {
+          "query": "langchain learning roadmap",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 11,
+          "alignment": {
+            "score": 0.3333333333333333,
+            "matched": [
+              "langchain"
+            ],
+            "missing": [
+              "learning",
+              "roadmap"
+            ]
+          }
+        },
+        {
+          "query": "langchain learning roadmap 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "langchain",
+              "2026"
+            ],
+            "missing": [
+              "learning",
+              "roadmap"
+            ]
+          }
+        },
+        {
+          "query": "langchain rag tutorial 2026",
+          "impressions": 5,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 0.875,
+            "matched": [
+              "langchain",
+              "tutorial",
+              "2026",
+              "rag"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "langchain roadmap",
+          "impressions": 5,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 28.2,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "langchain"
+            ],
+            "missing": [
+              "roadmap"
+            ]
+          }
+        },
+        {
+          "query": "langchain tutorial for beginners 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 5.5,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "langchain",
+              "tutorial",
+              "2026"
+            ],
+            "missing": [
+              "beginners"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.6481884057971016,
+      "topMissingTerms": [
+        "roadmap",
+        "learning",
+        "free",
+        "path",
+        "beginners"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.02,
+      "ctrOpportunity": 2
+    },
+    {
+      "url": "https://ailearnings.in/blog/ai-tools-for-developers/",
+      "impressions": 93,
+      "clicks": 1,
+      "ctr": 0.010752688172043012,
+      "position": 8.408602150537634,
+      "title": "Best AI Tools for Developers in 2026",
+      "description": "Explore the best AI tools developers use to build modern AI applications.",
+      "source": "blog/ai-tools-for-developers.md",
+      "queries": [
+        {
+          "query": "ai developer resources",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 69.5,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "developer",
+              "resources"
+            ]
+          }
+        },
+        {
+          "query": "ai developer tools updates march 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 11,
+          "alignment": {
+            "score": 0.4,
+            "matched": [
+              "tools",
+              "2026"
+            ],
+            "missing": [
+              "developer",
+              "updates",
+              "march"
+            ]
+          }
+        },
+        {
+          "query": "best ai apis for developers 2026",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 7,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "developers",
+              "2026"
+            ],
+            "missing": [
+              "apis"
+            ]
+          }
+        },
+        {
+          "query": "popular ai sdks for developers 2026",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "developers",
+              "2026"
+            ],
+            "missing": [
+              "popular",
+              "sdks"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.37222222222222223,
+      "topMissingTerms": [
+        "developer",
+        "resources",
+        "apis",
+        "updates",
+        "march"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.009247311827956989,
+      "ctrOpportunity": 1
+    },
+    {
+      "url": "https://ailearnings.in/assessment/",
+      "impressions": 25,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 4.6,
+      "title": "AI Engineer Skill Assessment (2026): What You'll Know",
+      "description": "Honest breakdown of what you can build after the AI roadmap — which gaps remain and next steps for growing as an AI engineer.",
+      "source": "standalone",
+      "queries": [],
+      "alignmentScore": null,
+      "topMissingTerms": [],
+      "expectedCtr": 0.05,
+      "ctrGap": 0.05,
+      "ctrOpportunity": 1
+    },
+    {
+      "url": "https://ailearnings.in/projects/ai-content-moderator/",
+      "impressions": 47,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 7.914893617021277,
+      "title": "Build an AI Content Moderator (2026): Filter Harmful Content",
+      "description": "Build a content moderation system for toxicity, hate speech, spam, and policy violations — with a review queue and confidence thresholds.",
+      "source": "projects/ai-content-moderator.md",
+      "queries": [
+        {
+          "query": "ai moderation with human review dashboard",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 10,
+          "alignment": {
+            "score": 0.25,
+            "matched": [
+              "moderation",
+              "review"
+            ],
+            "missing": [
+              "human",
+              "dashboard"
+            ]
+          }
+        },
+        {
+          "query": "openai moderation python",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 59,
+          "alignment": {
+            "score": 0.16666666666666666,
+            "matched": [
+              "moderation"
+            ],
+            "missing": [
+              "openai",
+              "python"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.2222222222222222,
+      "topMissingTerms": [
+        "human",
+        "dashboard",
+        "openai",
+        "python"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.02,
+      "ctrOpportunity": 1
+    },
+    {
+      "url": "https://ailearnings.in/readiness/",
+      "impressions": 31,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 9.451612903225806,
+      "title": "AI Learning Readiness Checker – Know When to Level Up (2026)",
+      "description": "Know when to advance on your AI roadmap. Check green flags, red flags, and move-on rules for all 7 phases — from ML basics to Agentic AI.",
+      "source": "standalone",
+      "queries": [
+        {
+          "query": "llm+search+readiness",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 82,
+          "alignment": {
+            "score": 0.3333333333333333,
+            "matched": [
+              "readiness"
+            ],
+            "missing": [
+              "llm",
+              "search"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.3333333333333333,
+      "topMissingTerms": [
+        "llm",
+        "search"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.02,
+      "ctrOpportunity": 1
+    },
+    {
+      "url": "https://ailearnings.in/resources/",
+      "impressions": 51,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 8.470588235294118,
+      "title": "Best Free AI Learning Resources 2026 — Curated by Phase",
+      "description": "Free books, courses, and references for every phase of the AI roadmap — from ML basics to LLMs, RAG, and Agentic AI.",
+      "source": "standalone",
+      "queries": [
+        {
+          "query": "andrej karpathy zero to hero",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 29,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "andrej",
+              "karpathy",
+              "zero",
+              "hero"
+            ]
+          }
+        },
+        {
+          "query": "best ai ml roadmap",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 27,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "roadmap"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "rag llm",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 190,
+          "alignment": {
+            "score": 0.25,
+            "matched": [
+              "rag"
+            ],
+            "missing": [
+              "llm"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.25,
+      "topMissingTerms": [
+        "andrej",
+        "karpathy",
+        "zero",
+        "hero",
+        "llm"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.02,
+      "ctrOpportunity": 1
+    },
+    {
+      "url": "https://ailearnings.in/",
+      "impressions": 58,
+      "clicks": 3,
+      "ctr": 0.05172413793103448,
+      "position": 3.8793103448275863,
+      "title": "",
+      "description": "",
+      "source": "unknown",
+      "queries": [
+        {
+          "query": "free llm api resources",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 8,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "free",
+              "llm",
+              "api",
+              "resources"
+            ]
+          }
+        },
+        {
+          "query": "rag llm",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 82,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "rag",
+              "llm"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0,
+      "topMissingTerms": [
+        "llm",
+        "free",
+        "api",
+        "resources",
+        "rag"
+      ],
+      "expectedCtr": 0.05,
+      "ctrGap": -0.0017241379310344793,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/prep-plan/",
+      "impressions": 91,
+      "clicks": 2,
+      "ctr": 0.02197802197802198,
+      "position": 8.582417582417582,
+      "title": "AI Interview Prep Plan 2026 – 6-Week Fast Track",
+      "description": "6-week AI interview prep for developers. Cover LLMs, Prompt Engineering, RAG, and Agentic AI — 4–6 hours per week with free resources.",
+      "source": "standalone",
+      "queries": [
+        {
+          "query": "bytebyteai course",
+          "impressions": 3,
+          "clicks": 1,
+          "ctr": 0.3333333333333333,
+          "position": 13.333333333333334,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "bytebyteai",
+              "course"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0,
+      "topMissingTerms": [
+        "bytebyteai",
+        "course"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": -0.0019780219780219793,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/blog/roadmap-guides/deep-learning-fundamentals/",
+      "impressions": 28,
+      "clicks": 1,
+      "ctr": 0.03571428571428571,
+      "position": 9.25,
+      "title": "Deep Learning Fundamentals 2026: CNNs, RNNs & Transformers",
+      "description": "CNNs, RNNs, and how their limits led to the transformer revolution. Understand the deep learning architectures that shaped modern AI.",
+      "source": "blog/roadmap-guides/deep-learning-fundamentals.md",
+      "queries": [],
+      "alignmentScore": null,
+      "topMissingTerms": [],
+      "expectedCtr": 0.02,
+      "ctrGap": -0.015714285714285712,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/projects/ai-resume-analyzer/",
+      "impressions": 58,
+      "clicks": 1,
+      "ctr": 0.017241379310344827,
+      "position": 6.551724137931035,
+      "title": "Build an AI Resume Analyzer (2026): Score & Critique Resumes",
+      "description": "Build a tool that analyzes resumes against job descriptions, scores fit, identifies gaps, and suggests specific improvements using GPT-4o-mini.",
+      "source": "projects/ai-resume-analyzer.md",
+      "queries": [
+        {
+          "query": "yes",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 2,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "yes"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0,
+      "topMissingTerms": [
+        "yes"
+      ],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.002758620689655173,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/beyond-roadmap/",
+      "impressions": 30,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 11.2,
+      "title": "Beyond the AI Roadmap – Advanced AI Topics & Knowledge Gaps",
+      "description": "Finished the AI roadmap? Explore advanced topics, specialization gaps, and next steps for senior AI engineers.",
+      "source": "standalone",
+      "queries": [
+        {
+          "query": "rag llm",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 163,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "rag",
+              "llm"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0,
+      "topMissingTerms": [
+        "rag",
+        "llm"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.005,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/blog/",
+      "impressions": 3,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 8,
+      "title": "AI Engineering Blog 2026 — Guides & Tutorials",
+      "description": "AI engineering tutorials for developers. Learn LLMs, RAG, prompt engineering, and agentic AI with practical hands-on guides.",
+      "source": "standalone",
+      "queries": [],
+      "alignmentScore": null,
+      "topMissingTerms": [],
+      "expectedCtr": 0.02,
+      "ctrGap": 0.02,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/blog/document-chunking-strategies/",
+      "impressions": 70,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 25.985714285714284,
+      "title": "Document Chunking Strategies for RAG (2026)",
+      "description": "Best chunking strategies for RAG — fixed, sentence, semantic, and hierarchical splitting. Benchmarks and Python code for each approach.",
+      "source": "blog/document-chunking-strategies.md",
+      "queries": [
+        {
+          "query": "chunk text for rag",
+          "impressions": 3,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 46,
+          "alignment": {
+            "score": 0.3333333333333333,
+            "matched": [
+              "rag"
+            ],
+            "missing": [
+              "chunk",
+              "text"
+            ]
+          }
+        },
+        {
+          "query": "chunking text examples",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 64,
+          "alignment": {
+            "score": 0.3333333333333333,
+            "matched": [
+              "chunking"
+            ],
+            "missing": [
+              "text",
+              "examples"
+            ]
+          }
+        },
+        {
+          "query": "document chunking",
+          "impressions": 4,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 45,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "document",
+              "chunking"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "document chunking strategies for rag",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 7,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "document",
+              "chunking",
+              "strategies",
+              "rag"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "intelligent document chunking",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 48,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "document",
+              "chunking"
+            ],
+            "missing": [
+              "intelligent"
+            ]
+          }
+        },
+        {
+          "query": "langchain chunking",
+          "impressions": 16,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 48.625,
+          "alignment": {
+            "score": 0.5,
+            "matched": [
+              "chunking"
+            ],
+            "missing": [
+              "langchain"
+            ]
+          }
+        },
+        {
+          "query": "langchain pdf chunking",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 33.5,
+          "alignment": {
+            "score": 0.3333333333333333,
+            "matched": [
+              "chunking"
+            ],
+            "missing": [
+              "langchain",
+              "pdf"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.5595238095238095,
+      "topMissingTerms": [
+        "langchain",
+        "text",
+        "chunk",
+        "pdf",
+        "examples"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.005,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/blog/prompt-engineering-guide/",
+      "impressions": 59,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 12.135593220338983,
+      "title": "Prompt Engineering Guide for Developers (2026)",
+      "description": "A practical prompt engineering guide for developers. Learn techniques, patterns, and production best practices for working with modern LLMs in 2026.",
+      "source": "blog/prompt-engineering-guide.md",
+      "queries": [
+        {
+          "query": "0.3",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 2,
+          "alignment": {
+            "score": 1,
+            "matched": [],
+            "missing": []
+          }
+        },
+        {
+          "query": "giving the chatbot a vague prompt like write an email about a new product results in a generic, unusable output. this highlights which core principle of using generative ai? ai models are best at creative tasks. the quality of the output depends on the quality of the input. all ai models have a knowledge cut-off. ai tools are replacing the need for human creativity.",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 0.025,
+            "matched": [
+              "prompt"
+            ],
+            "missing": [
+              "giving",
+              "chatbot",
+              "vague",
+              "like",
+              "write",
+              "email",
+              "about",
+              "new",
+              "product",
+              "results",
+              "generic",
+              "unusable",
+              "output",
+              "this",
+              "highlights",
+              "which",
+              "core",
+              "principle",
+              "using",
+              "generative",
+              "models",
+              "creative",
+              "tasks",
+              "quality",
+              "output",
+              "depends",
+              "quality",
+              "input",
+              "all",
+              "models",
+              "have",
+              "knowledge",
+              "cut",
+              "off",
+              "tools",
+              "replacing",
+              "need",
+              "human",
+              "creativity"
+            ]
+          }
+        },
+        {
+          "query": "json prompt engineering",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "prompt",
+              "engineering"
+            ],
+            "missing": [
+              "json"
+            ]
+          }
+        },
+        {
+          "query": "prompt engineering guide",
+          "impressions": 7,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 58.857142857142854,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "prompt",
+              "engineering",
+              "guide"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "you're running a prompt evaluation. after creating your dataset and feeding questions through claude, what's the next step? feed the responses through a grader to get scores write a completely new prompt ask users what they think publish your prompt immediately",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 1,
+          "alignment": {
+            "score": 0.09375,
+            "matched": [
+              "prompt",
+              "prompt",
+              "prompt"
+            ],
+            "missing": [
+              "you",
+              "running",
+              "evaluation",
+              "after",
+              "creating",
+              "your",
+              "dataset",
+              "feeding",
+              "questions",
+              "through",
+              "claude",
+              "next",
+              "step",
+              "feed",
+              "responses",
+              "through",
+              "grader",
+              "get",
+              "scores",
+              "write",
+              "completely",
+              "new",
+              "ask",
+              "users",
+              "they",
+              "think",
+              "publish",
+              "your",
+              "immediately"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.7986742424242425,
+      "topMissingTerms": [
+        "write",
+        "new",
+        "output",
+        "models",
+        "quality"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.005,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/blog/rag-vs-finetuning/",
+      "impressions": 4,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 20,
+      "title": "RAG vs Fine-Tuning (2026): When to Use Each",
+      "description": "When to use RAG vs fine-tuning — compare cost, latency, accuracy, and maintenance for each approach with real engineering examples.",
+      "source": "blog/rag-vs-finetuning.md",
+      "queries": [
+        {
+          "query": "rag vs fine tuning explanation",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 5,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "rag",
+              "fine",
+              "tuning"
+            ],
+            "missing": [
+              "explanation"
+            ]
+          }
+        },
+        {
+          "query": "rag vs fine-tuning when to use each",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 9,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "rag",
+              "fine",
+              "tuning",
+              "when",
+              "use",
+              "each"
+            ],
+            "missing": []
+          }
+        }
+      ],
+      "alignmentScore": 0.875,
+      "topMissingTerms": [
+        "explanation"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.005,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/blog/roadmap-guides/statistics-for-machine-learning/",
+      "impressions": 3,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 19.666666666666668,
+      "title": "Statistics for Machine Learning (2026): Key Concepts",
+      "description": "Probability distributions, Bayes' theorem, hypothesis testing, and interpreting model metrics — the stats that actually matter for ML.",
+      "source": "blog/roadmap-guides/statistics-for-machine-learning.md",
+      "queries": [],
+      "alignmentScore": null,
+      "topMissingTerms": [],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.005,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/genai-guide/",
+      "impressions": 26,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 14.576923076923077,
+      "title": "Generative AI Guide 2026 — LLMs, Images, Audio & Code",
+      "description": "Learn how LLMs, image generation, audio synthesis, and code generation work. Top models, tools, and a learning roadmap for AI engineers.",
+      "source": "standalone",
+      "queries": [
+        {
+          "query": "rag llm",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 203,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "rag",
+              "llm"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0,
+      "topMissingTerms": [
+        "rag",
+        "llm"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.005,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/paths/ai-engineer/",
+      "impressions": 8,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 19.125,
+      "title": "AI Engineer Learning Path 2026",
+      "description": "A complete roadmap to becoming an AI Engineer — the generalist role that designs, builds, and ships AI-powered applications and systems in production.",
+      "source": "paths/ai-engineer.md",
+      "queries": [
+        {
+          "query": "ai engineering learning path",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 89,
+          "alignment": {
+            "score": 0.6666666666666666,
+            "matched": [
+              "learning",
+              "path"
+            ],
+            "missing": [
+              "engineering"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.6666666666666666,
+      "topMissingTerms": [
+        "engineering"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": 0.005,
+      "ctrOpportunity": 0
+    },
+    {
+      "url": "https://ailearnings.in/blog/roadmap-guides/python-for-ai-complete-guide/",
+      "impressions": 42,
+      "clicks": 2,
+      "ctr": 0.047619047619047616,
+      "position": 8.5,
+      "title": "Python for AI Developers (2026): Setup & Essential Libraries",
+      "description": "Set up a Python AI dev environment — virtual environments, NumPy, pandas, OpenAI SDK, Jupyter notebooks, and common patterns for AI projects.",
+      "source": "blog/roadmap-guides/python-for-ai-complete-guide.md",
+      "queries": [],
+      "alignmentScore": null,
+      "topMissingTerms": [],
+      "expectedCtr": 0.02,
+      "ctrGap": -0.027619047619047616,
+      "ctrOpportunity": -1
+    },
+    {
+      "url": "https://ailearnings.in/blog/supervised-learning-guide/",
+      "impressions": 13,
+      "clicks": 1,
+      "ctr": 0.07692307692307693,
+      "position": 11.23076923076923,
+      "title": "Supervised Learning Guide 2026: Algorithms & Best Practices",
+      "description": "Regression and classification algorithms, evaluation metrics, cross-validation, and how to pick the right model for your problem.",
+      "source": "blog/supervised-learning-guide.md",
+      "queries": [],
+      "alignmentScore": null,
+      "topMissingTerms": [],
+      "expectedCtr": 0.005,
+      "ctrGap": -0.07192307692307692,
+      "ctrOpportunity": -1
+    },
+    {
+      "url": "https://ailearnings.in/prompt-eng/",
+      "impressions": 141,
+      "clicks": 3,
+      "ctr": 0.02127659574468085,
+      "position": 59.687943262411345,
+      "title": "",
+      "description": "",
+      "source": "unknown",
+      "queries": [
+        {
+          "query": "prompt engineering guide",
+          "impressions": 93,
+          "clicks": 1,
+          "ctr": 0.010752688172043012,
+          "position": 76.10752688172043,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "prompt",
+              "engineering",
+              "guide"
+            ]
+          }
+        },
+        {
+          "query": "prompt engineering roadmap",
+          "impressions": 1,
+          "clicks": 1,
+          "ctr": 1,
+          "position": 45,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "prompt",
+              "engineering",
+              "roadmap"
+            ]
+          }
+        },
+        {
+          "query": "automated prompt engineering: the definitive hands-on guide",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 75.5,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "automated",
+              "prompt",
+              "engineering",
+              "definitive",
+              "hands",
+              "guide"
+            ]
+          }
+        },
+        {
+          "query": "prompt engineer handbook",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 5,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "prompt",
+              "engineer",
+              "handbook"
+            ]
+          }
+        },
+        {
+          "query": "prompt engineering framework",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 99,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "prompt",
+              "engineering",
+              "framework"
+            ]
+          }
+        },
+        {
+          "query": "prompt engineering fundamentals",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 65,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "prompt",
+              "engineering",
+              "fundamentals"
+            ]
+          }
+        },
+        {
+          "query": "prompt engineering handbook",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 65,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "prompt",
+              "engineering",
+              "handbook"
+            ]
+          }
+        },
+        {
+          "query": "prompt engineering techniques",
+          "impressions": 6,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 80.33333333333333,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "prompt",
+              "engineering",
+              "techniques"
+            ]
+          }
+        },
+        {
+          "query": "prompt+engineering+guide",
+          "impressions": 2,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 67,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "prompt",
+              "engineering",
+              "guide"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0,
+      "topMissingTerms": [
+        "prompt",
+        "engineering",
+        "guide",
+        "techniques",
+        "automated"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": -0.01627659574468085,
+      "ctrOpportunity": -2
+    },
+    {
+      "url": "https://ailearnings.in/blog/machine-learning-basics-for-developers/",
+      "impressions": 22,
+      "clicks": 2,
+      "ctr": 0.09090909090909091,
+      "position": 9.681818181818182,
+      "title": "Machine Learning Basics for Developers (2026)",
+      "description": "A developer-first introduction to machine learning — core concepts, types of ML, hands-on Python workflow, and how to go from data to a working model.",
+      "source": "blog/machine-learning-basics-for-developers.md",
+      "queries": [
+        {
+          "query": "machine learning for developers",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 13,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "machine",
+              "learning",
+              "developers"
+            ],
+            "missing": []
+          }
+        }
+      ],
+      "alignmentScore": 1,
+      "topMissingTerms": [],
+      "expectedCtr": 0.02,
+      "ctrGap": -0.07090909090909091,
+      "ctrOpportunity": -2
+    },
+    {
+      "url": "https://ailearnings.in/blog/fine-tuning-llms-guide/",
+      "impressions": 212,
+      "clicks": 4,
+      "ctr": 0.018867924528301886,
+      "position": 38.91509433962264,
+      "title": "Fine-Tuning LLMs with LoRA (2026): Explained with Examples",
+      "description": "LoRA and QLoRA fine-tuning explained step-by-step — dataset prep, Hugging Face training loops, and real code examples to avoid common pitfalls.",
+      "source": "blog/fine-tuning-llms-guide.md",
+      "queries": [
+        {
+          "query": "lora fine tuning",
+          "impressions": 3,
+          "clicks": 2,
+          "ctr": 0.6666666666666666,
+          "position": 54.333333333333336,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "lora",
+              "fine",
+              "tuning"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "lora llm tutorial",
+          "impressions": 30,
+          "clicks": 1,
+          "ctr": 0.03333333333333333,
+          "position": 56.2,
+          "alignment": {
+            "score": 0.3333333333333333,
+            "matched": [
+              "lora"
+            ],
+            "missing": [
+              "llm",
+              "tutorial"
+            ]
+          }
+        },
+        {
+          "query": "lm eval",
+          "impressions": 1,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 4,
+          "alignment": {
+            "score": 0,
+            "matched": [],
+            "missing": [
+              "eval"
+            ]
+          }
+        },
+        {
+          "query": "lora fine tuning example",
+          "impressions": 18,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 59.611111111111114,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "lora",
+              "fine",
+              "tuning"
+            ],
+            "missing": [
+              "example"
+            ]
+          }
+        },
+        {
+          "query": "lora fine tuning explained",
+          "impressions": 53,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 49.75471698113208,
+          "alignment": {
+            "score": 1,
+            "matched": [
+              "lora",
+              "fine",
+              "tuning",
+              "explained"
+            ],
+            "missing": []
+          }
+        },
+        {
+          "query": "lora fine tuning tutorial",
+          "impressions": 39,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 49.205128205128204,
+          "alignment": {
+            "score": 0.75,
+            "matched": [
+              "lora",
+              "fine",
+              "tuning"
+            ],
+            "missing": [
+              "tutorial"
+            ]
+          }
+        }
+      ],
+      "alignmentScore": 0.7552083333333334,
+      "topMissingTerms": [
+        "tutorial",
+        "llm",
+        "example",
+        "eval"
+      ],
+      "expectedCtr": 0.005,
+      "ctrGap": -0.013867924528301885,
+      "ctrOpportunity": -3
+    }
+  ]
+}

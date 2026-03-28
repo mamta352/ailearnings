@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #ffffff; }
+  </style>
+</head>
+<body>
+  <div id="result" data-ready="false" style="display:none"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@excalidraw/excalidraw@0.17.6/dist/excalidraw.production.min.js"></script>
+
+  <script>
+    window.exportExcalidraw = async function(sceneJSON) {
+      const result = document.getElementById('result');
+      result.setAttribute('data-ready', 'false');
+      result.removeAttribute('data-png');
+      result.removeAttribute('data-error');
+
+      try {
+        const scene = JSON.parse(sceneJSON);
+
+        const blob = await ExcalidrawLib.exportToBlob({
+          elements: scene.elements,
+          appState: {
+            exportBackground: true,
+            exportWithDarkMode: false,
+            viewBackgroundColor: scene.appState?.viewBackgroundColor || '#ffffff',
+            exportScale: 2,
+          },
+          files: scene.files || {},
+          mimeType: 'image/png',
+          quality: 1,
+        });
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          result.setAttribute('data-png', reader.result);
+          result.setAttribute('data-ready', 'true');
+        };
+        reader.onerror = () => {
+          result.setAttribute('data-error', 'FileReader failed');
+          result.setAttribute('data-ready', 'error');
+        };
+        reader.readAsDataURL(blob);
+      } catch (e) {
+        result.setAttribute('data-error', e.message);
+        result.setAttribute('data-ready', 'error');
+      }
+    };
+  </script>
+</body>
+</html>
